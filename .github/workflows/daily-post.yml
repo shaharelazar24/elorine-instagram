@@ -20,6 +20,10 @@ on:
         description: "כמה שמלות בודדות"
         required: false
         default: "3"
+      generate:
+        description: "לייצר תמונות חדשות? false = לפרסם רק מה שכבר קיים (true/false)"
+        required: false
+        default: "true"
       publish:
         description: "לפרסם? (true/false)"
         required: false
@@ -92,12 +96,12 @@ jobs:
 
       # ---------- 1. ייצור ----------
       - name: Generate posts
-        if: env.SKIP != '1'
+        if: env.SKIP != '1' && (github.event.inputs.generate || 'true') == 'true'
         run: python pipeline.py generate
 
       # ---------- 2. דחיפה ל-repo (כדי לקבל URL ציבורי) ----------
       - name: Commit generated posts
-        if: env.SKIP != '1'
+        if: env.SKIP != '1' && (github.event.inputs.generate || 'true') == 'true'
         run: |
           git config user.name  "elorine-bot"
           git config user.email "actions@github.com"
