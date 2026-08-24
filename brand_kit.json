@@ -16,9 +16,10 @@
 
   "output_spec": {
     "aspect_ratio": "4:5",
-    "pixels": [1080, 1350],
+    "pixels": [1600, 2000],
     "format": "JPEG",
-    "quality": 92,
+    "quality": 95,
+    "min_height": 1400,
     "color_space": "sRGB"
   },
 

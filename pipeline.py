@@ -54,7 +54,8 @@ SHOPIFY_STATIC_TOKEN = os.getenv("SHOPIFY_ADMIN_TOKEN", "")
 
 # --- Gemini ---
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-image")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-image")
+GEMINI_IMAGE_SIZE = os.getenv("GEMINI_IMAGE_SIZE", "2K")     # 1K / 2K / 4K
 GEMINI_URL = ("https://generativelanguage.googleapis.com/v1beta/models/"
               "{model}:generateContent")
 
@@ -71,7 +72,10 @@ GH_BRANCH = os.getenv("GITHUB_REF_NAME", "main")
 RAW_BASE = "https://raw.githubusercontent.com/{repo}/{branch}/{path}"
 
 FEED_W, FEED_H = BRAND_KIT["output_spec"]["pixels"]
+MIN_HEIGHT = int(os.getenv("MIN_IMAGE_HEIGHT",
+                           BRAND_KIT["output_spec"].get("min_height", 1400)))
 NL = chr(10)
+QUALITY_WARNINGS: list = []
 
 
 def log(msg: str) -> None:
@@ -343,17 +347,28 @@ DO NOT
 # Gemini
 # ==========================================================================
 
+def _gemini_body(parts: list, with_image_config: bool) -> dict:
+    gen = {"responseModalities": ["IMAGE"]}
+    if with_image_config:
+        # מבקשים במפורש 4:5 ברזולוציה גבוהה — במקום לקבל מה שיצא ולחתוך
+        gen["imageConfig"] = {"aspectRatio": BRAND_KIT["output_spec"]["aspect_ratio"],
+                              "imageSize": GEMINI_IMAGE_SIZE}
+    return {"contents": [{"role": "user", "parts": parts}], "generationConfig": gen}
+
+
 def _gemini_call(parts: list) -> bytes:
+    """קורא ל-Gemini. אם הדגם לא מקבל imageConfig — נופל חזרה בלעדיו
+    במקום להיכשל, כדי שהרצה לא תמות בגלל פרמטר אחד."""
     if not GEMINI_API_KEY:
         sys.exit("✗ חסר GEMINI_API_KEY")
-    body = {"contents": [{"role": "user", "parts": parts}],
-            "generationConfig": {"responseModalities": ["IMAGE"]}}
+
     url = GEMINI_URL.format(model=GEMINI_MODEL)
-    err = None
-    for attempt in range(3):
-        r = requests.post(url, json=body, timeout=180,
-                          headers={"x-goog-api-key": GEMINI_API_KEY,
-                                   "Content-Type": "application/json"})
+    headers = {"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"}
+    use_config, err = True, None
+
+    for attempt in range(4):
+        r = requests.post(url, json=_gemini_body(parts, use_config),
+                          timeout=240, headers=headers)
         if r.status_code == 200:
             for cand in r.json().get("candidates", []):
                 for part in cand.get("content", {}).get("parts", []):
@@ -363,6 +378,15 @@ def _gemini_call(parts: list) -> bytes:
             err = "Gemini החזיר תשובה ללא תמונה"
         else:
             err = f"Gemini {r.status_code}: {r.text[:250]}"
+            low = r.text.lower()
+            if (use_config and r.status_code == 400
+                    and any(k in low for k in ("imageconfig", "image_config",
+                                               "aspectratio", "imagesize",
+                                               "unknown name"))):
+                log("   ⚠ הדגם לא קיבל imageConfig — מנסה בלעדיו")
+                QUALITY_WARNINGS.append("imageConfig לא נתמך בדגם הזה")
+                use_config = False
+                continue
         log(f"   … ניסיון {attempt + 1} נכשל: {err}")
         time.sleep(4 * (attempt + 1))
     raise RuntimeError(err)
@@ -380,32 +404,56 @@ def gemini_create(prompt: str) -> bytes:
     return _gemini_call([{"text": prompt}])
 
 
-def to_feed_format(image_bytes: bytes) -> bytes:
+def to_feed_format(image_bytes: bytes) -> tuple:
+    """חותך ל-4:5 ומייצא JPEG. מחזיר (bytes, stats) כדי שנוכל לבקר איכות."""
     img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    w, h = img.size
-    target, current = FEED_W / FEED_H, w / h
-    if current > target:
-        nw = int(h * target)
-        img = img.crop(((w - nw) // 2, 0, (w - nw) // 2 + nw, h))
-    elif current < target:
-        nh = int(w / target)
-        top = int((h - nh) * 0.35)
-        img = img.crop((0, top, w, top + nh))
-    img = img.resize((FEED_W, FEED_H), Image.LANCZOS)
+    src_w, src_h = img.size
+
+    target, current = FEED_W / FEED_H, src_w / src_h
+    if current > target:                       # רחב מדי — חותכים בצדדים
+        nw = int(src_h * target)
+        img = img.crop(((src_w - nw) // 2, 0, (src_w - nw) // 2 + nw, src_h))
+    elif current < target:                     # גבוה מדי — חותכים יותר מלמטה
+        nh = int(src_w / target)
+        top = int((src_h - nh) * 0.35)
+        img = img.crop((0, top, src_w, top + nh))
+
+    cropped_h = img.size[1]
+    upscaled = cropped_h < FEED_H
+    if img.size != (FEED_W, FEED_H):
+        img = img.resize((FEED_W, FEED_H), Image.LANCZOS)
+
     buf = io.BytesIO()
     img.save(buf, "JPEG", quality=BRAND_KIT["output_spec"]["quality"],
-             optimize=True, progressive=True)
-    return buf.getvalue()
+             optimize=True, progressive=True, subsampling=0)   # 4:4:4
+    data = buf.getvalue()
+
+    stats = {"source_px": f"{src_w}x{src_h}", "output_px": f"{FEED_W}x{FEED_H}",
+             "true_height": cropped_h, "upscaled": upscaled,
+             "kb": len(data) // 1024}
+    return data, stats
 
 
-def render(source_url: str | None, prompt: str) -> bytes:
-    """מייצר תמונת פיד — עם מקור (עריכה) או בלי (יצירה)."""
+def render(source_url: str | None, prompt: str, label: str = "") -> tuple:
+    """מייצר תמונת פיד — עם מקור (עריכה) או בלי (יצירה). מחזיר (bytes, stats)."""
     if source_url:
         raw = requests.get(source_url, timeout=60)
         raw.raise_for_status()
         mime = mimetypes.guess_type(source_url.split("?")[0])[0] or "image/jpeg"
-        return to_feed_format(gemini_edit(raw.content, mime, prompt))
-    return to_feed_format(gemini_create(prompt))
+        data, stats = to_feed_format(gemini_edit(raw.content, mime, prompt))
+    else:
+        data, stats = to_feed_format(gemini_create(prompt))
+
+    mark = "✓"
+    if stats["true_height"] < MIN_HEIGHT:
+        mark = "⚠"
+        msg = (f"{label or 'תמונה'}: Gemini החזיר {stats['source_px']} — "
+               f"אחרי חיתוך {stats['true_height']}px גובה, מתחת לסף {MIN_HEIGHT}")
+        QUALITY_WARNINGS.append(msg)
+        log(f"   ⚠ איכות: {msg}")
+    log(f"   {mark} מקור {stats['source_px']} → פלט {stats['output_px']}"
+        f"  ({stats['kb']} KB)" + ("  [הוגדל]" if stats["upscaled"] else ""))
+    return data, stats
 
 
 # ==========================================================================
@@ -638,17 +686,19 @@ def cmd_generate() -> None:
         log(f"\n▶ קרוסלה: {name} — {len(colours)} צבעים  רקע: {bg['he']}")
         paths = []
         for colour in colours:
+            log(f"   · {colour['name']}")
             try:
-                feed = render(colour["image"],
-                              build_prompt(product, bg, colour["name"]))
+                feed, st = render(colour["image"],
+                                  build_prompt(product, bg, colour["name"]),
+                                  f"{name}/{colour['name']}")
             except Exception as exc:                       # noqa: BLE001
                 log(f"   ✗ {colour['name']} נכשל, מדלג: {exc}")
                 continue
             rel = f"posts/{out.name}/{product['handle']}__{len(paths) + 1}.jpg"
             (ROOT / rel).write_bytes(feed)
             paths.append({"colour": colour["name"], "path": rel,
-                          "background": bg["id"], "background_he": bg["he"]})
-            log(f"   ✓ {colour['name']}  →  {rel}  ({len(feed) // 1024} KB)")
+                          "background": bg["id"], "background_he": bg["he"],
+                          "quality": st})
 
         if len(paths) < 2:
             log("   ✗ פחות משתי תמונות — לא קרוסלה, מדלג")
@@ -670,16 +720,16 @@ def cmd_generate() -> None:
         scene = pick_atmosphere(state)
         log(f"\n▶ אווירה: {scene['he']}")
         try:
-            feed = render(None, build_atmosphere_prompt(scene))
+            feed, st = render(None, build_atmosphere_prompt(scene),
+                              f"אווירה/{scene['he']}")
         except Exception as exc:                           # noqa: BLE001
             log(f"   ✗ נכשל, מדלג: {exc}")
             continue
         rel = f"posts/{out.name}/atmosphere__{scene['id']}.jpg"
         (ROOT / rel).write_bytes(feed)
-        log(f"   ✓ {rel}  ({len(feed) // 1024} KB)")
         manifest.append({
             "type": "atmosphere", "scene": scene["id"],
-            "scene_he": scene["he"], "image_path": rel,
+            "scene_he": scene["he"], "image_path": rel, "quality": st,
             "caption": build_atmosphere_caption(scene),
             "alt_text": f"תמונת אווירה של ELORINE — {scene['he']}.",
             "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -694,14 +744,14 @@ def cmd_generate() -> None:
         log(f"\n▶ {name}  ({product['handle']})  רקע: {bg['he']}")
         src = best_source_image(product)
         try:
-            feed = render(src["url"], build_prompt(product, bg))
+            feed, st = render(src["url"], build_prompt(product, bg), name)
         except Exception as exc:                           # noqa: BLE001
             log(f"   ✗ נכשל, מדלג: {exc}")
             continue
         rel = f"posts/{out.name}/{product['handle']}.jpg"
         (ROOT / rel).write_bytes(feed)
-        log(f"   ✓ {rel}  ({len(feed) // 1024} KB)")
         manifest.append({
+            "quality": st,
             "type": "single", "handle": product["handle"],
             "title": product["title"], "dress_name": name,
             "product_url": product["url"], "price_ils": product["price"],
@@ -715,12 +765,83 @@ def cmd_generate() -> None:
     (out / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     save_state(state)
+    build_contact_sheet(manifest, out)
 
     kinds = {}
     for e in manifest:
         kinds[e["type"]] = kinds.get(e["type"], 0) + 1
     log(f"\nנוצרו {len(manifest)} פוסטים ב-{out.name}: "
         + ", ".join(f"{v} {k}" for k, v in kinds.items()))
+
+    # ---------- בקרת איכות ----------
+    log("\n— בקרת איכות —")
+    log(f"  דגם: {GEMINI_MODEL}   בקשה: {GEMINI_IMAGE_SIZE} "
+        f"{BRAND_KIT['output_spec']['aspect_ratio']}   "
+        f"סף מינימום: {MIN_HEIGHT}px")
+    for e in manifest:
+        for st, tag in _iter_quality(e):
+            flag = "⚠" if st["true_height"] < MIN_HEIGHT else "✓"
+            log(f"  {flag} {tag:<34} {st['source_px']:>11} → "
+                f"{st['output_px']}  {st['kb']} KB")
+    if QUALITY_WARNINGS:
+        log(f"\n⚠ {len(QUALITY_WARNINGS)} אזהרות איכות:")
+        for w in dict.fromkeys(QUALITY_WARNINGS):
+            log(f"   · {w}")
+    else:
+        log("  ✓ כל התמונות עברו את סף האיכות")
+
+
+def _iter_quality(entry: dict):
+    if entry["type"] == "carousel":
+        for i, item in enumerate(entry["items"], 1):
+            if item.get("quality"):
+                yield item["quality"], f"{entry['dress_name']} [{i}] {item['colour']}"
+    elif entry.get("quality"):
+        label = entry.get("dress_name") or entry.get("scene_he") or entry["type"]
+        yield entry["quality"], f"{entry['type']}: {label}"
+
+
+def build_contact_sheet(manifest: list, out: Path) -> None:
+    """גיליון מגע אחד עם כל תמונות היום — כדי לראות קרוסלה שלמה במבט אחד."""
+    tiles = []
+    for e in manifest:
+        if e["type"] == "carousel":
+            for i, item in enumerate(e["items"], 1):
+                tiles.append((ROOT / item["path"],
+                              f"CAROUSEL {i}/{len(e['items'])}  {item['colour']}"))
+        else:
+            tiles.append((ROOT / e["image_path"], e["type"].upper()))
+    if not tiles:
+        return
+
+    tw, cols, pad, bar = 420, min(4, len(tiles)), 16, 26
+    th = int(tw * FEED_H / FEED_W)
+    rows = (len(tiles) + cols - 1) // cols
+    sheet = Image.new("RGB",
+                      (cols * tw + (cols + 1) * pad,
+                       rows * (th + bar) + (rows + 1) * pad),
+                      (244, 240, 234))
+    try:
+        from PIL import ImageDraw, ImageFont
+        draw = ImageDraw.Draw(sheet)
+        font = ImageFont.truetype(
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 15)
+    except Exception:                                      # noqa: BLE001
+        draw = font = None
+
+    for i, (path, label) in enumerate(tiles):
+        if not path.exists():
+            continue
+        x = pad + (i % cols) * (tw + pad)
+        y = pad + (i // cols) * (th + bar + pad)
+        sheet.paste(Image.open(path).resize((tw, th), Image.LANCZOS), (x, y))
+        if draw and font:
+            draw.text((x + 2, y + th + 5), label, fill=(60, 56, 50), font=font)
+
+    dest = out / "preview.jpg"
+    sheet.save(dest, "JPEG", quality=90, optimize=True)
+    log(f"\n✓ גיליון מגע: posts/{out.name}/preview.jpg  "
+        f"({dest.stat().st_size // 1024} KB, {len(tiles)} תמונות)")
 
 
 # ==========================================================================
