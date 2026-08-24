@@ -11,32 +11,60 @@
         "colour": "צהוב",
         "path": "posts/2026-08-24/sol-corset-maxi-dress__1.jpg",
         "background": "european_street",
-        "background_he": "רחוב אירופאי קלאסי"
+        "background_he": "רחוב אירופאי קלאסי",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1246
+        }
       },
       {
         "colour": "שחור",
         "path": "posts/2026-08-24/sol-corset-maxi-dress__2.jpg",
         "background": "european_street",
-        "background_he": "רחוב אירופאי קלאסי"
+        "background_he": "רחוב אירופאי קלאסי",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1062
+        }
       }
     ],
     "caption": "שמלת סול · ELORINE\nמקסי מחוך בשחור או צהוב לימון, נוכחות שאי אפשר לפספס.\nבשני גוונים — צהוב ושחור. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #מחוך #קולר",
-    "generated_at": "2026-08-24T09:31:05.619533+00:00",
+    "generated_at": "2026-08-24T19:26:30.618972+00:00",
     "published_ig": false,
     "published_fb": false
   },
   {
     "type": "atmosphere",
-    "scene": "boutique_rail",
-    "scene_he": "פינת בוטיק",
-    "image_path": "posts/2026-08-24/atmosphere__boutique_rail.jpg",
-    "caption": "ELORINE\nפינה שקטה של בוטיק.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
-    "alt_text": "תמונת אווירה של ELORINE — פינת בוטיק.",
-    "generated_at": "2026-08-24T09:31:11.400151+00:00",
+    "scene": "silk_fold",
+    "scene_he": "קפל משי",
+    "image_path": "posts/2026-08-24/atmosphere__silk_fold.jpg",
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1039
+    },
+    "caption": "ELORINE\nמשי, אור וקו נקי.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
+    "alt_text": "תמונת אווירה של ELORINE — קפל משי.",
+    "generated_at": "2026-08-24T19:26:50.932413+00:00",
     "published_ig": false,
     "published_fb": false
   },
   {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1173
+    },
     "type": "single",
     "handle": "valentina-sequin-halter-maxi-dress",
     "title": "שמלת ולנטינה | פאייטים מקסי",
@@ -48,39 +76,7 @@
     "image_path": "posts/2026-08-24/valentina-sequin-halter-maxi-dress.jpg",
     "caption": "שמלת ולנטינה · ELORINE\nצווארון הולטר גבוה מלפנים וגב חשוף עד קו המותן, בגזרת בת ים שמתרחבת בסיומת.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #פאייטים #קולר",
     "alt_text": "שמלת ולנטינה של ELORINE, black, brown, sequin, floor-length maxi, halter neck, open back, על רקע רחוב אירופאי קלאסי.",
-    "generated_at": "2026-08-24T09:31:20.183062+00:00",
-    "published_ig": false,
-    "published_fb": false
-  },
-  {
-    "type": "single",
-    "handle": "rosalina-maxi-dress-deep-olive",
-    "title": "שמלת אנטואנט | מקסי",
-    "dress_name": "אנטואנט",
-    "product_url": "https://elorine.co.il/products/rosalina-maxi-dress-deep-olive",
-    "price_ils": "479.0",
-    "background": "mediterranean_beach",
-    "background_he": "חוף ים תיכוני",
-    "image_path": "posts/2026-08-24/rosalina-maxi-dress-deep-olive.jpg",
-    "caption": "שמלת אנטואנט · ELORINE\nמקסי בירוק עמוק עם נפילה מוקפדת, יופי שלא צריך כתר.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
-    "alt_text": "שמלת אנטואנט של ELORINE, green, olive, floor-length maxi, על רקע חוף ים תיכוני.",
-    "generated_at": "2026-08-24T09:31:30.001185+00:00",
-    "published_ig": false,
-    "published_fb": false
-  },
-  {
-    "type": "single",
-    "handle": "mireya-maxi-dress-deep-olive",
-    "title": "שמלת מרלין | מקסי",
-    "dress_name": "מרלין",
-    "product_url": "https://elorine.co.il/products/mireya-maxi-dress-deep-olive",
-    "price_ils": "529.0",
-    "background": "sunset_terrace",
-    "background_he": "מרפסת שקיעה",
-    "image_path": "posts/2026-08-24/mireya-maxi-dress-deep-olive.jpg",
-    "caption": "שמלת מרלין · ELORINE\nמקסי בירוק צבאי עשיר, אלגנטיות טבעית עם עמוד שדרה.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
-    "alt_text": "שמלת מרלין של ELORINE, green, olive, floor-length maxi, על רקע מרפסת שקיעה.",
-    "generated_at": "2026-08-24T09:31:40.260793+00:00",
+    "generated_at": "2026-08-24T19:27:36.021878+00:00",
     "published_ig": false,
     "published_fb": false
   }
