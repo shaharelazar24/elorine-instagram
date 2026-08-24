@@ -1,90 +1,90 @@
 {
-  "_comment": "בנק סצנות אווירה ל-ELORINE. נשאב בהשראת הפיד הקיים: אבן, פליז, אור אחר צהריים, ים תיכוני, אריזה, פרטים קטנים. הסצנה נבחרת לפי התאריך כדי שכל יום יהיה אחר. אין בגדים בתמונות האלה ואין דוגמניות - רק אווירה.",
+  "_comment": "בנק סצנות אווירה ל-ELORINE. נגזר ישירות מפוסטי האווירה האמיתיים בפיד: כיסא ראטן וכובע קש מול קיר סיד עם צל חד, דלת קשת פתוחה אל הים עם וילון פשתן ורצפת טרקוטה, ואגרטל קרמיקה מט עם פרחים יבשים וקערת אבן על מדף. אותה פלטה בכל תמונה: קרם, עצם, חול, טרקוטה, שיזוף. חפצים אמיתיים, אור יום כיווני עם צורת צל ברורה, בלי אנשים ובלי בגדים.",
 
   "scenes": [
     {
-      "id": "linen_sea_breeze",
-      "he": "וילון פשתן מול הים",
-      "prompt": "A sheer white linen curtain lifting in the breeze at an open doorway, the Mediterranean sea far beyond and heavily out of focus, late afternoon sun, warm ivory and pale blue, nobody in frame",
+      "id": "rattan_chair_hat",
+      "he": "כיסא ראטן וכובע קש",
+      "prompt": "A cane and rattan armchair standing against a rough whitewashed lime-plaster wall, a woven straw sun hat and a straw tote resting on the seat, a soft cream linen throw slipping over the armrest, worn terracotta floor tiles below and a pair of tan leather sandals on the floor beside it. Hard late-morning Mediterranean sun through a window casts one crisp diagonal shadow across the wall. Warm cream, sand and terracotta only. Nobody in frame",
+      "caption": "כובע קש, תיק וסנדלים - כל מה שצריך לאחר צהריים אחד."
+    },
+    {
+      "id": "arched_door_sea",
+      "he": "דלת קשת אל הים",
+      "prompt": "The inside of a whitewashed Mediterranean house looking out through a tall open arched doorway onto a terrace and the sea beyond, a sheer white linen curtain lifting in the breeze across the opening, warm terracotta floor tiles running toward the door with afternoon sunlight pooling on them, an olive branch in a rough clay jug on a stone ledge in the foreground. Cream plaster, terracotta and deep turquoise water. Nobody in frame",
       "caption": "רוח מהים, וילון לבן ואור של אחר הצהריים."
     },
     {
-      "id": "stone_brass_light",
-      "he": "אבן ופליז",
-      "prompt": "A quiet corner of a boutique interior: pale travertine stone surface, a slim brass object catching light, deep shadow falling diagonally, warm afternoon sun, minimal and still, nobody in frame",
-      "caption": "אבן, פליז ואור של אחר הצהריים."
+      "id": "ceramic_dried_flowers",
+      "he": "אגרטל קרמיקה ופרחים יבשים",
+      "prompt": "A styled still life on a pale stone ledge against a warm cream plaster wall: a matte round cream ceramic vase holding tall dried gypsophila, a shallow raw stone bowl beside it with a fine gold chain resting inside, and ivory silk fabric draped and pooling across the ledge. Soft directional daylight from the side draws a gentle shadow of the dried stems onto the wall. Warm monochrome cream, bone and sand. Nobody in frame",
+      "caption": "אגרטל, פרח יבש וקו זהב דק."
     },
     {
       "id": "wrapped_parcel",
       "he": "אריזה וסרט",
-      "prompt": "A elegant tissue-wrapped parcel tied with a narrow silk ribbon resting on a pale stone table, soft window light from the side, warm ivory and bone tones, shallow depth of field, nobody in frame",
-      "caption": "כל שמלה יוצאת ככה — עטופה, קשורה בסרט."
+      "prompt": "An elegant tissue-wrapped parcel tied with a narrow ivory silk ribbon resting on a pale stone table beside a folded linen cloth, warm side light from a window, shallow depth of field, bone white and warm sand tones. Nobody in frame",
+      "caption": "כל שמלה יוצאת מאיתנו ככה - עטופה, קשורה בסרט."
     },
     {
-      "id": "morning_coffee",
-      "he": "בוקר איטלקי",
-      "prompt": "A small espresso cup and a few pale garden flowers on a weathered stone windowsill, early morning light, dew, muted sage and warm cream palette, quiet and unstyled, nobody in frame",
-      "caption": "בוקר שלא ממהר לשום מקום."
+      "id": "terrace_table_two",
+      "he": "שולחן על המרפסת",
+      "prompt": "A small round stone table on a terracotta-tiled terrace with two cane bistro chairs, a linen napkin and a clear glass of water on the table, a woven straw bag hooked over one chair back, a whitewashed wall behind. Long warm late-afternoon shadows stretch across the tiles. Cream, terracotta and tan only. Nobody in frame",
+      "caption": "אחר צהריים ארוך, ושום מקום למהר אליו."
     },
     {
-      "id": "olive_shadow",
-      "he": "צל עץ זית",
-      "prompt": "Dappled shadow of an old olive tree falling across a warm limestone wall, midday Mediterranean light, dusty sage green and sand, abstract and calm, nobody in frame",
-      "caption": "צל של עץ זית על קיר חם."
+      "id": "plaster_niche_amphora",
+      "he": "גומחת טיח וכד",
+      "prompt": "A rounded niche carved into a thick cream lime-plaster wall holding a tall unglazed terracotta amphora with a few olive branches in it, the plaster hand-troweled and slightly uneven. A hard stripe of midday sun falls across the niche and leaves the rest in soft warm shade. Cream, clay and dusty olive green. Nobody in frame",
+      "caption": "גומחה, כד וענף זית."
     },
     {
-      "id": "silk_fold",
-      "he": "קפל משי",
-      "prompt": "An extreme close-up of ivory silk fabric folded softly, raking light revealing the weave and the sheen, monochrome warm white, tactile and abstract, no garment visible, nobody in frame",
-      "caption": "משי, אור וקו נקי."
+      "id": "straw_bag_steps",
+      "he": "תיק קש על מדרגות",
+      "prompt": "A woven straw tote bag sitting on worn pale stone steps outside a whitewashed house, a soft cream linen scarf spilling out of it, a pair of flat tan leather sandals on the step below. Strong Mediterranean sun and one clean shadow edge across the stone. Sand, cream and tan. Nobody in frame",
+      "caption": "מדרגות אבן, תיק קש, ובוקר שלם."
     },
     {
-      "id": "stone_beach_dusk",
-      "he": "חוף אבן בדמדומים",
-      "prompt": "A pale limestone shoreline at blue hour, calm sea, one smooth stone in the foreground, cool blue and warm sand meeting, wide and empty, nobody in frame",
-      "caption": "השעה שבה הים נרגע."
+      "id": "linen_window_light",
+      "he": "אור דרך פשתן",
+      "prompt": "Sheer cream linen curtains hanging over a tall open window in a plaster room, lifting slightly in the breeze, warm daylight passing through them and pooling as a soft rectangle of light on the terracotta tile floor. The room is nearly empty. Warm bone white and terracotta. Nobody in frame",
+      "caption": "חלון פתוח, פשתן ואור על הרצפה."
     },
     {
-      "id": "arched_light",
-      "he": "קשת ואור",
-      "prompt": "A whitewashed Mediterranean archway with strong sunlight cutting through it onto a stone floor, deep shadow on one side, graphic and minimal, nobody in frame",
-      "caption": "אור שנכנס דרך קשת."
+      "id": "cane_table_cup",
+      "he": "שולחן ראטן וספל",
+      "prompt": "A small cane side table against a warm cream plaster wall holding a matte stoneware cup and a single dried flower stem in a narrow ceramic bud vase. The striped shadow of a wooden shutter falls across the wall and the tabletop. Quiet, minimal, warm neutral. Nobody in frame",
+      "caption": "ספל אחד, ענף אחד, בוקר שקט."
     },
     {
-      "id": "pearl_detail",
-      "he": "פרט פנינה",
-      "prompt": "A single pearl and a fine gold chain resting on cream raw silk, macro detail, very soft diffused light, warm neutral palette, jewellery only, nobody in frame",
+      "id": "gold_pearl_silk",
+      "he": "זהב ופנינה על משי",
+      "prompt": "A close still life on a travertine ledge: a slim brushed gold cuff bracelet and a pair of pearl drop earrings resting on a fold of raw ivory silk, a small matte cream ceramic dish beside them. Very soft diffused daylight, warm neutral palette, jewellery only. Nobody in frame",
       "caption": "פרט קטן שמשלים הכל."
     },
     {
-      "id": "terrace_table",
-      "he": "שולחן מרפסת",
-      "prompt": "A small marble bistro table on a stone terrace, one glass of water, long late-day shadows, terracotta and bone tones, Mediterranean summer, nobody in frame",
-      "caption": "אחר צהריים ארוך על המרפסת."
+      "id": "olive_pot_terrace",
+      "he": "עץ זית בכד על המרפסת",
+      "prompt": "A young olive tree in a large unglazed terracotta pot standing in the corner of a whitewashed stone terrace, silver-green leaves catching low late-afternoon sun, a long soft shadow of the tree stretching across the pale stone floor and up the wall. Warm sand, cream and dusty olive. Nobody in frame",
+      "caption": "עץ זית, אבן חמה, וסוף יום."
     },
     {
-      "id": "sand_ripples",
-      "he": "גלי חול",
-      "prompt": "Wind-shaped ripples in fine pale sand, soft overcast light, monochrome warm sand palette, minimal horizon, abstract and quiet, nobody in frame",
-      "caption": "קווים שהרוח מציירת."
+      "id": "satin_on_stone",
+      "he": "סאטן על אבן",
+      "prompt": "A length of ivory satin fabric flowing loosely down a wide pale stone step, catching warm raking afternoon light so the sheen and the soft folds read clearly, the stone rough and warm beside it. No garment, just the cloth. Warm monochrome ivory and sand. Nobody in frame",
+      "caption": "סאטן, אבן ואור נמוך."
     },
     {
-      "id": "boutique_rail",
-      "he": "פינת בוטיק",
-      "prompt": "The quiet corner of a boutique: a slim brass clothing rail with empty wooden hangers against a warm plaster wall, soft directional daylight, bone and walnut tones, nobody in frame",
-      "caption": "פינה שקטה של בוטיק."
+      "id": "shutters_courtyard",
+      "he": "תריסים בחצר",
+      "prompt": "A pair of weathered cream wooden shutters half open on a whitewashed courtyard wall, a clay pot of dried lavender on the sill beneath them, warm terracotta paving below. Hard midday sun draws a clean geometric shadow across the wall. Cream, clay and muted sage. Nobody in frame",
+      "caption": "תריס פתוח למחצה, וצהריים."
     },
     {
-      "id": "citrus_stone",
-      "he": "לימונים על אבן",
-      "prompt": "Two lemons with leaves still attached resting on a rough pale stone ledge, strong Mediterranean noon light, deep shadow, yellow against warm grey, nobody in frame",
-      "caption": "לימונים, אבן, ושמש של צהריים."
-    },
-    {
-      "id": "night_lantern",
-      "he": "פנס בגן",
-      "prompt": "A warm lantern glowing in a walled garden at night, cypress silhouettes deep out of focus, pools of amber light on stone, intimate and dark, nobody in frame",
-      "caption": "ערב בגן, ואור אחד."
+      "id": "linen_stack_ledge",
+      "he": "ערימת פשתן על מדף",
+      "prompt": "A neat stack of folded cream and bone linen cloths on a pale stone ledge, a shallow ceramic dish with a few dried wheat stalks resting on top, warm plaster wall behind. Soft directional window light, gentle shadow, warm monochrome. Nobody in frame",
+      "caption": "פשתן מקופל, ורוגע."
     }
   ],
 
@@ -95,10 +95,14 @@
   },
 
   "rules": [
-    "This is a mood image, not a product image. No dresses, no clothing on display, no models, no people, no hands.",
-    "No text, no logos, no lettering of any kind anywhere in the image.",
-    "It must look like a real photograph taken on a real location or a real still-life set.",
-    "Quiet luxury: restrained, unstyled, a little imperfect. Not a stock photo, not a rendering.",
-    "Shot as if on 50mm f/2.0, very light 35mm film grain, medium-low contrast, lifted blacks."
+    "This is a mood image, not a product image. No dresses, no clothing on display, no models, no people, no hands, no body parts.",
+    "No text, no logos, no lettering, no printed packaging of any kind anywhere in the image.",
+    "It must look like a real photograph of a real place or a real styled still-life set — shot on a camera, not rendered.",
+    "PALETTE LOCK: warm neutrals only — cream, bone, sand, tan, terracotta, pale stone — with at most one restrained accent (dusty olive green, muted brass or gold, or Mediterranean turquoise sea seen far away). No bright, saturated or cool colours anywhere.",
+    "Build the frame from REAL TANGIBLE OBJECTS in this world: rattan and cane, woven straw, linen and silk cloth, unglazed terracotta and matte ceramic, pale stone and travertine, lime plaster, dried flowers, olive branches, tan leather, slim gold. Not abstract textures.",
+    "Give the frame either honest depth — a room, a doorway, a terrace, a corner — or a composed still life on a surface. Never an extreme macro abstraction and never a flat empty texture.",
+    "Directional daylight with a clear, readable shadow shape: a diagonal across a wall, a shutter stripe, a pool of light on the floor. The light is part of the composition.",
+    "Quiet luxury: restrained, unstyled, slightly imperfect and lived-in. Not a stock photo, not a catalogue render.",
+    "Shot as if on 35mm or 50mm f/2.0, very light 35mm film grain, medium-low contrast, lifted blacks, no vignette."
   ]
 }

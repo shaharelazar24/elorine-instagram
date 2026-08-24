@@ -56,6 +56,8 @@ SHOPIFY_STATIC_TOKEN = os.getenv("SHOPIFY_ADMIN_TOKEN", "")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-image")
 GEMINI_IMAGE_SIZE = os.getenv("GEMINI_IMAGE_SIZE", "2K")     # 1K / 2K / 4K
+# דגם טקסט/ראייה — משמש רק כדי לבחור איזו תמונת מוצר היא חזיתית
+GEMINI_TEXT_MODEL = os.getenv("GEMINI_TEXT_MODEL", "gemini-2.5-flash")
 GEMINI_URL = ("https://generativelanguage.googleapis.com/v1beta/models/"
               "{model}:generateContent")
 
@@ -219,11 +221,68 @@ def shopify_dresses() -> list:
 
 
 def best_source_image(product: dict) -> dict:
+    """ברירת מחדל גיאומטרית — יחס גובה-רוחב ורזולוציה בלבד."""
     def score(img):
         w, h = img.get("width") or 1, img.get("height") or 1
         ratio_fit = 1.0 - min(abs(h / w - 1.5) / 1.5, 1.0)
         return ratio_fit * 2 + min(w * h / 8_000_000, 1.0)
     return max(product["images"], key=score)
+
+
+FRONT_PICK_PROMPT = """These are product photographs of the SAME dress from one
+online store. Choose the ONE photograph that best shows the dress FROM THE FRONT
+for a fashion feed post.
+
+Rules, in order of importance:
+1. The model must FACE THE CAMERA. Her front — and the front of the dress —
+   is toward the viewer. REJECT any photo of her back, or where she is turned
+   away, or where she looks over her shoulder with her back to the lens.
+2. The whole dress must be visible, from neckline to hem. Reject close-ups,
+   detail crops, and photos where the hem or the top is cut off.
+3. The dress must read clearly: not on a hanger, not a flat-lay, not blurred.
+4. Prefer the sharpest, best-lit, least cluttered photograph.
+
+Answer with the image number ONLY — a single number, nothing else."""
+
+
+def pick_front_image(product: dict) -> dict:
+    """בוחר את תמונת המוצר שבה הדוגמנית פונה למצלמה והשמלה נראית במלואה.
+    נופל בשקט לברירת המחדל הגיאומטרית אם משהו נכשל."""
+    imgs = product.get("images", [])[:6]
+    if not imgs:
+        raise RuntimeError("למוצר אין תמונות")
+    if len(imgs) == 1:
+        return imgs[0]
+
+    parts, loaded = [], []
+    for im in imgs:
+        try:
+            r = requests.get(im["url"], timeout=45)
+            r.raise_for_status()
+        except Exception:
+            continue
+        mime = mimetypes.guess_type(im["url"].split("?")[0])[0] or "image/jpeg"
+        loaded.append(im)
+        parts.append({"text": f"Image {len(loaded)}:"})
+        parts.append({"inline_data": {"mime_type": mime,
+                                      "data": base64.b64encode(r.content).decode()}})
+
+    if len(loaded) < 2:
+        return best_source_image(product)
+
+    parts.append({"text": FRONT_PICK_PROMPT})
+    try:
+        answer = _gemini_text(parts)
+        match = re.search(r"\d+", answer or "")
+        if match:
+            idx = int(match.group()) - 1
+            if 0 <= idx < len(loaded):
+                log(f"   · תמונת מקור: #{idx + 1}/{len(loaded)} — חזיתית")
+                return loaded[idx]
+        log(f"   ⚠ תשובה לא ברורה לבחירת תמונה ({answer!r}) — ברירת מחדל")
+    except Exception as exc:
+        log(f"   ⚠ בחירת תמונה חזיתית נכשלה ({exc}) — ברירת מחדל")
+    return best_source_image(product)
 
 
 # ==========================================================================
@@ -396,6 +455,28 @@ def _gemini_call(parts: list) -> bytes:
                 continue
         log(f"   … ניסיון {attempt + 1} נכשל: {err}")
         time.sleep(4 * (attempt + 1))
+    raise RuntimeError(err)
+
+
+def _gemini_text(parts: list) -> str:
+    """קריאת ראייה/טקסט — מחזירה מחרוזת. משמשת לבחירת תמונת מקור."""
+    if not GEMINI_API_KEY:
+        sys.exit("✗ חסר GEMINI_API_KEY")
+    url = GEMINI_URL.format(model=GEMINI_TEXT_MODEL)
+    headers = {"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"}
+    body = {"contents": [{"role": "user", "parts": parts}],
+            "generationConfig": {"temperature": 0, "maxOutputTokens": 2048}}
+    err = None
+    for attempt in range(3):
+        r = requests.post(url, json=body, timeout=180, headers=headers)
+        if r.status_code == 200:
+            for cand in r.json().get("candidates", []):
+                for part in cand.get("content", {}).get("parts", []):
+                    if part.get("text"):
+                        return part["text"].strip()
+            return ""
+        err = f"{r.status_code}: {r.text[:200]}"
+        time.sleep(3 * (attempt + 1))
     raise RuntimeError(err)
 
 
@@ -752,7 +833,7 @@ def cmd_generate() -> None:
         bg = pick_background(product["handle"], bg_taken)
         bg_taken.add(bg["id"])
         log(f"\n▶ {name}  ({product['handle']})  רקע: {bg['he']}")
-        src = best_source_image(product)
+        src = pick_front_image(product)
         try:
             feed, st = render(src["url"], build_prompt(product, bg), name)
         except Exception as exc:                           # noqa: BLE001
