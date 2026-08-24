@@ -1,0 +1,48 @@
+name: Refresh Instagram token
+
+# טוקן אינסטגרם ארוך-טווח פג אחרי 60 יום.
+# ה-workflow הזה מרענן אותו כל 30 יום ומעדכן את ה-Secret בעצמו.
+#
+# דורש Secret נוסף בשם GH_PAT — Personal Access Token עם הרשאת
+# "Secrets: Read and write" על ה-repo הזה.
+
+on:
+  schedule:
+    - cron: "0 3 1 * *"      # ב-1 בכל חודש, 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refresh long-lived token
+        id: refresh
+        run: |
+          RESPONSE=$(curl -sS -G \
+            "https://graph.instagram.com/refresh_access_token" \
+            --data-urlencode "grant_type=ig_refresh_token" \
+            --data-urlencode "access_token=${{ secrets.IG_ACCESS_TOKEN }}")
+
+          NEW_TOKEN=$(echo "$RESPONSE" | jq -r '.access_token // empty')
+          EXPIRES=$(echo "$RESPONSE" | jq -r '.expires_in // empty')
+
+          if [ -z "$NEW_TOKEN" ]; then
+            echo "::error::רענון נכשל: $RESPONSE"
+            exit 1
+          fi
+
+          echo "::add-mask::$NEW_TOKEN"
+          echo "token=$NEW_TOKEN" >> "$GITHUB_OUTPUT"
+          echo "הטוקן רוענן. תוקף חדש: $((EXPIRES / 86400)) ימים."
+
+      - name: Store new token as secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set IG_ACCESS_TOKEN \
+            --repo "${{ github.repository }}" \
+            --body "${{ steps.refresh.outputs.token }}"
+          echo "ה-Secret עודכן."

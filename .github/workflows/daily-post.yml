@@ -1,0 +1,90 @@
+name: ELORINE — daily Instagram post
+
+on:
+  schedule:
+    # 07:00 UTC = 10:00 בישראל (שעון קיץ). בחורף שנה ל-'0 8 * * *'
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "כמה פוסטים לייצר בהרצה הזו"
+        required: false
+        default: "8"
+      publish:
+        description: "לפרסם לאינסטגרם? (true/false)"
+        required: false
+        default: "true"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: elorine-daily
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    env:
+      SHOPIFY_STORE: ${{ vars.SHOPIFY_STORE }}
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+      IG_USER_ID: ${{ vars.IG_USER_ID }}
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+      POSTS_PER_RUN: ${{ github.event.inputs.count || vars.POSTS_PER_RUN || '8' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # ---------- שלב 1: ייצור התמונות ----------
+      - name: Generate feed images
+        run: python pipeline.py generate --count "$POSTS_PER_RUN"
+
+      # ---------- שלב 2: העלאה ל-repo כדי לקבל URL ציבורי ----------
+      - name: Commit generated posts
+        run: |
+          git config user.name  "elorine-bot"
+          git config user.email "actions@github.com"
+          git add posts/
+          if git diff --staged --quiet; then
+            echo "NOTHING_GENERATED=1" >> "$GITHUB_ENV"
+            echo "לא נוצרו פוסטים חדשים."
+          else
+            git commit -m "posts: $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      # ---------- שלב 3: פרסום לאינסטגרם ----------
+      - name: Publish to Instagram
+        if: env.NOTHING_GENERATED != '1' && (github.event.inputs.publish || 'true') == 'true'
+        run: python pipeline.py publish
+
+      # ---------- שלב 4: שמירת ה-state ----------
+      - name: Commit state
+        if: always() && env.NOTHING_GENERATED != '1'
+        run: |
+          git config user.name  "elorine-bot"
+          git config user.email "actions@github.com"
+          git pull --rebase --autostash || true
+          git add state/ posts/
+          git diff --staged --quiet || git commit -m "state: $(date -u +%Y-%m-%d)"
+          git push || true
+
+      - name: Upload run artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: elorine-run-${{ github.run_number }}
+          path: posts/
+          retention-days: 14
+          if-no-files-found: ignore
