@@ -67,19 +67,28 @@ jobs:
 
     steps:
       # ---------- 0. שער שעון ישראל ----------
-      # שתי הרצות מתוזמנות ביום, רק זו שנופלת על 10:00 בישראל ממשיכה.
+      # שתי הרצות מתוזמנות ביום. השער בודק *איזה cron ירה* ולא מה השעה עכשיו,
+      # כי GitHub נוהג לעכב הרצות מתוזמנות בעשרות דקות. לפי ה-cron ולפי
+      # היסט השעון בישראל (+03:00 בקיץ, +02:00 בחורף) רק אחת מהשתיים ממשיכה.
       - name: Gate to 10:00 Israel time
         run: |
           if [ "${{ github.event_name }}" != "schedule" ]; then
             echo "הרצה ידנית — ממשיכים."; exit 0
           fi
-          H=$(TZ=Asia/Jerusalem date +%H)
-          echo "השעה בישראל: ${H}:00"
-          if [ "$H" != "10" ]; then
-            echo "לא 10:00 בישראל — ההרצה הזו מדלגת."
-            echo "SKIP=1" >> "$GITHUB_ENV"
+          CRON="${{ github.event.schedule }}"
+          OFFSET=$(TZ=Asia/Jerusalem date +%z)
+          NOW=$(TZ=Asia/Jerusalem date '+%Y-%m-%d %H:%M')
+          echo "cron: '${CRON}' · היסט ישראל: ${OFFSET} · עכשיו בישראל: ${NOW}"
+
+          WANT=""
+          if [ "$OFFSET" = "+0300" ]; then WANT="0 7 * * *"; fi   # שעון קיץ
+          if [ "$OFFSET" = "+0200" ]; then WANT="0 8 * * *"; fi   # שעון חורף
+
+          if [ -n "$WANT" ] && [ "$CRON" = "$WANT" ]; then
+            echo "זו ההרצה של 10:00 בישראל — מריצים."
           else
-            echo "10:00 בישראל — מריצים."
+            echo "ה-cron הזה לא מתאים ל-10:00 בישראל כרגע — מדלגים."
+            echo "SKIP=1" >> "$GITHUB_ENV"
           fi
 
       - uses: actions/checkout@v4
