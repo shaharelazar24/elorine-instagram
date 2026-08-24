@@ -42,9 +42,16 @@ STATE_FILE = ROOT / "state" / "posted_state.json"
 POSTS_DIR = ROOT / "posts"
 
 # --- Shopify ---
-SHOPIFY_STORE = os.getenv("SHOPIFY_STORE", "elorine.myshopify.com")
-SHOPIFY_TOKEN = os.getenv("SHOPIFY_ADMIN_TOKEN", "")
+SHOPIFY_STORE = os.getenv("SHOPIFY_STORE", "")
 SHOPIFY_API_VERSION = os.getenv("SHOPIFY_API_VERSION", "2025-07")
+
+# שתי דרכי הזדהות נתמכות:
+#   1. Client credentials (Dev Dashboard) — הדרך הנוכחית.
+#      טוקן זמני ל-24 שעות, נשלף אוטומטית בכל הרצה.
+#   2. טוקן קבוע shpat_ (custom app ישן) — עדיין עובד אם יש לך כזה.
+SHOPIFY_CLIENT_ID = os.getenv("SHOPIFY_CLIENT_ID", "")
+SHOPIFY_CLIENT_SECRET = os.getenv("SHOPIFY_CLIENT_SECRET", "")
+SHOPIFY_STATIC_TOKEN = os.getenv("SHOPIFY_ADMIN_TOKEN", "")
 
 # --- Gemini / Nano Banana ---
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
@@ -116,12 +123,50 @@ query Dresses($after: String) {
 """
 
 
+_token_cache = {"value": None}
+
+
+def shopify_token() -> str:
+    """מחזיר Access Token תקף.
+
+    Client credentials: הטוקן תקף ל-24 שעות, ונשלף מחדש בכל הרצה.
+    לא נשמר בשום מקום — רק בזיכרון של ההרצה.
+    """
+    if _token_cache["value"]:
+        return _token_cache["value"]
+
+    if SHOPIFY_STATIC_TOKEN:
+        _token_cache["value"] = SHOPIFY_STATIC_TOKEN
+        return SHOPIFY_STATIC_TOKEN
+
+    if not (SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET):
+        sys.exit("✗ חסרים SHOPIFY_CLIENT_ID / SHOPIFY_CLIENT_SECRET "
+                 "(או SHOPIFY_ADMIN_TOKEN)")
+
+    r = requests.post(
+        f"https://{SHOPIFY_STORE}/admin/oauth/access_token",
+        json={"client_id": SHOPIFY_CLIENT_ID,
+              "client_secret": SHOPIFY_CLIENT_SECRET,
+              "grant_type": "client_credentials"},
+        timeout=45,
+    )
+    if r.status_code != 200:
+        sys.exit(f"✗ Shopify auth נכשל ({r.status_code}): {r.text[:300]}\n"
+                 "  אם השגיאה היא shop_not_permitted — האפליקציה והחנות "
+                 "לא באותו ארגון ב-Dev Dashboard.")
+
+    payload = r.json()
+    _token_cache["value"] = payload["access_token"]
+    log(f"✓ Shopify: טוקן התקבל, scopes={payload.get('scope', '?')}")
+    return _token_cache["value"]
+
+
 def shopify_dresses() -> list:
-    if not SHOPIFY_TOKEN:
-        sys.exit("✗ חסר SHOPIFY_ADMIN_TOKEN")
+    if not SHOPIFY_STORE:
+        sys.exit("✗ חסר SHOPIFY_STORE")
 
     url = f"https://{SHOPIFY_STORE}/admin/api/{SHOPIFY_API_VERSION}/graphql.json"
-    headers = {"X-Shopify-Access-Token": SHOPIFY_TOKEN,
+    headers = {"X-Shopify-Access-Token": shopify_token(),
                "Content-Type": "application/json"}
     products, after = [], None
 
