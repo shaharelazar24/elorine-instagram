@@ -272,10 +272,17 @@ def describe_dress(product: dict, colour: str = "") -> str:
     return ", ".join(found) if found else "elegant evening dress"
 
 
-def pick_background(key: str) -> dict:
+def pick_background(key: str, taken: set | None = None) -> dict:
+    """רקע קבוע לכל מוצר (hash של ה-handle), אבל לא חוזר על רקע
+    שכבר בשימוש באותה הרצה — כדי שהפיד לא ייראה חוזר על עצמו."""
     bgs = BRAND_KIT["backgrounds"]
-    digest = hashlib.sha256(key.encode("utf-8")).hexdigest()
-    return bgs[int(digest[:8], 16) % len(bgs)]
+    start = int(hashlib.sha256(key.encode("utf-8")).hexdigest()[:8], 16) % len(bgs)
+    taken = taken or set()
+    for offset in range(len(bgs)):
+        bg = bgs[(start + offset) % len(bgs)]
+        if bg["id"] not in taken:
+            return bg
+    return bgs[start]                      # כל הרקעים תפוסים — נופלים לברירת המחדל
 
 
 def build_prompt(product: dict, bg: dict, colour: str = "") -> str:
@@ -676,13 +683,15 @@ def cmd_generate() -> None:
     out = today_dir()
     out.mkdir(parents=True, exist_ok=True)
     manifest, used = [], set()
+    bg_taken: set = set()          # רקעים שכבר בשימוש בהרצה הזו
 
     # ---------- קרוסלות ----------
     for product in multi[:CAROUSELS_PER_RUN]:
         name = dress_name(product["title"])
         colours = product["colours"][:MAX_CAROUSEL_ITEMS]
         # רקע אחיד לכל הקרוסלה — הצבע הוא ההשוואה, לא הסביבה
-        bg = pick_background(product["handle"])
+        bg = pick_background(product["handle"], bg_taken)
+        bg_taken.add(bg["id"])
         log(f"\n▶ קרוסלה: {name} — {len(colours)} צבעים  רקע: {bg['he']}")
         paths = []
         for colour in colours:
@@ -740,7 +749,8 @@ def cmd_generate() -> None:
     singles = [p for p in queue if p["handle"] not in used]
     for product in singles[:SINGLES_PER_RUN]:
         name = dress_name(product["title"])
-        bg = pick_background(product["handle"])
+        bg = pick_background(product["handle"], bg_taken)
+        bg_taken.add(bg["id"])
         log(f"\n▶ {name}  ({product['handle']})  רקע: {bg['he']}")
         src = best_source_image(product)
         try:
