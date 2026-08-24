@@ -25,34 +25,50 @@
   "framing_rules": [
     "full-length or three-quarter body, dress fully visible",
     "model face may be turned away, cropped, or softly out of focus — the dress is the subject",
-    "dress occupies 55-70% of frame height",
-    "generous negative space above the head and below the hem",
+    "dress occupies 72-85% of frame height — fill the frame, this is a scrolling feed",
+    "modest breathing room above the head and below the hem, not a wide empty wall",
     "eye-level or very slightly low camera angle",
     "shot as if on 85mm f/2.0 — shallow but not blurry background"
   ],
 
+  "_backgrounds_note": "בהשראת הפיד של @elorine.il — ים תיכוני, מרפסות עם נוף לים, רחובות אירופאיים, חוף, אבן חמה ואור אחר צהריים. הרקע תמיד מטושטש מספיק כדי שהשמלה תישאר הנושא.",
+
   "backgrounds": [
+    {"id": "sea_view_balcony", "he": "מרפסת עם נוף לים", "prompt": "a stone balcony with a wrought-iron railing overlooking the Mediterranean sea, the water and horizon far below and softly out of focus, late golden-hour sun, warm sand and pale blue"},
+    {"id": "european_street", "he": "רחוב אירופאי קלאסי", "prompt": "a quiet classic European street of old stone buildings with shuttered windows and worn cobblestones, the far end of the street heavily out of focus, warm late-afternoon light raking down one side"},
+    {"id": "mediterranean_beach", "he": "חוף ים תיכוני", "prompt": "a wide calm Mediterranean beach at golden hour, pale sand, gentle shallow water and a low horizon far behind and heavily out of focus, soft warm rim light from a low sun"},
+    {"id": "old_town_steps", "he": "מדרגות עיירה עתיקה", "prompt": "worn pale stone steps climbing between whitewashed old-town walls, a sliver of sea visible far at the top, strong Mediterranean sun and deep clean shadow"},
+    {"id": "bougainvillea_alley", "he": "סמטת בוגנוויליה", "prompt": "a narrow sunlit alley of warm ochre plaster walls with bougainvillea spilling overhead, dappled light on the ground, deep out-of-focus depth down the lane"},
+    {"id": "harbour_quay", "he": "רציף נמל", "prompt": "an old Mediterranean harbour quay of pale worn stone, moored boats and calm water far in the background and heavily out of focus, clear late-day light"},
+    {"id": "fig_courtyard", "he": "חצר תאנה", "prompt": "a quiet walled courtyard with an old fig tree and warm hot stone underfoot, dappled leaf shadow, the sea implied far below, dusty green and warm sand tones"},
     {"id": "travertine_wall", "he": "קיר טרוורטין", "prompt": "a sunlit travertine stone wall in a quiet Mediterranean courtyard, warm ivory tones, soft diagonal afternoon shadow falling across the stone"},
-    {"id": "plaster_studio", "he": "סטודיו טיח", "prompt": "a seamless hand-troweled lime plaster studio backdrop in warm bone white, subtle texture, single large soft key light from camera left"},
-    {"id": "hotel_lobby", "he": "לובי מלון", "prompt": "the quiet corner of a boutique hotel lobby, brushed brass detailing, deep walnut panelling far out of focus, warm low ambient light"},
-    {"id": "stone_beach", "he": "חוף אבן", "prompt": "a pale limestone beach at golden hour, calm sea far in the background heavily out of focus, soft warm rim light"},
-    {"id": "olive_terrace", "he": "מרפסת זיתים", "prompt": "a stone terrace with an old olive tree, dappled late-afternoon light, dusty sage and sand tones"},
-    {"id": "arched_corridor", "he": "מסדרון קשתות", "prompt": "a whitewashed arched corridor in a Mediterranean villa, deep shadow on one side, bright bounced daylight on the other"},
-    {"id": "linen_drape", "he": "וילון פשתן", "prompt": "sheer linen curtains moving in warm window light against a bone-white wall, gentle backlight"},
+    {"id": "arched_corridor", "he": "מסדרון קשתות", "prompt": "a whitewashed arched corridor in a Mediterranean villa, deep shadow on one side, bright bounced daylight on the other, an opening to bright sky at the far end"},
+    {"id": "resort_terrace", "he": "מרפסת ריזורט", "prompt": "the stone terrace of a quiet coastal resort, pale linen shade sail overhead, a slice of turquoise water far behind and out of focus, bright warm midday light softened"},
+    {"id": "linen_drape", "he": "וילון פשתן", "prompt": "sheer white linen curtains lifting in the breeze at an open sea-facing doorway, warm window light, gentle backlight, bone-white and pale blue"},
+    {"id": "boutique_corner", "he": "פינת בוטיק", "prompt": "the quiet corner of a boutique interior, pale stone floor, warm plaster wall, slim brass details deep out of focus, soft directional afternoon daylight"},
+    {"id": "sunset_terrace", "he": "מרפסת שקיעה", "prompt": "a simple stone terrace facing the sea at sunset, warm amber and rose light low across the frame, the water a soft band far behind, long gentle shadows"},
     {"id": "marble_stair", "he": "מדרגות שיש", "prompt": "a wide pale marble staircase with a slim brass handrail, cool diffused daylight from a tall window above"},
-    {"id": "dusk_balcony", "he": "מרפסת דמדומים", "prompt": "a narrow European balcony at blue hour, warm interior light spilling from behind, city softly out of focus"},
-    {"id": "sand_dune", "he": "דיונת חול", "prompt": "smooth wind-shaped sand dunes under soft overcast light, monochrome warm sand palette, minimal horizon"},
-    {"id": "gallery_wall", "he": "קיר גלריה", "prompt": "a minimal art gallery interior, large empty warm-white wall, polished concrete floor, even museum lighting"},
-    {"id": "night_garden", "he": "גן לילי", "prompt": "a walled garden at night lit by warm lanterns, cypress silhouettes deep out of focus, soft pools of amber light"}
+    {"id": "olive_grove", "he": "חורשת זיתים", "prompt": "an old olive grove on a dry hillside, silver-green leaves catching low sun, deep out-of-focus rows behind, dusty sage and warm sand"},
+    {"id": "plaster_studio", "he": "סטודיו טיח", "prompt": "a seamless hand-troweled lime plaster studio backdrop in warm bone white, subtle texture, single large soft key light from camera left"}
   ],
 
   "fidelity_rules": [
-    "The dress must remain EXACTLY as in the source photograph.",
+    "The dress must remain EXACTLY as in the source photograph. Treat the garment as a fixed, uneditable object that you are relighting, not redrawing.",
     "Do not change: colour, hue, saturation, fabric, texture, sheen, print, pattern, sequins, lace, embroidery.",
     "Do not change: silhouette, length, hemline, neckline, straps, sleeves, slit, back detail, corset boning, ruching, draping, seams.",
+    "SEAMS ARE STRUCTURE, NOT DECORATION. Reproduce every seam at the same position and with the same crispness as the source: underbust and empire seams, princess seams, panel lines, waist seams, corset boning channels. A seam that is sharp and structural in the source must stay sharp and structural — never soften it into a fold.",
+    "PLEATS ARE COUNTABLE. Reproduce the same number, direction, spacing, depth and sharpness of pleats, gathers, ruching and drape folds. Do not smooth them, blur them, or reduce how many there are.",
+    "NECKLINE AND STRAPS ARE MEASURED. Keep the exact depth and width of the neckline opening and the exact width and angle of the straps.",
     "Do not add, remove, lengthen or shorten any part of the garment.",
     "Do not restyle, do not add jewellery, belts, bags or outerwear that were not in the source.",
     "Only the background, the environment, the lighting on the scene and the overall colour grade may change."
+  ],
+
+  "colour_isolation": [
+    "The colour grade applies to the ENVIRONMENT and the LIGHT ONLY — never to the garment itself.",
+    "The garment's hue and saturation must read identical to the source. Do not warm it, cool it, tint it, mute it, or pull it toward the scene palette.",
+    "If the scene is warm and the garment is cool — or the reverse — let them stay different. That contrast is correct and intended.",
+    "Light may fall across the fabric and create highlight and shadow, but the fabric's own colour underneath must not shift."
   ],
 
   "negative_rules": [

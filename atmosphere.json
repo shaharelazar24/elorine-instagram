@@ -1,0 +1,104 @@
+{
+  "_comment": "בנק סצנות אווירה ל-ELORINE. נשאב בהשראת הפיד הקיים: אבן, פליז, אור אחר צהריים, ים תיכוני, אריזה, פרטים קטנים. הסצנה נבחרת לפי התאריך כדי שכל יום יהיה אחר. אין בגדים בתמונות האלה ואין דוגמניות - רק אווירה.",
+
+  "scenes": [
+    {
+      "id": "linen_sea_breeze",
+      "he": "וילון פשתן מול הים",
+      "prompt": "A sheer white linen curtain lifting in the breeze at an open doorway, the Mediterranean sea far beyond and heavily out of focus, late afternoon sun, warm ivory and pale blue, nobody in frame",
+      "caption": "רוח מהים, וילון לבן ואור של אחר הצהריים."
+    },
+    {
+      "id": "stone_brass_light",
+      "he": "אבן ופליז",
+      "prompt": "A quiet corner of a boutique interior: pale travertine stone surface, a slim brass object catching light, deep shadow falling diagonally, warm afternoon sun, minimal and still, nobody in frame",
+      "caption": "אבן, פליז ואור של אחר הצהריים."
+    },
+    {
+      "id": "wrapped_parcel",
+      "he": "אריזה וסרט",
+      "prompt": "A elegant tissue-wrapped parcel tied with a narrow silk ribbon resting on a pale stone table, soft window light from the side, warm ivory and bone tones, shallow depth of field, nobody in frame",
+      "caption": "כל שמלה יוצאת ככה — עטופה, קשורה בסרט."
+    },
+    {
+      "id": "morning_coffee",
+      "he": "בוקר איטלקי",
+      "prompt": "A small espresso cup and a few pale garden flowers on a weathered stone windowsill, early morning light, dew, muted sage and warm cream palette, quiet and unstyled, nobody in frame",
+      "caption": "בוקר שלא ממהר לשום מקום."
+    },
+    {
+      "id": "olive_shadow",
+      "he": "צל עץ זית",
+      "prompt": "Dappled shadow of an old olive tree falling across a warm limestone wall, midday Mediterranean light, dusty sage green and sand, abstract and calm, nobody in frame",
+      "caption": "צל של עץ זית על קיר חם."
+    },
+    {
+      "id": "silk_fold",
+      "he": "קפל משי",
+      "prompt": "An extreme close-up of ivory silk fabric folded softly, raking light revealing the weave and the sheen, monochrome warm white, tactile and abstract, no garment visible, nobody in frame",
+      "caption": "משי, אור וקו נקי."
+    },
+    {
+      "id": "stone_beach_dusk",
+      "he": "חוף אבן בדמדומים",
+      "prompt": "A pale limestone shoreline at blue hour, calm sea, one smooth stone in the foreground, cool blue and warm sand meeting, wide and empty, nobody in frame",
+      "caption": "השעה שבה הים נרגע."
+    },
+    {
+      "id": "arched_light",
+      "he": "קשת ואור",
+      "prompt": "A whitewashed Mediterranean archway with strong sunlight cutting through it onto a stone floor, deep shadow on one side, graphic and minimal, nobody in frame",
+      "caption": "אור שנכנס דרך קשת."
+    },
+    {
+      "id": "pearl_detail",
+      "he": "פרט פנינה",
+      "prompt": "A single pearl and a fine gold chain resting on cream raw silk, macro detail, very soft diffused light, warm neutral palette, jewellery only, nobody in frame",
+      "caption": "פרט קטן שמשלים הכל."
+    },
+    {
+      "id": "terrace_table",
+      "he": "שולחן מרפסת",
+      "prompt": "A small marble bistro table on a stone terrace, one glass of water, long late-day shadows, terracotta and bone tones, Mediterranean summer, nobody in frame",
+      "caption": "אחר צהריים ארוך על המרפסת."
+    },
+    {
+      "id": "sand_ripples",
+      "he": "גלי חול",
+      "prompt": "Wind-shaped ripples in fine pale sand, soft overcast light, monochrome warm sand palette, minimal horizon, abstract and quiet, nobody in frame",
+      "caption": "קווים שהרוח מציירת."
+    },
+    {
+      "id": "boutique_rail",
+      "he": "פינת בוטיק",
+      "prompt": "The quiet corner of a boutique: a slim brass clothing rail with empty wooden hangers against a warm plaster wall, soft directional daylight, bone and walnut tones, nobody in frame",
+      "caption": "פינה שקטה של בוטיק."
+    },
+    {
+      "id": "citrus_stone",
+      "he": "לימונים על אבן",
+      "prompt": "Two lemons with leaves still attached resting on a rough pale stone ledge, strong Mediterranean noon light, deep shadow, yellow against warm grey, nobody in frame",
+      "caption": "לימונים, אבן, ושמש של צהריים."
+    },
+    {
+      "id": "night_lantern",
+      "he": "פנס בגן",
+      "prompt": "A warm lantern glowing in a walled garden at night, cypress silhouettes deep out of focus, pools of amber light on stone, intimate and dark, nobody in frame",
+      "caption": "ערב בגן, ואור אחד."
+    }
+  ],
+
+  "caption_template": {
+    "opener": "ELORINE",
+    "cta": "🤍 לצפייה באתר – הקישור בביו.",
+    "hashtags": ["#ELORINE", "#ELORINEBOUTIQUE", "#אווירה", "#סטייל", "#ים_תיכוני", "#אלגנטיות"]
+  },
+
+  "rules": [
+    "This is a mood image, not a product image. No dresses, no clothing on display, no models, no people, no hands.",
+    "No text, no logos, no lettering of any kind anywhere in the image.",
+    "It must look like a real photograph taken on a real location or a real still-life set.",
+    "Quiet luxury: restrained, unstyled, a little imperfect. Not a stock photo, not a rendering.",
+    "Shot as if on 50mm f/2.0, very light 35mm film grain, medium-low contrast, lifted blacks."
+  ]
+}
