@@ -1,5 +1,30 @@
 {
-  "posted": {},
+  "posted": {
+    "sol-corset-maxi-dress": {
+      "name": "סול",
+      "type": "carousel",
+      "media_id": "17912302344450357",
+      "at": "2026-08-24T22:27:56.058547+00:00"
+    },
+    "valentina-sequin-halter-maxi-dress": {
+      "name": "ולנטינה",
+      "type": "single",
+      "media_id": "18102848657611985",
+      "at": "2026-08-24T22:28:45.873321+00:00"
+    },
+    "rosalina-maxi-dress-deep-olive": {
+      "name": "אנטואנט",
+      "type": "single",
+      "media_id": "17902856403562942",
+      "at": "2026-08-24T22:29:12.504848+00:00"
+    },
+    "mireya-maxi-dress-deep-olive": {
+      "name": "מרלין",
+      "type": "single",
+      "media_id": "18422946556197543",
+      "at": "2026-08-24T22:29:33.869212+00:00"
+    }
+  },
   "seeded_names": [
     "אוברי",
     "אודרה",
@@ -83,7 +108,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-08-24T22:27:11.563359+00:00",
+  "updated_at": "2026-08-24T22:29:41.870482+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
