@@ -1,0 +1,68 @@
+{
+  "brand": "ELORINE",
+  "handle": "@elorine.il",
+  "site": "elorine.co.il",
+  "positioning": "Quiet Luxury — אופנת נשים יוקרתית, אלגנטית, על-זמנית",
+
+  "visual_dna": {
+    "mood": ["quiet luxury", "editorial", "understated", "mediterranean", "timeless"],
+    "avoid_mood": ["fast fashion", "neon", "busy", "cluttered", "over-retouched", "obvious AI"],
+    "palette_neutrals": ["#F4F0EA warm ivory", "#E8E2D9 bone", "#D9CFC2 sand", "#BFB3A4 taupe", "#8C8378 stone grey", "#2E2B28 soft charcoal"],
+    "palette_accents": ["#C9A46B muted brass", "#8E9E8B sage", "#7C6A5A walnut"],
+    "grain": "very light film grain, 35mm feel",
+    "contrast": "medium-low, lifted blacks, no crushed shadows",
+    "saturation": "slightly desaturated except the dress itself"
+  },
+
+  "output_spec": {
+    "aspect_ratio": "4:5",
+    "pixels": [1080, 1350],
+    "format": "JPEG",
+    "quality": 92,
+    "color_space": "sRGB"
+  },
+
+  "framing_rules": [
+    "full-length or three-quarter body, dress fully visible",
+    "model face may be turned away, cropped, or softly out of focus — the dress is the subject",
+    "dress occupies 55-70% of frame height",
+    "generous negative space above the head and below the hem",
+    "eye-level or very slightly low camera angle",
+    "shot as if on 85mm f/2.0 — shallow but not blurry background"
+  ],
+
+  "backgrounds": [
+    {"id": "travertine_wall", "he": "קיר טרוורטין", "prompt": "a sunlit travertine stone wall in a quiet Mediterranean courtyard, warm ivory tones, soft diagonal afternoon shadow falling across the stone"},
+    {"id": "plaster_studio", "he": "סטודיו טיח", "prompt": "a seamless hand-troweled lime plaster studio backdrop in warm bone white, subtle texture, single large soft key light from camera left"},
+    {"id": "hotel_lobby", "he": "לובי מלון", "prompt": "the quiet corner of a boutique hotel lobby, brushed brass detailing, deep walnut panelling far out of focus, warm low ambient light"},
+    {"id": "stone_beach", "he": "חוף אבן", "prompt": "a pale limestone beach at golden hour, calm sea far in the background heavily out of focus, soft warm rim light"},
+    {"id": "olive_terrace", "he": "מרפסת זיתים", "prompt": "a stone terrace with an old olive tree, dappled late-afternoon light, dusty sage and sand tones"},
+    {"id": "arched_corridor", "he": "מסדרון קשתות", "prompt": "a whitewashed arched corridor in a Mediterranean villa, deep shadow on one side, bright bounced daylight on the other"},
+    {"id": "linen_drape", "he": "וילון פשתן", "prompt": "sheer linen curtains moving in warm window light against a bone-white wall, gentle backlight"},
+    {"id": "marble_stair", "he": "מדרגות שיש", "prompt": "a wide pale marble staircase with a slim brass handrail, cool diffused daylight from a tall window above"},
+    {"id": "dusk_balcony", "he": "מרפסת דמדומים", "prompt": "a narrow European balcony at blue hour, warm interior light spilling from behind, city softly out of focus"},
+    {"id": "sand_dune", "he": "דיונת חול", "prompt": "smooth wind-shaped sand dunes under soft overcast light, monochrome warm sand palette, minimal horizon"},
+    {"id": "gallery_wall", "he": "קיר גלריה", "prompt": "a minimal art gallery interior, large empty warm-white wall, polished concrete floor, even museum lighting"},
+    {"id": "night_garden", "he": "גן לילי", "prompt": "a walled garden at night lit by warm lanterns, cypress silhouettes deep out of focus, soft pools of amber light"}
+  ],
+
+  "fidelity_rules": [
+    "The dress must remain EXACTLY as in the source photograph.",
+    "Do not change: colour, hue, saturation, fabric, texture, sheen, print, pattern, sequins, lace, embroidery.",
+    "Do not change: silhouette, length, hemline, neckline, straps, sleeves, slit, back detail, corset boning, ruching, draping, seams.",
+    "Do not add, remove, lengthen or shorten any part of the garment.",
+    "Do not restyle, do not add jewellery, belts, bags or outerwear that were not in the source.",
+    "Only the background, the environment, the lighting on the scene and the overall colour grade may change."
+  ],
+
+  "negative_rules": [
+    "no visible logos, no text, no watermarks, no captions burned into the image",
+    "no distorted hands, fingers, arms or facial features",
+    "no extra limbs, no duplicated body parts",
+    "no plastic or waxy skin, no heavy beauty retouching",
+    "no HDR halos, no oversharpening, no vignette",
+    "no cartoon, illustration, 3D render or CGI look",
+    "no busy or cluttered background, no other people in frame",
+    "no obviously synthetic AI look"
+  ]
+}
