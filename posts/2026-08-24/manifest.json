@@ -1,24 +1,6 @@
 [
   {
     "type": "atmosphere",
-    "scene": "rattan_chair_hat",
-    "scene_he": "כיסא ראטן וכובע קש",
-    "image_path": "posts/2026-08-24/atmosphere__rattan_chair_hat.jpg",
-    "quality": {
-      "source_px": "1856x2304",
-      "output_px": "1600x2000",
-      "true_height": 2304,
-      "upscaled": false,
-      "kb": 1305
-    },
-    "caption": "ELORINE\nכובע קש, תיק וסנדלים - כל מה שצריך לאחר צהריים אחד.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
-    "alt_text": "תמונת אווירה של ELORINE — כיסא ראטן וכובע קש.",
-    "generated_at": "2026-08-24T22:53:37.313106+00:00",
-    "published_ig": false,
-    "published_fb": false
-  },
-  {
-    "type": "atmosphere",
     "scene": "satin_on_stone",
     "scene_he": "סאטן על אבן",
     "image_path": "posts/2026-08-24/atmosphere__satin_on_stone.jpg",
@@ -32,29 +14,6 @@
     "caption": "ELORINE\nסאטן, אבן ואור נמוך.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
     "alt_text": "תמונת אווירה של ELORINE — סאטן על אבן.",
     "generated_at": "2026-08-24T22:53:53.544330+00:00",
-    "published_ig": false,
-    "published_fb": false
-  },
-  {
-    "quality": {
-      "source_px": "1856x2304",
-      "output_px": "1600x2000",
-      "true_height": 2304,
-      "upscaled": false,
-      "kb": 971
-    },
-    "type": "single",
-    "handle": "cassia-mini-dress-black",
-    "title": "שמלת לורנצה | מיני",
-    "dress_name": "לורנצה",
-    "product_url": "https://elorine.co.il/products/cassia-mini-dress-black",
-    "price_ils": "449.0",
-    "background": "harbour_quay",
-    "background_he": "רציף נמל",
-    "image_path": "posts/2026-08-24/cassia-mini-dress-black.jpg",
-    "caption": "שמלת לורנצה · ELORINE\nשחורה, קצרה ומדויקת - הנשק הסודי של כל ארון.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני #שמלה_שחורה",
-    "alt_text": "שמלת לורנצה של ELORINE, black, mini length, על רקע רציף נמל.",
-    "generated_at": "2026-08-24T22:55:31.158952+00:00",
     "published_ig": false,
     "published_fb": false
   },
