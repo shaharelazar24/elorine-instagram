@@ -1,4 +1,4 @@
-name: ELORINE — daily Instagram post
+name: ELORINE — daily social posts
 
 on:
   schedule:
@@ -6,12 +6,24 @@ on:
     - cron: "0 7 * * *"
   workflow_dispatch:
     inputs:
-      count:
-        description: "כמה פוסטים לייצר בהרצה הזו"
+      carousels:
+        description: "כמה קרוסלות"
         required: false
-        default: "8"
+        default: "1"
+      atmosphere:
+        description: "כמה פוסטי אווירה"
+        required: false
+        default: "1"
+      singles:
+        description: "כמה שמלות בודדות"
+        required: false
+        default: "3"
       publish:
-        description: "לפרסם לאינסטגרם? (true/false)"
+        description: "לפרסם? (true/false)"
+        required: false
+        default: "true"
+      facebook:
+        description: "לפרסם גם לפייסבוק? (true/false)"
         required: false
         default: "true"
 
@@ -25,18 +37,25 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
 
     env:
       SHOPIFY_STORE: ${{ vars.SHOPIFY_STORE }}
       SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
       SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
       SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+
+      META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
       IG_USER_ID: ${{ vars.IG_USER_ID }}
-      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-      POSTS_PER_RUN: ${{ github.event.inputs.count || vars.POSTS_PER_RUN || '8' }}
+      FB_PAGE_ID: ${{ vars.FB_PAGE_ID }}
+
+      CAROUSELS_PER_RUN: ${{ github.event.inputs.carousels || vars.CAROUSELS_PER_RUN || '1' }}
+      ATMOSPHERE_PER_RUN: ${{ github.event.inputs.atmosphere || vars.ATMOSPHERE_PER_RUN || '1' }}
+      SINGLES_PER_RUN: ${{ github.event.inputs.singles || vars.SINGLES_PER_RUN || '3' }}
+      PUBLISH_TO_FACEBOOK: ${{ github.event.inputs.facebook || 'true' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -48,16 +67,16 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      # ---------- שלב 1: ייצור התמונות ----------
-      - name: Generate feed images
-        run: python pipeline.py generate --count "$POSTS_PER_RUN"
+      # ---------- 1. ייצור ----------
+      - name: Generate posts
+        run: python pipeline.py generate
 
-      # ---------- שלב 2: העלאה ל-repo כדי לקבל URL ציבורי ----------
+      # ---------- 2. דחיפה ל-repo (כדי לקבל URL ציבורי) ----------
       - name: Commit generated posts
         run: |
           git config user.name  "elorine-bot"
           git config user.email "actions@github.com"
-          git add posts/
+          git add posts/ state/
           if git diff --staged --quiet; then
             echo "NOTHING_GENERATED=1" >> "$GITHUB_ENV"
             echo "לא נוצרו פוסטים חדשים."
@@ -66,12 +85,12 @@ jobs:
             git push
           fi
 
-      # ---------- שלב 3: פרסום לאינסטגרם ----------
-      - name: Publish to Instagram
+      # ---------- 3. פרסום ----------
+      - name: Publish to Instagram and Facebook
         if: env.NOTHING_GENERATED != '1' && (github.event.inputs.publish || 'true') == 'true'
         run: python pipeline.py publish
 
-      # ---------- שלב 4: שמירת ה-state ----------
+      # ---------- 4. שמירת ה-state ----------
       - name: Commit state
         if: always() && env.NOTHING_GENERATED != '1'
         run: |
