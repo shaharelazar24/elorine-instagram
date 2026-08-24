@@ -1,0 +1,16 @@
+{
+  "handle": "sol-corset-maxi-dress",
+  "title": "שמלת סול | מקסי מחוך",
+  "dress_name": "סול",
+  "product_url": "https://elorine.co.il/products/sol-corset-maxi-dress",
+  "price_ils": "499.0",
+  "background": "plaster_studio",
+  "background_he": "סטודיו טיח",
+  "image_path": "posts/2026-08-24/sol-corset-maxi-dress.jpg",
+  "source_image": "https://cdn.shopify.com/s/files/1/0804/9914/6993/files/nehemia-gown-lemon-dress-babyboo-fashion-1222102096.jpg?v=1787071412",
+  "prompt": "You are an editorial fashion retoucher for ELORINE, a quiet-luxury womenswear label.\n\nTASK\nTake the attached product photograph and place the SAME garment, worn the SAME way, into a new editorial scene. This is a background and lighting replacement — not a redesign.\n\nTHE GARMENT (must be preserved exactly)\nblack, yellow, floor-length maxi, corset bodice, halter neck.\n- The dress must remain EXACTLY as in the source photograph.\n- Do not change: colour, hue, saturation, fabric, texture, sheen, print, pattern, sequins, lace, embroidery.\n- Do not change: silhouette, length, hemline, neckline, straps, sleeves, slit, back detail, corset boning, ruching, draping, seams.\n- Do not add, remove, lengthen or shorten any part of the garment.\n- Do not restyle, do not add jewellery, belts, bags or outerwear that were not in the source.\n- Only the background, the environment, the lighting on the scene and the overall colour grade may change.\n\nNEW SCENE\na seamless hand-troweled lime plaster studio backdrop in warm bone white, subtle texture, single large soft key light from camera left.\n\nFRAMING\n- full-length or three-quarter body, dress fully visible\n- model face may be turned away, cropped, or softly out of focus — the dress is the subject\n- dress occupies 55-70% of frame height\n- generous negative space above the head and below the hem\n- eye-level or very slightly low camera angle\n- shot as if on 85mm f/2.0 — shallow but not blurry background\n\nGRADE AND FINISH\n- Mood: quiet luxury, editorial, understated, mediterranean, timeless.\n- Contrast: medium-low, lifted blacks, no crushed shadows. Saturation: slightly desaturated except the dress itself.\n- Texture: very light film grain, 35mm feel.\n- Neutral palette anchored around #F4F0EA warm ivory, #E8E2D9 bone, #D9CFC2 sand, #BFB3A4 taupe.\n- The result must read as a real photograph taken by a fashion photographer on a real location.\n\nOUTPUT\n- Aspect ratio 4:5, vertical, for an Instagram feed post.\n\nDO NOT\n- no visible logos, no text, no watermarks, no captions burned into the image\n- no distorted hands, fingers, arms or facial features\n- no extra limbs, no duplicated body parts\n- no plastic or waxy skin, no heavy beauty retouching\n- no HDR halos, no oversharpening, no vignette\n- no cartoon, illustration, 3D render or CGI look\n- no busy or cluttered background, no other people in frame\n- no obviously synthetic AI look\n",
+  "caption": "שמלת סול · ELORINE\nמקסי מחוך בשחור או צהוב לימון, נוכחות שאי אפשר לפספס.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #מחוך #קולר",
+  "alt_text": "שמלת סול של ELORINE, black, yellow, floor-length maxi, corset bodice, halter neck, על רקע סטודיו טיח.",
+  "generated_at": "2026-08-24T06:03:38.133066+00:00",
+  "published": false
+}
