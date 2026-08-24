@@ -1,67 +1,39 @@
 [
   {
-    "type": "carousel",
-    "handle": "sol-corset-maxi-dress",
-    "title": "שמלת סול | מקסי מחוך",
-    "dress_name": "סול",
-    "product_url": "https://elorine.co.il/products/sol-corset-maxi-dress",
-    "price_ils": "499.0",
-    "items": [
-      {
-        "colour": "צהוב",
-        "path": "posts/2026-08-24/sol-corset-maxi-dress__1.jpg",
-        "background": "european_street",
-        "background_he": "רחוב אירופאי קלאסי",
-        "quality": {
-          "source_px": "1856x2304",
-          "output_px": "1600x2000",
-          "true_height": 2304,
-          "upscaled": false,
-          "kb": 988
-        }
-      },
-      {
-        "colour": "שחור",
-        "path": "posts/2026-08-24/sol-corset-maxi-dress__2.jpg",
-        "background": "european_street",
-        "background_he": "רחוב אירופאי קלאסי",
-        "quality": {
-          "source_px": "1856x2304",
-          "output_px": "1600x2000",
-          "true_height": 2304,
-          "upscaled": false,
-          "kb": 1043
-        }
-      }
-    ],
-    "caption": "שמלת סול · ELORINE\nמקסי מחוך בשחור או צהוב לימון, נוכחות שאי אפשר לפספס.\nבשני גוונים — צהוב ושחור. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #מחוך #קולר",
-    "generated_at": "2026-08-24T22:25:29.626838+00:00",
-    "published_ig": true,
-    "published_fb": true,
-    "ig_media_id": "17912302344450357",
-    "fb_post_id": "1246343165233097_122106323961444353",
-    "published_at": "2026-08-24T22:27:56.058564+00:00"
+    "type": "atmosphere",
+    "scene": "rattan_chair_hat",
+    "scene_he": "כיסא ראטן וכובע קש",
+    "image_path": "posts/2026-08-24/atmosphere__rattan_chair_hat.jpg",
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1305
+    },
+    "caption": "ELORINE\nכובע קש, תיק וסנדלים - כל מה שצריך לאחר צהריים אחד.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
+    "alt_text": "תמונת אווירה של ELORINE — כיסא ראטן וכובע קש.",
+    "generated_at": "2026-08-24T22:53:37.313106+00:00",
+    "published_ig": false,
+    "published_fb": false
   },
   {
     "type": "atmosphere",
-    "scene": "olive_shadow",
-    "scene_he": "צל עץ זית",
-    "image_path": "posts/2026-08-24/atmosphere__olive_shadow.jpg",
+    "scene": "satin_on_stone",
+    "scene_he": "סאטן על אבן",
+    "image_path": "posts/2026-08-24/atmosphere__satin_on_stone.jpg",
     "quality": {
       "source_px": "1856x2304",
       "output_px": "1600x2000",
       "true_height": 2304,
       "upscaled": false,
-      "kb": 1754
+      "kb": 1319
     },
-    "caption": "ELORINE\nצל של עץ זית על קיר חם.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
-    "alt_text": "תמונת אווירה של ELORINE — צל עץ זית.",
-    "generated_at": "2026-08-24T22:25:53.958036+00:00",
-    "published_ig": true,
-    "published_fb": true,
-    "ig_media_id": "17967905514138652",
-    "fb_post_id": "1246343165233097_122106324135444353",
-    "published_at": "2026-08-24T22:28:21.165748+00:00"
+    "caption": "ELORINE\nסאטן, אבן ואור נמוך.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
+    "alt_text": "תמונת אווירה של ELORINE — סאטן על אבן.",
+    "generated_at": "2026-08-24T22:53:53.544330+00:00",
+    "published_ig": false,
+    "published_fb": false
   },
   {
     "quality": {
@@ -69,25 +41,22 @@
       "output_px": "1600x2000",
       "true_height": 2304,
       "upscaled": false,
-      "kb": 1094
+      "kb": 971
     },
     "type": "single",
-    "handle": "valentina-sequin-halter-maxi-dress",
-    "title": "שמלת ולנטינה | פאייטים מקסי",
-    "dress_name": "ולנטינה",
-    "product_url": "https://elorine.co.il/products/valentina-sequin-halter-maxi-dress",
-    "price_ils": "459.0",
-    "background": "mediterranean_beach",
-    "background_he": "חוף ים תיכוני",
-    "image_path": "posts/2026-08-24/valentina-sequin-halter-maxi-dress.jpg",
-    "caption": "שמלת ולנטינה · ELORINE\nצווארון הולטר גבוה מלפנים וגב חשוף עד קו המותן, בגזרת בת ים שמתרחבת בסיומת.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #פאייטים #קולר",
-    "alt_text": "שמלת ולנטינה של ELORINE, black, brown, sequin, floor-length maxi, halter neck, open back, על רקע חוף ים תיכוני.",
-    "generated_at": "2026-08-24T22:26:20.212825+00:00",
-    "published_ig": true,
-    "published_fb": true,
-    "ig_media_id": "18102848657611985",
-    "fb_post_id": "1246343165233097_122106324309444353",
-    "published_at": "2026-08-24T22:28:45.873343+00:00"
+    "handle": "cassia-mini-dress-black",
+    "title": "שמלת לורנצה | מיני",
+    "dress_name": "לורנצה",
+    "product_url": "https://elorine.co.il/products/cassia-mini-dress-black",
+    "price_ils": "449.0",
+    "background": "harbour_quay",
+    "background_he": "רציף נמל",
+    "image_path": "posts/2026-08-24/cassia-mini-dress-black.jpg",
+    "caption": "שמלת לורנצה · ELORINE\nשחורה, קצרה ומדויקת - הנשק הסודי של כל ארון.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני #שמלה_שחורה",
+    "alt_text": "שמלת לורנצה של ELORINE, black, mini length, על רקע רציף נמל.",
+    "generated_at": "2026-08-24T22:55:31.158952+00:00",
+    "published_ig": false,
+    "published_fb": false
   },
   {
     "quality": {
@@ -95,50 +64,21 @@
       "output_px": "1600x2000",
       "true_height": 2304,
       "upscaled": false,
-      "kb": 976
+      "kb": 1008
     },
     "type": "single",
-    "handle": "rosalina-maxi-dress-deep-olive",
-    "title": "שמלת אנטואנט | מקסי",
-    "dress_name": "אנטואנט",
-    "product_url": "https://elorine.co.il/products/rosalina-maxi-dress-deep-olive",
-    "price_ils": "479.0",
-    "background": "old_town_steps",
-    "background_he": "מדרגות עיירה עתיקה",
-    "image_path": "posts/2026-08-24/rosalina-maxi-dress-deep-olive.jpg",
-    "caption": "שמלת אנטואנט · ELORINE\nמקסי בירוק עמוק עם נפילה מוקפדת, יופי שלא צריך כתר.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
-    "alt_text": "שמלת אנטואנט של ELORINE, green, olive, floor-length maxi, על רקע מדרגות עיירה עתיקה.",
-    "generated_at": "2026-08-24T22:26:52.984440+00:00",
-    "published_ig": true,
-    "published_fb": true,
-    "ig_media_id": "17902856403562942",
-    "fb_post_id": "1246343165233097_122106324441444353",
-    "published_at": "2026-08-24T22:29:12.504867+00:00"
-  },
-  {
-    "quality": {
-      "source_px": "1856x2304",
-      "output_px": "1600x2000",
-      "true_height": 2304,
-      "upscaled": false,
-      "kb": 1063
-    },
-    "type": "single",
-    "handle": "mireya-maxi-dress-deep-olive",
-    "title": "שמלת מרלין | מקסי",
-    "dress_name": "מרלין",
-    "product_url": "https://elorine.co.il/products/mireya-maxi-dress-deep-olive",
-    "price_ils": "529.0",
-    "background": "sunset_terrace",
-    "background_he": "מרפסת שקיעה",
-    "image_path": "posts/2026-08-24/mireya-maxi-dress-deep-olive.jpg",
-    "caption": "שמלת מרלין · ELORINE\nמקסי בירוק צבאי עשיר, אלגנטיות טבעית עם עמוד שדרה.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
-    "alt_text": "שמלת מרלין של ELORINE, green, olive, floor-length maxi, על רקע מרפסת שקיעה.",
-    "generated_at": "2026-08-24T22:27:11.563047+00:00",
-    "published_ig": true,
-    "published_fb": true,
-    "ig_media_id": "18422946556197543",
-    "fb_post_id": "1246343165233097_122106324567444353",
-    "published_at": "2026-08-24T22:29:33.869233+00:00"
+    "handle": "vienna-maxi-dress-olive",
+    "title": "שמלת אבריל | מקסי",
+    "dress_name": "אבריל",
+    "product_url": "https://elorine.co.il/products/vienna-maxi-dress-olive",
+    "price_ils": "549.0",
+    "background": "resort_terrace",
+    "background_he": "מרפסת ריזורט",
+    "image_path": "posts/2026-08-24/vienna-maxi-dress-olive.jpg",
+    "caption": "שמלת אבריל · ELORINE\nמקסי בגוון זית רגוע עם גזרה נוחה, סטייל בלי להתאמץ.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
+    "alt_text": "שמלת אבריל של ELORINE, olive, floor-length maxi, על רקע מרפסת ריזורט.",
+    "generated_at": "2026-08-24T22:56:29.205422+00:00",
+    "published_ig": false,
+    "published_fb": false
   }
 ]
