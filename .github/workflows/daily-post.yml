@@ -3,9 +3,10 @@ name: ELORINE — daily social posts
 on:
   schedule:
     # GitHub עובד ב-UTC ולא מכיר שעון קיץ, לכן יורים פעמיים
-    # והשלב הראשון מוודא שבישראל באמת 10:00. בדיוק הרצה אחת ביום.
-    - cron: "0 7 * * *"     # 10:00 בשעון קיץ (IDT, UTC+3)
-    - cron: "0 8 * * *"     # 10:00 בשעון חורף (IST, UTC+2)
+    # והשלב הראשון מוודא שזו באמת ההרצה של 10:00 בישראל. הרצה אחת ביום.
+    # 0-5 = ראשון עד שישי. שבת לא נכללת — אין פרסום בשבת.
+    - cron: "0 7 * * 0-5"   # 10:00 בשעון קיץ (IDT, UTC+3)
+    - cron: "0 8 * * 0-5"   # 10:00 בשעון חורף (IST, UTC+2)
   workflow_dispatch:
     inputs:
       carousels:
@@ -78,11 +79,18 @@ jobs:
           CRON="${{ github.event.schedule }}"
           OFFSET=$(TZ=Asia/Jerusalem date +%z)
           NOW=$(TZ=Asia/Jerusalem date '+%Y-%m-%d %H:%M')
+          DOW=$(TZ=Asia/Jerusalem date +%u)          # 1=שני … 6=שבת, 7=ראשון
           echo "cron: '${CRON}' · היסט ישראל: ${OFFSET} · עכשיו בישראל: ${NOW}"
 
+          if [ "$DOW" = "6" ]; then
+            echo "שבת בישראל — אין פרסום. מדלגים."
+            echo "SKIP=1" >> "$GITHUB_ENV"
+            exit 0
+          fi
+
           WANT=""
-          if [ "$OFFSET" = "+0300" ]; then WANT="0 7 * * *"; fi   # שעון קיץ
-          if [ "$OFFSET" = "+0200" ]; then WANT="0 8 * * *"; fi   # שעון חורף
+          if [ "$OFFSET" = "+0300" ]; then WANT="0 7 * * 0-5"; fi   # שעון קיץ
+          if [ "$OFFSET" = "+0200" ]; then WANT="0 8 * * 0-5"; fi   # שעון חורף
 
           if [ -n "$WANT" ] && [ "$CRON" = "$WANT" ]; then
             echo "זו ההרצה של 10:00 בישראל — מריצים."
