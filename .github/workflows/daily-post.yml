@@ -2,8 +2,10 @@ name: ELORINE — daily social posts
 
 on:
   schedule:
-    # 07:00 UTC = 10:00 בישראל (שעון קיץ). בחורף שנה ל-'0 8 * * *'
-    - cron: "0 7 * * *"
+    # GitHub עובד ב-UTC ולא מכיר שעון קיץ, לכן יורים פעמיים
+    # והשלב הראשון מוודא שבישראל באמת 10:00. בדיוק הרצה אחת ביום.
+    - cron: "0 7 * * *"     # 10:00 בשעון קיץ (IDT, UTC+3)
+    - cron: "0 8 * * *"     # 10:00 בשעון חורף (IST, UTC+2)
   workflow_dispatch:
     inputs:
       carousels:
@@ -60,21 +62,42 @@ jobs:
       PUBLISH_TO_FACEBOOK: ${{ github.event.inputs.facebook || 'true' }}
 
     steps:
+      # ---------- 0. שער שעון ישראל ----------
+      # שתי הרצות מתוזמנות ביום, רק זו שנופלת על 10:00 בישראל ממשיכה.
+      - name: Gate to 10:00 Israel time
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "הרצה ידנית — ממשיכים."; exit 0
+          fi
+          H=$(TZ=Asia/Jerusalem date +%H)
+          echo "השעה בישראל: ${H}:00"
+          if [ "$H" != "10" ]; then
+            echo "לא 10:00 בישראל — ההרצה הזו מדלגת."
+            echo "SKIP=1" >> "$GITHUB_ENV"
+          else
+            echo "10:00 בישראל — מריצים."
+          fi
+
       - uses: actions/checkout@v4
+        if: env.SKIP != '1'
 
       - uses: actions/setup-python@v5
+        if: env.SKIP != '1'
         with:
           python-version: "3.12"
           cache: pip
 
       - run: pip install -r requirements.txt
+        if: env.SKIP != '1'
 
       # ---------- 1. ייצור ----------
       - name: Generate posts
+        if: env.SKIP != '1'
         run: python pipeline.py generate
 
       # ---------- 2. דחיפה ל-repo (כדי לקבל URL ציבורי) ----------
       - name: Commit generated posts
+        if: env.SKIP != '1'
         run: |
           git config user.name  "elorine-bot"
           git config user.email "actions@github.com"
@@ -89,12 +112,12 @@ jobs:
 
       # ---------- 3. פרסום ----------
       - name: Publish to Instagram and Facebook
-        if: env.NOTHING_GENERATED != '1' && (github.event.inputs.publish || 'true') == 'true'
+        if: env.SKIP != '1' && env.NOTHING_GENERATED != '1' && (github.event.inputs.publish || 'true') == 'true'
         run: python pipeline.py publish
 
       # ---------- 4. שמירת ה-state ----------
       - name: Commit state
-        if: always() && env.NOTHING_GENERATED != '1'
+        if: always() && env.SKIP != '1' && env.NOTHING_GENERATED != '1'
         run: |
           git config user.name  "elorine-bot"
           git config user.email "actions@github.com"
@@ -104,7 +127,7 @@ jobs:
           git push || true
 
       - name: Upload run artifacts
-        if: always()
+        if: always() && env.SKIP != '1'
         uses: actions/upload-artifact@v4
         with:
           name: elorine-run-${{ github.run_number }}
