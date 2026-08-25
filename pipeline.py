@@ -637,12 +637,37 @@ def ig_quota_left() -> int:
     return row["config"]["quota_total"] - row["quota_usage"]
 
 
+#  9004/2207052 = "אינסטגרם לא הצליחה להוריד את התמונה מה-URL".
+#  זו תקלה חולפת של ה-CDN של GitHub מיד אחרי commit, לא בעיה בקובץ —
+#  לכן מנסים שוב עם cache-buster שמכריח edge אחר לשלוף מחדש.
+_IG_FETCH_FAIL = ("2207052", "9004", "media type", "downloaded")
+
+
+def _bust(url: str, n: int) -> str:
+    if n == 0:
+        return url
+    sep = "&" if "?" in url else "?"
+    return f"{url}{sep}cb={n}"
+
+
 def _ig_container(**params) -> str:
     params["access_token"] = META_TOKEN
-    r = requests.post(f"{GRAPH}/{IG_USER_ID}/media", data=params, timeout=60)
-    if r.status_code != 200:
-        raise RuntimeError(f"container: {r.text[:300]}")
-    return r.json()["id"]
+    base_url = params.get("image_url")
+    last = ""
+    for attempt in range(4):
+        if base_url:
+            params["image_url"] = _bust(base_url, attempt)
+        r = requests.post(f"{GRAPH}/{IG_USER_ID}/media", data=params, timeout=60)
+        if r.status_code == 200:
+            return r.json()["id"]
+        last = r.text[:300]
+        if base_url and any(k in r.text for k in _IG_FETCH_FAIL) and attempt < 3:
+            log(f"   … אינסטגרם לא הצליחה למשוך את התמונה, מנסה שוב "
+                f"({attempt + 1}/3)")
+            time.sleep(15 * (attempt + 1))
+            continue
+        break
+    raise RuntimeError(f"container: {last}")
 
 
 def _ig_wait(creation_id: str, tries: int = 25) -> None:
