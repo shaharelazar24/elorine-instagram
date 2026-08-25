@@ -2,11 +2,16 @@ name: ELORINE — daily social posts
 
 on:
   schedule:
-    # GitHub עובד ב-UTC ולא מכיר שעון קיץ, לכן יורים פעמיים
-    # והשלב הראשון מוודא שזו באמת ההרצה של 10:00 בישראל. הרצה אחת ביום.
+    # GitHub Actions לא מבטיח שהרצה מתוזמנת באמת תצא בזמן — היא נדחית
+    # לפעמים בשעות, ולפעמים נופלת לגמרי. לכן יש כאן ארבע יריות:
+    # הראשונה היא 10:00 בישראל (07:00Z בקיץ, 08:00Z בחורף) והשאר הן
+    # רשת ביטחון לשעות שאחריה. השער למטה מוודא שזה בין 10:00 ל-15:59
+    # בישראל ולא שבת, והבדיקה שאחריו מוודאת שלא מפרסמים פעמיים באותו יום.
     # 0-5 = ראשון עד שישי. שבת לא נכללת — אין פרסום בשבת.
-    - cron: "0 7 * * 0-5"   # 10:00 בשעון קיץ (IDT, UTC+3)
-    - cron: "0 8 * * 0-5"   # 10:00 בשעון חורף (IST, UTC+2)
+    - cron: "0 7 * * 0-5"
+    - cron: "0 8 * * 0-5"
+    - cron: "0 9 * * 0-5"
+    - cron: "0 10 * * 0-5"
   workflow_dispatch:
     inputs:
       carousels:
@@ -68,19 +73,18 @@ jobs:
 
     steps:
       # ---------- 0. שער שעון ישראל ----------
-      # שתי הרצות מתוזמנות ביום. השער בודק *איזה cron ירה* ולא מה השעה עכשיו,
-      # כי GitHub נוהג לעכב הרצות מתוזמנות בעשרות דקות. לפי ה-cron ולפי
-      # היסט השעון בישראל (+03:00 בקיץ, +02:00 בחורף) רק אחת מהשתיים ממשיכה.
-      - name: Gate to 10:00 Israel time
+      # מותר לרוץ בין 10:00 ל-15:59 בשעון ישראל, ראשון עד שישי.
+      # החלון הרחב הוא בכוונה: היריות המאוחרות הן רשת ביטחון למקרה
+      # שההרצה של 10:00 נדחתה או נפלה. הבדיקה הבאה מונעת פרסום כפול.
+      - name: Gate to Israel morning window
         run: |
           if [ "${{ github.event_name }}" != "schedule" ]; then
             echo "הרצה ידנית — ממשיכים."; exit 0
           fi
-          CRON="${{ github.event.schedule }}"
-          OFFSET=$(TZ=Asia/Jerusalem date +%z)
-          NOW=$(TZ=Asia/Jerusalem date '+%Y-%m-%d %H:%M')
-          DOW=$(TZ=Asia/Jerusalem date +%u)          # 1=שני … 6=שבת, 7=ראשון
-          echo "cron: '${CRON}' · היסט ישראל: ${OFFSET} · עכשיו בישראל: ${NOW}"
+          NOW=$(TZ=Asia/Jerusalem date '+%Y-%m-%d %H:%M %Z')
+          DOW=$(TZ=Asia/Jerusalem date +%u)              # 1=שני … 6=שבת, 7=ראשון
+          H=$((10#$(TZ=Asia/Jerusalem date +%H)))
+          echo "cron: '${{ github.event.schedule }}' · עכשיו בישראל: ${NOW}"
 
           if [ "$DOW" = "6" ]; then
             echo "שבת בישראל — אין פרסום. מדלגים."
@@ -88,33 +92,34 @@ jobs:
             exit 0
           fi
 
-          WANT=""
-          if [ "$OFFSET" = "+0300" ]; then WANT="0 7 * * 0-5"; fi   # שעון קיץ
-          if [ "$OFFSET" = "+0200" ]; then WANT="0 8 * * 0-5"; fi   # שעון חורף
-
-          if [ -n "$WANT" ] && [ "$CRON" = "$WANT" ]; then
-            echo "זו ההרצה של 10:00 בישראל — מריצים."
+          if [ "$H" -ge 10 ] && [ "$H" -le 15 ]; then
+            echo "בתוך החלון (10:00-15:59) — ממשיכים."
           else
-            echo "ה-cron הזה לא מתאים ל-10:00 בישראל כרגע — מדלגים."
+            echo "מחוץ לחלון (השעה ${H} בישראל) — מדלגים."
             echo "SKIP=1" >> "$GITHUB_ENV"
           fi
 
       - uses: actions/checkout@v4
         if: env.SKIP != '1'
 
-      # ---------- 0ב. הגנה מפרסום כפול ----------
-      # GitHub לפעמים מריץ משימה מתוזמנת באיחור של שעות. אם כבר פורסם היום
-      # (ידנית או בהרצה קודמת), הרצה מתוזמנת מאוחרת לא תפרסם שוב.
-      - name: Skip if today was already published
+      # ---------- 0ב. מה כבר נעשה היום ----------
+      #  אין manifest להיום            → סבב מלא: מייצרים ומפרסמים.
+      #  יש manifest ונשארו לא-מפורסמים → פרסום בלבד, בלי לייצר מחדש
+      #                                   (ככה הרצת המשך מסיימת מה שנתקע).
+      #  יש manifest והכול פורסם        → מדלגים לגמרי. אין פרסום כפול.
+      - name: Decide what is left to do today
         if: env.SKIP != '1' && github.event_name == 'schedule'
         run: |
           D=$(date -u +%F)
           M="posts/${D}/manifest.json"
-          if [ -f "$M" ] && grep -q '"published_ig": *true' "$M"; then
-            echo "כבר פורסם היום (${D}) — מדלגים כדי לא לפרסם פעמיים."
-            echo "SKIP=1" >> "$GITHUB_ENV"
+          if [ ! -f "$M" ]; then
+            echo "אין manifest להיום (${D}) — סבב מלא."
+          elif grep -q '"published_ig": *false' "$M"; then
+            echo "יש פוסטים שלא פורסמו היום (${D}) — פרסום בלבד, בלי ייצור."
+            echo "GEN=false" >> "$GITHUB_ENV"
           else
-            echo "לא פורסם היום (${D}) — ממשיכים."
+            echo "הכול כבר פורסם היום (${D}) — מדלגים."
+            echo "SKIP=1" >> "$GITHUB_ENV"
           fi
 
       - uses: actions/setup-python@v5
@@ -128,12 +133,12 @@ jobs:
 
       # ---------- 1. ייצור ----------
       - name: Generate posts
-        if: env.SKIP != '1' && (github.event.inputs.generate || 'true') == 'true'
+        if: env.SKIP != '1' && env.GEN != 'false' && (github.event.inputs.generate || 'true') == 'true'
         run: python pipeline.py generate
 
       # ---------- 2. דחיפה ל-repo (כדי לקבל URL ציבורי) ----------
       - name: Commit generated posts
-        if: env.SKIP != '1' && (github.event.inputs.generate || 'true') == 'true'
+        if: env.SKIP != '1' && env.GEN != 'false' && (github.event.inputs.generate || 'true') == 'true'
         run: |
           git config user.name  "elorine-bot"
           git config user.email "actions@github.com"
