@@ -102,6 +102,21 @@ jobs:
       - uses: actions/checkout@v4
         if: env.SKIP != '1'
 
+      # ---------- 0ב. הגנה מפרסום כפול ----------
+      # GitHub לפעמים מריץ משימה מתוזמנת באיחור של שעות. אם כבר פורסם היום
+      # (ידנית או בהרצה קודמת), הרצה מתוזמנת מאוחרת לא תפרסם שוב.
+      - name: Skip if today was already published
+        if: env.SKIP != '1' && github.event_name == 'schedule'
+        run: |
+          D=$(date -u +%F)
+          M="posts/${D}/manifest.json"
+          if [ -f "$M" ] && grep -q '"published_ig": *true' "$M"; then
+            echo "כבר פורסם היום (${D}) — מדלגים כדי לא לפרסם פעמיים."
+            echo "SKIP=1" >> "$GITHUB_ENV"
+          else
+            echo "לא פורסם היום (${D}) — ממשיכים."
+          fi
+
       - uses: actions/setup-python@v5
         if: env.SKIP != '1'
         with:
