@@ -29,6 +29,30 @@
       "type": "single",
       "media_id": "17867565927649429",
       "at": "2026-08-24T23:10:44.135357+00:00"
+    },
+    "amalfi-midi": {
+      "name": "קמיל",
+      "type": "carousel",
+      "media_id": "17961000780188968",
+      "at": "2026-08-25T08:02:00.802332+00:00"
+    },
+    "cassia-mini-dress-black": {
+      "name": "לורנצה",
+      "type": "single",
+      "media_id": "18105498386132994",
+      "at": "2026-08-25T08:02:28.985193+00:00"
+    },
+    "hayden-midi-dress-ivory": {
+      "name": "טניה",
+      "type": "single",
+      "media_id": "17956433631207417",
+      "at": "2026-08-25T08:02:55.390652+00:00"
+    },
+    "ella-maxi-dress-olive": {
+      "name": "ויקי",
+      "type": "single",
+      "media_id": "18145525984552762",
+      "at": "2026-08-25T08:03:20.755850+00:00"
     }
   },
   "seeded_names": [
@@ -114,7 +138,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-08-25T08:00:42.821981+00:00",
+  "updated_at": "2026-08-25T08:03:28.757025+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
