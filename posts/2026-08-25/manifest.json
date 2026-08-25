@@ -1,0 +1,168 @@
+[
+  {
+    "type": "carousel",
+    "handle": "amalfi-midi",
+    "title": "שמלת קמיל | מידי",
+    "dress_name": "קמיל",
+    "product_url": "https://elorine.co.il/products/amalfi-midi",
+    "price_ils": "559.0",
+    "items": [
+      {
+        "colour": "אדום",
+        "path": "posts/2026-08-25/amalfi-midi__1.jpg",
+        "background": "plaster_studio",
+        "background_he": "סטודיו טיח",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 602
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-08-25/amalfi-midi__2.jpg",
+        "background": "plaster_studio",
+        "background_he": "סטודיו טיח",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 538
+        }
+      },
+      {
+        "colour": "צהוב בהיר",
+        "path": "posts/2026-08-25/amalfi-midi__3.jpg",
+        "background": "plaster_studio",
+        "background_he": "סטודיו טיח",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 572
+        }
+      },
+      {
+        "colour": "סגול",
+        "path": "posts/2026-08-25/amalfi-midi__4.jpg",
+        "background": "plaster_studio",
+        "background_he": "סטודיו טיח",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 679
+        }
+      },
+      {
+        "colour": "ורוד",
+        "path": "posts/2026-08-25/amalfi-midi__5.jpg",
+        "background": "plaster_studio",
+        "background_he": "סטודיו טיח",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 653
+        }
+      }
+    ],
+    "caption": "שמלת קמיל · ELORINE\nמחוך פיסולי מחטב מול חצאית מלאה שנעה בכל צעד.\nאותה שמלה ב-5 גוונים — אדום, שחור, צהוב בהיר, סגול וורוד. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי #מחוך",
+    "generated_at": "2026-08-25T07:58:18.888152+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "atmosphere",
+    "scene": "wrapped_parcel",
+    "scene_he": "אריזה וסרט",
+    "image_path": "posts/2026-08-25/atmosphere__wrapped_parcel.jpg",
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1007
+    },
+    "caption": "ELORINE\nכל שמלה יוצאת מאיתנו ככה - עטופה, קשורה בסרט.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
+    "alt_text": "תמונת אווירה של ELORINE — אריזה וסרט.",
+    "generated_at": "2026-08-25T07:58:36.280670+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 905
+    },
+    "type": "single",
+    "handle": "cassia-mini-dress-black",
+    "title": "שמלת לורנצה | מיני",
+    "dress_name": "לורנצה",
+    "product_url": "https://elorine.co.il/products/cassia-mini-dress-black",
+    "price_ils": "449.0",
+    "background": "harbour_quay",
+    "background_he": "רציף נמל",
+    "image_path": "posts/2026-08-25/cassia-mini-dress-black.jpg",
+    "caption": "שמלת לורנצה · ELORINE\nשחורה, קצרה ומדויקת - הנשק הסודי של כל ארון.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני #שמלה_שחורה",
+    "alt_text": "שמלת לורנצה של ELORINE, black, mini length, על רקע רציף נמל.",
+    "generated_at": "2026-08-25T07:59:17.094070+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 968
+    },
+    "type": "single",
+    "handle": "hayden-midi-dress-ivory",
+    "title": "שמלת טניה | מידי",
+    "dress_name": "טניה",
+    "product_url": "https://elorine.co.il/products/hayden-midi-dress-ivory",
+    "price_ils": "509.0",
+    "background": "travertine_wall",
+    "background_he": "קיר טרוורטין",
+    "image_path": "posts/2026-08-25/hayden-midi-dress-ivory.jpg",
+    "caption": "שמלת טניה · ELORINE\nגוון שנהב נקי בגזרה מחמיאה, אלגנטיות יומיומית משודרגת.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי #שנהב",
+    "alt_text": "שמלת טניה של ELORINE, ivory, midi length, על רקע קיר טרוורטין.",
+    "generated_at": "2026-08-25T07:59:59.142854+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1169
+    },
+    "type": "single",
+    "handle": "ella-maxi-dress-olive",
+    "title": "שמלת ויקי | מקסי",
+    "dress_name": "ויקי",
+    "product_url": "https://elorine.co.il/products/ella-maxi-dress-olive",
+    "price_ils": "589.0",
+    "background": "resort_terrace",
+    "background_he": "מרפסת ריזורט",
+    "image_path": "posts/2026-08-25/ella-maxi-dress-olive.jpg",
+    "caption": "שמלת ויקי · ELORINE\nמקסי בגוון זית טבעי עם זרימה רכה, יופי שקט שנשאר בזיכרון.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
+    "alt_text": "שמלת ויקי של ELORINE, green, olive, floor-length maxi, על רקע מרפסת ריזורט.",
+    "generated_at": "2026-08-25T08:00:42.821590+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
