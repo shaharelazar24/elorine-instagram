@@ -1,0 +1,142 @@
+[
+  {
+    "type": "carousel",
+    "handle": "luna-mini",
+    "title": "שמלת ג'וליה | מיני",
+    "dress_name": "ג'וליה",
+    "product_url": "https://elorine.co.il/products/luna-mini",
+    "price_ils": "559.0",
+    "items": [
+      {
+        "colour": "אדום",
+        "path": "posts/2026-08-26/luna-mini__1.jpg",
+        "background": "old_town_steps",
+        "background_he": "מדרגות עיירה עתיקה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 902
+        }
+      },
+      {
+        "colour": "לבן",
+        "path": "posts/2026-08-26/luna-mini__2.jpg",
+        "background": "old_town_steps",
+        "background_he": "מדרגות עיירה עתיקה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1092
+        }
+      },
+      {
+        "colour": "כחול כהה",
+        "path": "posts/2026-08-26/luna-mini__3.jpg",
+        "background": "old_town_steps",
+        "background_he": "מדרגות עיירה עתיקה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 854
+        }
+      }
+    ],
+    "caption": "שמלת ג'וליה · ELORINE\nמיני רכה ומתוקה שהחליטה להעז, רומנטיקה עם ניצוץ.\nאותה שמלה ב-3 גוונים — אדום, לבן וכחול כהה. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "generated_at": "2026-08-26T09:26:06.685898+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "atmosphere",
+    "scene": "gold_pearl_silk",
+    "scene_he": "זהב ופנינה על משי",
+    "image_path": "posts/2026-08-26/atmosphere__gold_pearl_silk.jpg",
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1239
+    },
+    "caption": "ELORINE\nפרט קטן שמשלים הכל.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
+    "alt_text": "תמונת אווירה של ELORINE — זהב ופנינה על משי.",
+    "generated_at": "2026-08-26T09:26:23.048617+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1236
+    },
+    "type": "single",
+    "handle": "selene-mini-dress-main",
+    "title": "שמלת מרסי | מיני",
+    "dress_name": "מרסי",
+    "product_url": "https://elorine.co.il/products/selene-mini-dress-main",
+    "price_ils": "559.0",
+    "background": "bougainvillea_alley",
+    "background_he": "סמטת בוגנוויליה",
+    "image_path": "posts/2026-08-26/selene-mini-dress-main.jpg",
+    "caption": "שמלת מרסי · ELORINE\nגוף בנוי עצמות שמחטב את המותן בשלמות, קסם קטן לערבים גדולים.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת מרסי של ELORINE, mini length, על רקע סמטת בוגנוויליה.",
+    "generated_at": "2026-08-26T09:27:26.574442+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1011
+    },
+    "type": "single",
+    "handle": "cleopatra-midi-dress",
+    "title": "שמלת סקאי | בנדאז' מידי זהב",
+    "dress_name": "סקאי",
+    "product_url": "https://elorine.co.il/products/cleopatra-midi-dress",
+    "price_ils": "449.0",
+    "background": "harbour_quay",
+    "background_he": "רציף נמל",
+    "image_path": "posts/2026-08-26/cleopatra-midi-dress.jpg",
+    "caption": "שמלת סקאי · ELORINE\nבד בנדאז' כבד שמפסל את הגוף ומרים את הביטחון, מידי בהשראת קלאופטרה.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי",
+    "alt_text": "שמלת סקאי של ELORINE, gold, bandage knit, midi length, על רקע רציף נמל.",
+    "generated_at": "2026-08-26T09:29:19.680963+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1261
+    },
+    "type": "single",
+    "handle": "della-leather-midi-dress",
+    "title": "שמלת דלה | דמוי עור מידי",
+    "dress_name": "דלה",
+    "product_url": "https://elorine.co.il/products/della-leather-midi-dress",
+    "price_ils": "559.0",
+    "background": "fig_courtyard",
+    "background_he": "חצר תאנה",
+    "image_path": "posts/2026-08-26/della-leather-midi-dress.jpg",
+    "caption": "שמלת דלה · ELORINE\nמידי שמפסלת כל קימור ועושה הצהרה בלי לומר מילה.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי",
+    "alt_text": "שמלת דלה של ELORINE, faux leather, midi length, על רקע חצר תאנה.",
+    "generated_at": "2026-08-26T09:30:19.279549+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
