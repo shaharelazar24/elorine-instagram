@@ -53,6 +53,30 @@
       "type": "single",
       "media_id": "18145525984552762",
       "at": "2026-08-25T08:03:20.755850+00:00"
+    },
+    "luna-mini": {
+      "name": "ג'וליה",
+      "type": "carousel",
+      "media_id": "18338375740250785",
+      "at": "2026-08-26T09:31:06.219088+00:00"
+    },
+    "selene-mini-dress-main": {
+      "name": "מרסי",
+      "type": "single",
+      "media_id": "18082091852308165",
+      "at": "2026-08-26T09:31:52.853606+00:00"
+    },
+    "cleopatra-midi-dress": {
+      "name": "סקאי",
+      "type": "single",
+      "media_id": "18003023576981293",
+      "at": "2026-08-26T09:32:17.324748+00:00"
+    },
+    "della-leather-midi-dress": {
+      "name": "דלה",
+      "type": "single",
+      "media_id": "18131254828678578",
+      "at": "2026-08-26T09:32:41.897590+00:00"
     }
   },
   "seeded_names": [
@@ -138,7 +162,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-08-26T09:30:19.279952+00:00",
+  "updated_at": "2026-08-26T09:32:49.898795+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
