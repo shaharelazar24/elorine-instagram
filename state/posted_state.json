@@ -77,6 +77,30 @@
       "type": "single",
       "media_id": "18131254828678578",
       "at": "2026-08-26T09:32:41.897590+00:00"
+    },
+    "kaylin-maxi-dress": {
+      "name": "קיילין",
+      "type": "carousel",
+      "media_id": "18026679794884690",
+      "at": "2026-08-27T14:37:16.102200+00:00"
+    },
+    "kendall-lace-maxi-dress": {
+      "name": "קנדל",
+      "type": "single",
+      "media_id": "17951965170255001",
+      "at": "2026-08-27T14:37:59.279997+00:00"
+    },
+    "ariel-jersey-maxi": {
+      "name": "אלגרה",
+      "type": "single",
+      "media_id": "17955601617011543",
+      "at": "2026-08-27T14:38:19.242024+00:00"
+    },
+    "freya-cotton-midi-dress": {
+      "name": "פריה",
+      "type": "single",
+      "media_id": "18215534512342200",
+      "at": "2026-08-27T14:38:41.488263+00:00"
     }
   },
   "seeded_names": [
@@ -162,7 +186,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-08-27T14:36:20.438340+00:00",
+  "updated_at": "2026-08-27T14:38:49.489549+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
