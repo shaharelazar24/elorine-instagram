@@ -1,0 +1,168 @@
+[
+  {
+    "type": "carousel",
+    "handle": "kaylin-maxi-dress",
+    "title": "שמלת קיילין | מקסי",
+    "dress_name": "קיילין",
+    "product_url": "https://elorine.co.il/products/kaylin-maxi-dress",
+    "price_ils": "629.0",
+    "items": [
+      {
+        "colour": "תכלת",
+        "path": "posts/2026-08-27/kaylin-maxi-dress__1.jpg",
+        "background": "mediterranean_beach",
+        "background_he": "חוף ים תיכוני",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 686
+        }
+      },
+      {
+        "colour": "ורוד",
+        "path": "posts/2026-08-27/kaylin-maxi-dress__2.jpg",
+        "background": "mediterranean_beach",
+        "background_he": "חוף ים תיכוני",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 860
+        }
+      },
+      {
+        "colour": "בורדו",
+        "path": "posts/2026-08-27/kaylin-maxi-dress__3.jpg",
+        "background": "mediterranean_beach",
+        "background_he": "חוף ים תיכוני",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 606
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-08-27/kaylin-maxi-dress__4.jpg",
+        "background": "mediterranean_beach",
+        "background_he": "חוף ים תיכוני",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 673
+        }
+      },
+      {
+        "colour": "אדום",
+        "path": "posts/2026-08-27/kaylin-maxi-dress__5.jpg",
+        "background": "mediterranean_beach",
+        "background_he": "חוף ים תיכוני",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 809
+        }
+      }
+    ],
+    "caption": "שמלת קיילין · ELORINE\nסט שלושה חלקים - קורסט, חצאית מקסי וצעיף תואם - במש רך שעוטף כל קימור.\nאותה שמלה ב-5 גוונים — תכלת, ורוד, בורדו, שחור ואדום. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
+    "generated_at": "2026-08-27T14:19:12.745363+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "atmosphere",
+    "scene": "linen_stack_ledge",
+    "scene_he": "ערימת פשתן על מדף",
+    "image_path": "posts/2026-08-27/atmosphere__linen_stack_ledge.jpg",
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1124
+    },
+    "caption": "ELORINE\nפשתן מקופל, ורוגע.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
+    "alt_text": "תמונת אווירה של ELORINE — ערימת פשתן על מדף.",
+    "generated_at": "2026-08-27T14:19:38.123033+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1485
+    },
+    "type": "single",
+    "handle": "kendall-lace-maxi-dress",
+    "title": "שמלת קנדל | תחרה מקסי",
+    "dress_name": "קנדל",
+    "product_url": "https://elorine.co.il/products/kendall-lace-maxi-dress",
+    "price_ils": "449.0",
+    "background": "olive_grove",
+    "background_he": "חורשת זיתים",
+    "image_path": "posts/2026-08-27/kendall-lace-maxi-dress.jpg",
+    "caption": "שמלת קנדל · ELORINE\nתחרה נמתחת שמחבקת בדיוק במקומות הנכונים, בשחור שלא מתפשר.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #תחרה #שמלה_שחורה",
+    "alt_text": "שמלת קנדל של ELORINE, black, lace, floor-length maxi, על רקע חורשת זיתים.",
+    "generated_at": "2026-08-27T14:23:43.264597+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 662
+    },
+    "type": "single",
+    "handle": "ariel-jersey-maxi",
+    "title": "שמלת אלגרה | ג'רזי מקסי",
+    "dress_name": "אלגרה",
+    "product_url": "https://elorine.co.il/products/ariel-jersey-maxi",
+    "price_ils": "559.0",
+    "background": "boutique_corner",
+    "background_he": "פינת בוטיק",
+    "image_path": "posts/2026-08-27/ariel-jersey-maxi.jpg",
+    "caption": "שמלת אלגרה · ELORINE\nדרמה אלגנטית עם מחשוף נועז, בבד רך שזז איתך.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שמלה_שחורה",
+    "alt_text": "שמלת אלגרה של ELORINE, black, jersey, floor-length maxi, על רקע פינת בוטיק.",
+    "generated_at": "2026-08-27T14:24:47.486832+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1065
+    },
+    "type": "single",
+    "handle": "freya-cotton-midi-dress",
+    "title": "שמלת פריה | כותנה מידי",
+    "dress_name": "פריה",
+    "product_url": "https://elorine.co.il/products/freya-cotton-midi-dress",
+    "price_ils": "249.0",
+    "background": "sunset_terrace",
+    "background_he": "מרפסת שקיעה",
+    "image_path": "posts/2026-08-27/freya-cotton-midi-dress.jpg",
+    "caption": "שמלת פריה · ELORINE\nכותנה נמתחת נעימה בגזרה מחמיאה, בדיוק בשביל מסיבות אביב וקיץ.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי",
+    "alt_text": "שמלת פריה של ELORINE, cotton, midi length, על רקע מרפסת שקיעה.",
+    "generated_at": "2026-08-27T14:27:57.424587+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
