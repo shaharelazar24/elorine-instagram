@@ -150,10 +150,24 @@ jobs:
           if git diff --staged --quiet; then
             echo "NOTHING_GENERATED=1" >> "$GITHUB_ENV"
             echo "לא נוצרו פוסטים חדשים."
-          else
-            git commit -m "posts: $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "posts: $(date -u +%Y-%m-%d)"
+
+          # ההרצה נמשכת דקות, ובינתיים ייתכן שנדחף commit אחר ל-main.
+          # בלי rebase ה-push נדחה, התמונות לא מקבלות URL ציבורי,
+          # והפרסום של כל היום נופל. לכן: rebase, ואם צריך — עוד נסיונות.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "נדחף בהצלחה (ניסיון ${i})."
+              exit 0
+            fi
+            echo "push נדחה — מושכים ומנסים שוב (${i}/5)…"
+            git pull --rebase --autostash origin main || true
+            sleep $((5 * i))
+          done
+          echo "::error::ה-push נכשל אחרי 5 נסיונות — התמונות לא קיבלו URL ציבורי."
+          exit 1
 
       # ---------- 3. פרסום ----------
       - name: Publish to Instagram and Facebook
