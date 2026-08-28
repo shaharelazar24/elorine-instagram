@@ -1,0 +1,129 @@
+[
+  {
+    "type": "carousel",
+    "handle": "bella-mini",
+    "title": "שמלת קולט | מיני",
+    "dress_name": "קולט",
+    "product_url": "https://elorine.co.il/products/bella-mini",
+    "price_ils": "559.0",
+    "items": [
+      {
+        "colour": "שחור",
+        "path": "posts/2026-08-28/bella-mini__1.jpg",
+        "background": "arched_corridor",
+        "background_he": "מסדרון קשתות",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 795
+        }
+      },
+      {
+        "colour": "לבן",
+        "path": "posts/2026-08-28/bella-mini__2.jpg",
+        "background": "arched_corridor",
+        "background_he": "מסדרון קשתות",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 710
+        }
+      }
+    ],
+    "caption": "שמלת קולט · ELORINE\nמיני אוף שולדר אלגנטית שמאזנת עדינות ונועזות.\nבשני גוונים — שחור ולבן. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני #שמלה_שחורה",
+    "generated_at": "2026-08-28T07:22:21.583084+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "atmosphere",
+    "scene": "cane_table_cup",
+    "scene_he": "שולחן ראטן וספל",
+    "image_path": "posts/2026-08-28/atmosphere__cane_table_cup.jpg",
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1202
+    },
+    "caption": "ELORINE\nספל אחד, ענף אחד, בוקר שקט.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
+    "alt_text": "תמונת אווירה של ELORINE — שולחן ראטן וספל.",
+    "generated_at": "2026-08-28T07:22:36.218342+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 691
+    },
+    "type": "single",
+    "handle": "eleonora-brown",
+    "title": "שמלת אלואיז | מיני שוקולד",
+    "dress_name": "אלואיז",
+    "product_url": "https://elorine.co.il/products/eleonora-brown",
+    "price_ils": "329.0",
+    "background": "sunset_terrace",
+    "background_he": "מרפסת שקיעה",
+    "image_path": "posts/2026-08-28/eleonora-brown.jpg",
+    "caption": "שמלת אלואיז · ELORINE\nגוף מובנה שמפסל ותומך עם קו מחשוף ישר, בחום שוקולד מלטף.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת אלואיז של ELORINE, brown, chocolate, mini length, על רקע מרפסת שקיעה.",
+    "generated_at": "2026-08-28T07:23:37.378618+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 910
+    },
+    "type": "single",
+    "handle": "jade-mini",
+    "title": "שמלת אלמה | מיני",
+    "dress_name": "אלמה",
+    "product_url": "https://elorine.co.il/products/jade-mini",
+    "price_ils": "319.0",
+    "background": "resort_terrace",
+    "background_he": "מרפסת ריזורט",
+    "image_path": "posts/2026-08-28/jade-mini.jpg",
+    "caption": "שמלת אלמה · ELORINE\nקווים פשוטים ומדויקים, זמינה בשחור ובלבן.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני #שמלה_שחורה",
+    "alt_text": "שמלת אלמה של ELORINE, black, mini length, על רקע מרפסת ריזורט.",
+    "generated_at": "2026-08-28T07:24:35.718094+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 750
+    },
+    "type": "single",
+    "handle": "iris-mini",
+    "title": "שמלת טסה | מיני",
+    "dress_name": "טסה",
+    "product_url": "https://elorine.co.il/products/iris-mini",
+    "price_ils": "589.0",
+    "background": "harbour_quay",
+    "background_he": "רציף נמל",
+    "image_path": "posts/2026-08-28/iris-mini.jpg",
+    "caption": "שמלת טסה · ELORINE\nמיני בקווים חדים ונקיים, למי שמדברת בעשייה ולא במילים.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת טסה של ELORINE, white, mini length, על רקע רציף נמל.",
+    "generated_at": "2026-08-28T07:25:32.570875+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
