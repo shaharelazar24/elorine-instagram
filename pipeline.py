@@ -7,8 +7,8 @@ ELORINE — Instagram + Facebook content automation
 Shopify → Google Gemini (Nano Banana) → Instagram + Facebook
 
 תוכנית יומית (5 פוסטים):
-    1 × קרוסלה   — שמלה רב-צבעונית, תמונה לכל צבע
-    1 × אווירה    — ללא שם מותג, ללא בגדים, ללא דוגמניות
+    2 × קרוסלה   — שמלה רב-צבעונית, תמונה לכל צבע
+    0 × אווירה    — כבוי (אפשר להחזיר עם ATMOSPHERE_PER_RUN)
     3 × שמלה      — פוסט בודד לכל אחת
 
 פקודות:
@@ -41,8 +41,8 @@ STATE_FILE = ROOT / "state" / "posted_state.json"
 POSTS_DIR = ROOT / "posts"
 
 # --- הרכב ההרצה היומית ---
-CAROUSELS_PER_RUN = int(os.getenv("CAROUSELS_PER_RUN", "1"))
-ATMOSPHERE_PER_RUN = int(os.getenv("ATMOSPHERE_PER_RUN", "1"))
+CAROUSELS_PER_RUN = int(os.getenv("CAROUSELS_PER_RUN", "2"))
+ATMOSPHERE_PER_RUN = int(os.getenv("ATMOSPHERE_PER_RUN", "0"))
 SINGLES_PER_RUN = int(os.getenv("SINGLES_PER_RUN", "3"))
 MAX_CAROUSEL_ITEMS = 10          # מגבלת אינסטגרם
 

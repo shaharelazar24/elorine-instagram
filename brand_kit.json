@@ -33,10 +33,15 @@
     "shot as if on 85mm f/2.0 — shallow but not blurry background"
   ],
 
-  "_backgrounds_note": "בהשראת הפיד של @elorine.il — ים תיכוני, מרפסות עם נוף לים, רחובות אירופאיים, חוף, אבן חמה ואור אחר צהריים. הרקע תמיד מטושטש מספיק כדי שהשמלה תישאר הנושא.",
+  "_backgrounds_note": "בהשראת הפיד של @elorine.il — ים תיכוני, וילות עם בריכה, מרפסות עם נוף לים, רחובות אירופאיים, חוף, אבן חמה ואור אחר צהריים. הרקע תמיד מטושטש מספיק כדי שהשמלה תישאר הנושא, ולא חוזר על עצמו באותה הרצה.",
 
   "backgrounds": [
     {"id": "sea_view_balcony", "he": "מרפסת עם נוף לים", "prompt": "a stone balcony with a wrought-iron railing overlooking the Mediterranean sea, the water and horizon far below and softly out of focus, late golden-hour sun, warm sand and pale blue"},
+    {"id": "villa_pool", "he": "בריכת וילה", "prompt": "the pale stone deck of a private Mediterranean villa pool, still turquoise water rippling gently behind, low white villa walls and cypress trees far back and heavily out of focus, bright late-morning sun and clean shadow"},
+    {"id": "infinity_pool_sea", "he": "בריכת אינפיניטי מול הים", "prompt": "an infinity pool on a cliffside villa terrace where the water edge meets the sea horizon far behind, pale travertine deck underfoot, turquoise and warm ivory, low golden sun"},
+    {"id": "poolside_loungers", "he": "מרפסת בריכה ומיטות שיזוף", "prompt": "a quiet villa poolside with cream canvas loungers and a folded linen towel, turquoise pool water rippling out of focus behind, warm pale stone underfoot, soft late-afternoon light"},
+    {"id": "villa_arch_pool", "he": "קשת וילה אל הבריכה", "prompt": "a whitewashed villa archway opening onto a pool courtyard, reflected water light dancing softly on the plaster, bougainvillea at the edge of frame, bright Mediterranean midday"},
+    {"id": "villa_sea_terrace", "he": "מרפסת וילה מול הים", "prompt": "the wide stone terrace of a white Mediterranean villa, potted olive trees and a low balustrade, the open sea filling the background far behind and out of focus, warm afternoon light"},
     {"id": "european_street", "he": "רחוב אירופאי קלאסי", "prompt": "a quiet classic European street of old stone buildings with shuttered windows and worn cobblestones, the far end of the street heavily out of focus, warm late-afternoon light raking down one side"},
     {"id": "mediterranean_beach", "he": "חוף ים תיכוני", "prompt": "a wide calm Mediterranean beach at golden hour, pale sand, gentle shallow water and a low horizon far behind and heavily out of focus, soft warm rim light from a low sun"},
     {"id": "old_town_steps", "he": "מדרגות עיירה עתיקה", "prompt": "worn pale stone steps climbing between whitewashed old-town walls, a sliver of sea visible far at the top, strong Mediterranean sun and deep clean shadow"},
