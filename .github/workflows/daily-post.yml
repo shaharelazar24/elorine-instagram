@@ -53,7 +53,8 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # הנסיונות החוזרים מול Gemini יכולים להאריך הרצה בימי עומס
+    timeout-minutes: 110
 
     env:
       SHOPIFY_STORE: ${{ vars.SHOPIFY_STORE }}
@@ -107,22 +108,32 @@ jobs:
         if: env.SKIP != '1'
 
       # ---------- 0ב. מה כבר נעשה היום ----------
-      #  אין manifest להיום            → סבב מלא: מייצרים ומפרסמים.
-      #  יש manifest ונשארו לא-מפורסמים → פרסום בלבד, בלי לייצר מחדש
-      #                                   (ככה הרצת המשך מסיימת מה שנתקע).
-      #  יש manifest והכול פורסם        → מדלגים לגמרי. אין פרסום כפול.
+      #  חסרים פוסטים (Gemini נפל על חלקם) → סבב שמשלים רק את החסר.
+      #  כל הפוסטים קיימים אך לא כולם פורסמו → פרסום בלבד, בלי ייצור.
+      #  הכול קיים והכול פורסם               → מדלגים. אין פרסום כפול.
       - name: Decide what is left to do today
         if: env.SKIP != '1' && github.event_name == 'schedule'
         run: |
           D=$(date -u +%F)
           M="posts/${D}/manifest.json"
+          WANT=$(( ${CAROUSELS_PER_RUN:-1} + ${ATMOSPHERE_PER_RUN:-1} + ${SINGLES_PER_RUN:-3} ))
+
           if [ ! -f "$M" ]; then
-            echo "אין manifest להיום (${D}) — סבב מלא."
-          elif grep -q '"published_ig": *false' "$M"; then
-            echo "יש פוסטים שלא פורסמו היום (${D}) — פרסום בלבד, בלי ייצור."
+            echo "אין manifest להיום (${D}) — סבב מלא (${WANT} פוסטים)."
+            exit 0
+          fi
+
+          HAVE=$(python3 -c "import json;print(len(json.load(open('$M'))))")
+          UNPUB=$(python3 -c "import json;print(sum(1 for e in json.load(open('$M')) if not e.get('published_ig')))")
+          echo "היום (${D}): ${HAVE}/${WANT} פוסטים קיימים, ${UNPUB} עוד לא פורסמו."
+
+          if [ "$HAVE" -lt "$WANT" ]; then
+            echo "חסרים פוסטים — משלימים את החסר."
+          elif [ "$UNPUB" -gt 0 ]; then
+            echo "הכול קיים אבל לא הכול פורסם — פרסום בלבד."
             echo "GEN=false" >> "$GITHUB_ENV"
           else
-            echo "הכול כבר פורסם היום (${D}) — מדלגים."
+            echo "היום מלא ומפורסם — מדלגים."
             echo "SKIP=1" >> "$GITHUB_ENV"
           fi
 
