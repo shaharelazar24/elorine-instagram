@@ -21,11 +21,11 @@ on:
       carousels:
         description: "כמה קרוסלות"
         required: false
-        default: "1"
+        default: "2"
       atmosphere:
-        description: "כמה פוסטי אווירה"
+        description: "כמה פוסטי אווירה (0 = כבוי)"
         required: false
-        default: "1"
+        default: "0"
       singles:
         description: "כמה שמלות בודדות"
         required: false
@@ -71,8 +71,8 @@ jobs:
       IG_USER_ID: ${{ vars.IG_USER_ID }}
       FB_PAGE_ID: ${{ vars.FB_PAGE_ID }}
 
-      CAROUSELS_PER_RUN: ${{ github.event.inputs.carousels || vars.CAROUSELS_PER_RUN || '1' }}
-      ATMOSPHERE_PER_RUN: ${{ github.event.inputs.atmosphere || vars.ATMOSPHERE_PER_RUN || '1' }}
+      CAROUSELS_PER_RUN: ${{ github.event.inputs.carousels || vars.CAROUSELS_PER_RUN || '2' }}
+      ATMOSPHERE_PER_RUN: ${{ github.event.inputs.atmosphere || vars.ATMOSPHERE_PER_RUN || '0' }}
       SINGLES_PER_RUN: ${{ github.event.inputs.singles || vars.SINGLES_PER_RUN || '3' }}
       PUBLISH_TO_FACEBOOK: ${{ github.event.inputs.facebook || 'true' }}
 
@@ -116,7 +116,7 @@ jobs:
         run: |
           D=$(date -u +%F)
           M="posts/${D}/manifest.json"
-          WANT=$(( ${CAROUSELS_PER_RUN:-1} + ${ATMOSPHERE_PER_RUN:-1} + ${SINGLES_PER_RUN:-3} ))
+          WANT=$(( ${CAROUSELS_PER_RUN:-2} + ${ATMOSPHERE_PER_RUN:-0} + ${SINGLES_PER_RUN:-3} ))
 
           if [ ! -f "$M" ]; then
             echo "אין manifest להיום (${D}) — סבב מלא (${WANT} פוסטים)."
