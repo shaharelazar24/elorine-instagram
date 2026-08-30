@@ -24,6 +24,7 @@ import io
 import json
 import mimetypes
 import os
+import random
 import re
 import sys
 import time
@@ -422,39 +423,75 @@ def _gemini_body(parts: list, with_image_config: bool) -> dict:
     return {"contents": [{"role": "user", "parts": parts}], "generationConfig": gen}
 
 
+#  קודים חולפים: הדגם עמוס או מוגבל כרגע. שווה להמתין ולנסות שוב.
+#  כל היתר (400 / 403 וכו') הם שגיאה אמיתית — אין טעם לחזור עליהם.
+TRANSIENT_CODES = {429, 500, 502, 503, 504}
+
+#  השהיות בין נסיונות, בשניות. סך הכל עד ~7 דקות לתמונה אחת —
+#  מספיק כדי לעבור גל עומס אצל Google במקום לוותר אחרי 24 שניות.
+RETRY_BACKOFF = [15, 30, 60, 90, 120, 150]
+
+
+def _gemini_models() -> list:
+    """הדגם הראשי, ואחריו דגם גיבוי. אם הראשי עמוס — לשני יש מכסה נפרדת."""
+    models = [GEMINI_MODEL]
+    fallback = os.getenv("GEMINI_FALLBACK_MODEL", "gemini-2.5-flash-image")
+    if fallback and fallback != GEMINI_MODEL:
+        models.append(fallback)
+    return models
+
+
 def _gemini_call(parts: list) -> bytes:
-    """קורא ל-Gemini. אם הדגם לא מקבל imageConfig — נופל חזרה בלעדיו
-    במקום להיכשל, כדי שהרצה לא תמות בגלל פרמטר אחד."""
+    """קורא ל-Gemini. עומד בפני עומס זמני: המתנה מתארכת בין נסיונות,
+    ואם הדגם הראשי ממשיך להיכשל — עובר לדגם גיבוי.
+    אם הדגם לא מקבל imageConfig — נופל חזרה בלעדיו במקום להיכשל."""
     if not GEMINI_API_KEY:
         sys.exit("✗ חסר GEMINI_API_KEY")
 
-    url = GEMINI_URL.format(model=GEMINI_MODEL)
     headers = {"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"}
     use_config, err = True, None
 
-    for attempt in range(4):
-        r = requests.post(url, json=_gemini_body(parts, use_config),
-                          timeout=240, headers=headers)
-        if r.status_code == 200:
-            for cand in r.json().get("candidates", []):
-                for part in cand.get("content", {}).get("parts", []):
-                    blob = part.get("inline_data") or part.get("inlineData")
-                    if blob and blob.get("data"):
-                        return base64.b64decode(blob["data"])
-            err = "Gemini החזיר תשובה ללא תמונה"
-        else:
-            err = f"Gemini {r.status_code}: {r.text[:250]}"
-            low = r.text.lower()
-            if (use_config and r.status_code == 400
-                    and any(k in low for k in ("imageconfig", "image_config",
-                                               "aspectratio", "imagesize",
-                                               "unknown name"))):
-                log("   ⚠ הדגם לא קיבל imageConfig — מנסה בלעדיו")
-                QUALITY_WARNINGS.append("imageConfig לא נתמך בדגם הזה")
-                use_config = False
-                continue
-        log(f"   … ניסיון {attempt + 1} נכשל: {err}")
-        time.sleep(4 * (attempt + 1))
+    for model in _gemini_models():
+        if model != GEMINI_MODEL:
+            log(f"   ↺ עוברים לדגם גיבוי: {model}")
+        url = GEMINI_URL.format(model=model)
+
+        for attempt in range(len(RETRY_BACKOFF) + 1):
+            try:
+                r = requests.post(url, json=_gemini_body(parts, use_config),
+                                  timeout=240, headers=headers)
+            except requests.RequestException as exc:
+                err, code = f"רשת: {exc}", 503
+            else:
+                code = r.status_code
+                if code == 200:
+                    for cand in r.json().get("candidates", []):
+                        for part in cand.get("content", {}).get("parts", []):
+                            blob = part.get("inline_data") or part.get("inlineData")
+                            if blob and blob.get("data"):
+                                return base64.b64decode(blob["data"])
+                    err = "Gemini החזיר תשובה ללא תמונה"
+                else:
+                    err = f"Gemini {code}: {r.text[:200]}"
+                    low = r.text.lower()
+                    if (use_config and code == 400
+                            and any(k in low for k in ("imageconfig", "image_config",
+                                                       "aspectratio", "imagesize",
+                                                       "unknown name"))):
+                        log("   ⚠ הדגם לא קיבל imageConfig — מנסה בלעדיו")
+                        QUALITY_WARNINGS.append("imageConfig לא נתמך בדגם הזה")
+                        use_config = False
+                        continue
+                    if code not in TRANSIENT_CODES:
+                        raise RuntimeError(err)      # שגיאה אמיתית — לא חוזרים
+
+            if attempt >= len(RETRY_BACKOFF):
+                break                                 # נגמרו הנסיונות לדגם הזה
+            wait = RETRY_BACKOFF[attempt] + random.randint(0, 10)
+            log(f"   … ניסיון {attempt + 1} נכשל ({err[:90]}) — "
+                f"ממתין {wait}s")
+            time.sleep(wait)
+
     raise RuntimeError(err)
 
 
@@ -788,11 +825,39 @@ def cmd_generate() -> None:
 
     out = today_dir()
     out.mkdir(parents=True, exist_ok=True)
-    manifest, used = [], set()
-    bg_taken: set = set()          # רקעים שכבר בשימוש בהרצה הזו
+
+    # אם כבר יש manifest להיום (הרצה קודמת שהצליחה חלקית) — ממשיכים ממנו
+    # ומייצרים רק את מה שחסר, במקום להתחיל מאפס ולאבד את מה שכבר עלה.
+    mpath = out / "manifest.json"
+    manifest = []
+    if mpath.exists():
+        try:
+            manifest = json.loads(mpath.read_text(encoding="utf-8"))
+        except Exception:                                  # noqa: BLE001
+            manifest = []
+
+    have = {"carousel": 0, "atmosphere": 0, "single": 0}
+    used, bg_taken = set(), set()
+    for e in manifest:
+        have[e["type"]] = have.get(e["type"], 0) + 1
+        if e.get("handle"):
+            used.add(e["handle"])
+
+    need_car = max(0, CAROUSELS_PER_RUN - have["carousel"])
+    need_atm = max(0, ATMOSPHERE_PER_RUN - have["atmosphere"])
+    need_sgl = max(0, SINGLES_PER_RUN - have["single"])
+
+    if manifest:
+        log(f"כבר קיימים היום: {have['carousel']} קרוסלות, "
+            f"{have['atmosphere']} אווירה, {have['single']} בודדות. "
+            f"משלימים: {need_car}/{need_atm}/{need_sgl}.")
+        if need_car == need_atm == need_sgl == 0:
+            log("היום כבר מלא — אין מה לייצר.")
+            return
+        multi = [p for p in multi if p["handle"] not in used]
 
     # ---------- קרוסלות ----------
-    for product in multi[:CAROUSELS_PER_RUN]:
+    for product in multi[:need_car]:
         name = dress_name(product["title"])
         colours = product["colours"][:MAX_CAROUSEL_ITEMS]
         # רקע אחיד לכל הקרוסלה — הצבע הוא ההשוואה, לא הסביבה
@@ -831,7 +896,7 @@ def cmd_generate() -> None:
         })
 
     # ---------- אווירה ----------
-    for _ in range(ATMOSPHERE_PER_RUN):
+    for _ in range(need_atm):
         scene = pick_atmosphere(state)
         log(f"\n▶ אווירה: {scene['he']}")
         try:
@@ -853,7 +918,7 @@ def cmd_generate() -> None:
 
     # ---------- שמלות בודדות ----------
     singles = [p for p in queue if p["handle"] not in used]
-    for product in singles[:SINGLES_PER_RUN]:
+    for product in singles[:need_sgl]:
         name = dress_name(product["title"])
         bg = pick_background(product["handle"], bg_taken)
         bg_taken.add(bg["id"])
