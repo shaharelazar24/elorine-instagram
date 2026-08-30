@@ -67,5 +67,69 @@
     "ig_media_id": "18110850881087360",
     "fb_post_id": "1246343165233097_122108143611444353",
     "published_at": "2026-08-30T07:57:33.663829+00:00"
+  },
+  {
+    "type": "atmosphere",
+    "scene": "straw_bag_steps",
+    "scene_he": "תיק קש על מדרגות",
+    "image_path": "posts/2026-08-30/atmosphere__straw_bag_steps.jpg",
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1272
+    },
+    "caption": "ELORINE\nמדרגות אבן, תיק קש, ובוקר שלם.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #ELORINEBOUTIQUE #אווירה #סטייל #ים_תיכוני #אלגנטיות",
+    "alt_text": "תמונת אווירה של ELORINE — תיק קש על מדרגות.",
+    "generated_at": "2026-08-30T13:42:47.891585+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1187
+    },
+    "type": "single",
+    "handle": "chiara-blue",
+    "title": "שמלת ליאנה | מיני תכלת",
+    "dress_name": "ליאנה",
+    "product_url": "https://elorine.co.il/products/chiara-blue",
+    "price_ils": "249.0",
+    "background": "bougainvillea_alley",
+    "background_he": "סמטת בוגנוויליה",
+    "image_path": "posts/2026-08-30/chiara-blue.jpg",
+    "caption": "שמלת ליאנה · ELORINE\nמיני עדינה בגוון שמיים, קלילה כמו רוח קיץ ונשית בכל פרט.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת ליאנה של ELORINE, powder blue, mini length, על רקע סמטת בוגנוויליה.",
+    "generated_at": "2026-08-30T13:43:33.484127+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 665
+    },
+    "type": "single",
+    "handle": "the-kelly-midi-brown",
+    "title": "שמלת ונדי | בנדאז' מידי חום",
+    "dress_name": "ונדי",
+    "product_url": "https://elorine.co.il/products/the-kelly-midi-brown",
+    "price_ils": "499.0",
+    "background": "boutique_corner",
+    "background_he": "פינת בוטיק",
+    "image_path": "posts/2026-08-30/the-kelly-midi-brown.jpg",
+    "caption": "שמלת ונדי · ELORINE\nמידי שמגדירה, מחטבת ומרימה כל קימור, בגוון שוקולד עשיר.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי",
+    "alt_text": "שמלת ונדי של ELORINE, brown, chocolate, bandage knit, midi length, על רקע פינת בוטיק.",
+    "generated_at": "2026-08-30T13:44:16.420629+00:00",
+    "published_ig": false,
+    "published_fb": false
   }
 ]
