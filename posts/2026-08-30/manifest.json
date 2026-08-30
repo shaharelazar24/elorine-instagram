@@ -1,0 +1,65 @@
+[
+  {
+    "type": "carousel",
+    "handle": "alina-maxi-dress-open-back-floral-slit",
+    "title": "שמלת סוזן | מקסי",
+    "dress_name": "סוזן",
+    "product_url": "https://elorine.co.il/products/alina-maxi-dress-open-back-floral-slit",
+    "price_ils": "609.0",
+    "items": [
+      {
+        "colour": "צהוב",
+        "path": "posts/2026-08-30/alina-maxi-dress-open-back-floral-slit__1.jpg",
+        "background": "harbour_quay",
+        "background_he": "רציף נמל",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1075
+        }
+      },
+      {
+        "colour": "אדום",
+        "path": "posts/2026-08-30/alina-maxi-dress-open-back-floral-slit__2.jpg",
+        "background": "harbour_quay",
+        "background_he": "רציף נמל",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1168
+        }
+      }
+    ],
+    "caption": "שמלת סוזן · ELORINE\nהדפס עדין וגזרה זורמת שהופכים כל כניסה לרגע.\nבשני גוונים — צהוב ואדום. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #גב_פתוח #שסע",
+    "generated_at": "2026-08-30T07:31:10.961472+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1086
+    },
+    "type": "single",
+    "handle": "the-beyonce-olive",
+    "title": "שמלת גבריאלה | בנדאז' מידי זית",
+    "dress_name": "גבריאלה",
+    "product_url": "https://elorine.co.il/products/the-beyonce-olive",
+    "price_ils": "449.0",
+    "background": "old_town_steps",
+    "background_he": "מדרגות עיירה עתיקה",
+    "image_path": "posts/2026-08-30/the-beyonce-olive.jpg",
+    "caption": "שמלת גבריאלה · ELORINE\nמידי מפוסלת בגוון זית עמוק, למי שנכנסת לחדר וכולם מרגישים.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי",
+    "alt_text": "שמלת גבריאלה של ELORINE, olive, bandage knit, midi length, על רקע מדרגות עיירה עתיקה.",
+    "generated_at": "2026-08-30T07:56:30.869884+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
