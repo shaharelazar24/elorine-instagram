@@ -173,6 +173,12 @@
       "type": "single",
       "media_id": "18112860427797587",
       "at": "2026-08-31T07:35:00.056987+00:00"
+    },
+    "the-beyonce-midi-gold": {
+      "name": "אלכסה",
+      "type": "single",
+      "media_id": "17909028420467465",
+      "at": "2026-08-31T08:18:23.097079+00:00"
     }
   },
   "seeded_names": [
@@ -258,7 +264,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-08-31T07:35:38.960255+00:00",
+  "updated_at": "2026-08-31T08:18:31.098176+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
