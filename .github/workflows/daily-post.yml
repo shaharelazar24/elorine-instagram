@@ -174,7 +174,14 @@ jobs:
               exit 0
             fi
             echo "push נדחה — מושכים ומנסים שוב (${i}/5)…"
-            git pull --rebase --autostash origin main || true
+            # בלי --autostash: הכול כבר ב-commit. בהתנגשות מעדיפים את מה
+            # שההרצה הזו יצרה, ולעולם לא כותבים סימני התנגשות לתוך קובץ.
+            if ! git pull --rebase origin main; then
+              echo "התנגשות ב-rebase — מעדיפים את הפלט של ההרצה הזו."
+              git checkout --theirs posts/ state/ 2>/dev/null || true
+              git add posts/ state/ 2>/dev/null || true
+              GIT_EDITOR=true git rebase --continue || git rebase --abort || true
+            fi
             sleep $((5 * i))
           done
           echo "::error::ה-push נכשל אחרי 5 נסיונות — התמונות לא קיבלו URL ציבורי."
@@ -191,10 +198,27 @@ jobs:
         run: |
           git config user.name  "elorine-bot"
           git config user.email "actions@github.com"
-          git pull --rebase --autostash || true
           git add state/ posts/
-          git diff --staged --quiet || git commit -m "state: $(date -u +%Y-%m-%d)"
-          git push || true
+          if git diff --staged --quiet; then
+            echo "אין שינוי ב-state."; exit 0
+          fi
+          git commit -m "state: $(date -u +%Y-%m-%d)"
+
+          # קודם commit, ורק אז rebase — כך אין stash שיכול להתפוצץ
+          # ולהשאיר סימני התנגשות בתוך manifest.json.
+          for i in 1 2 3 4 5; do
+            if git push; then echo "state נדחף (ניסיון ${i})."; exit 0; fi
+            echo "push נדחה — מושכים ומנסים שוב (${i}/5)…"
+            if ! git pull --rebase origin main; then
+              echo "התנגשות ב-rebase — מעדיפים את הפלט של ההרצה הזו."
+              git checkout --theirs posts/ state/ 2>/dev/null || true
+              git add posts/ state/ 2>/dev/null || true
+              GIT_EDITOR=true git rebase --continue || git rebase --abort || true
+            fi
+            sleep $((5 * i))
+          done
+          echo "::error::שמירת ה-state נכשלה."
+          exit 1
 
       - name: Upload run artifacts
         if: always() && env.SKIP != '1'
