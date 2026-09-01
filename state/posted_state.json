@@ -179,6 +179,36 @@
       "type": "single",
       "media_id": "17909028420467465",
       "at": "2026-08-31T08:18:23.097079+00:00"
+    },
+    "ariel-maxi-high-neck-open-back-slit-dress": {
+      "name": "ויטני",
+      "type": "carousel",
+      "media_id": "18339616321282408",
+      "at": "2026-09-01T09:40:10.472415+00:00"
+    },
+    "nina-maxi-satin-deep-slit-asymmetric-dress": {
+      "name": "קורטני",
+      "type": "carousel",
+      "media_id": "18098373782525612",
+      "at": "2026-09-01T09:41:09.786415+00:00"
+    },
+    "the-ashanti-mini-gold": {
+      "name": "קלי",
+      "type": "single",
+      "media_id": "18181725253419650",
+      "at": "2026-09-01T09:41:30.949247+00:00"
+    },
+    "nefertiti-mini-yellow": {
+      "name": "קתרין",
+      "type": "single",
+      "media_id": "17906131542498242",
+      "at": "2026-09-01T09:41:50.535758+00:00"
+    },
+    "lane-maxi-dress-high-slit-bandage-turtleneck": {
+      "name": "אריאנה",
+      "type": "single",
+      "media_id": "18378300349229178",
+      "at": "2026-09-01T09:42:11.028008+00:00"
     }
   },
   "seeded_names": [
@@ -264,7 +294,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-01T09:39:31.590468+00:00",
+  "updated_at": "2026-09-01T09:42:19.029148+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
