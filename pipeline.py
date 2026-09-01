@@ -559,15 +559,63 @@ def to_feed_format(image_bytes: bytes) -> tuple:
     return data, stats
 
 
+#  בדיקת קדרינג: הכי הרבה תלונות הגיעו מתמונות שבהן הראש נחתך.
+#  אחרי כל ייצור אנחנו שואלים את הדגם אם המסגור תקין, ואם לא — מייצרים שוב
+#  עם הוראה מחמירה. הבדיקה לעולם לא חוסמת: אם היא נכשלת, ממשיכים כרגיל.
+FRAMING_CHECK_PROMPT = """Look at this fashion photograph and judge ONLY the framing.
+Answer OK if ALL of the following are true:
+1. The top of the model's head and her hair are fully inside the frame, with visible empty space above them.
+2. Her face is fully visible and is not cut by the top edge of the frame.
+3. Her feet and the hem of the dress are fully inside the frame.
+If ANY of them is false — anything cut off at an edge — answer CROP.
+Answer with one word only: OK or CROP."""
+
+FRAMING_ESCALATION = """
+FRAMING CORRECTION — THE PREVIOUS ATTEMPT WAS CROPPED AND WAS REJECTED.
+Zoom OUT. Step back from the model. Shoot the WHOLE figure.
+The top of her head, her hair and her face must be well inside the frame with
+clear empty background above them. Her feet and the hem must be well inside the
+frame with clear ground below them. Nothing may touch or cross any edge.
+She should occupy about 70% of the frame height, not more."""
+
+
+def framing_ok(image_bytes: bytes) -> bool:
+    """True אם הראש והשוליים בתוך הפריים. שגיאה בבדיקה = לא חוסמים."""
+    try:
+        answer = _gemini_text([
+            {"inline_data": {"mime_type": "image/jpeg",
+                             "data": base64.b64encode(image_bytes).decode()}},
+            {"text": FRAMING_CHECK_PROMPT},
+        ])
+    except Exception:                                      # noqa: BLE001
+        return True
+    return "CROP" not in (answer or "").upper()
+
+
+FRAMING_ATTEMPTS = int(os.getenv("FRAMING_ATTEMPTS", "3"))
+
+
 def render(source_url: str | None, prompt: str, label: str = "") -> tuple:
     """מייצר תמונת פיד — עם מקור (עריכה) או בלי (יצירה). מחזיר (bytes, stats)."""
+    raw_src, mime = None, "image/jpeg"
     if source_url:
-        raw = requests.get(source_url, timeout=60)
-        raw.raise_for_status()
+        r = requests.get(source_url, timeout=60)
+        r.raise_for_status()
+        raw_src = r.content
         mime = mimetypes.guess_type(source_url.split("?")[0])[0] or "image/jpeg"
-        data, stats = to_feed_format(gemini_edit(raw.content, mime, prompt))
-    else:
-        data, stats = to_feed_format(gemini_create(prompt))
+
+    tries = FRAMING_ATTEMPTS if source_url else 1
+    for attempt in range(tries):
+        p = prompt if attempt == 0 else prompt + "\n" + FRAMING_ESCALATION
+        if raw_src is not None:
+            data, stats = to_feed_format(gemini_edit(raw_src, mime, p))
+        else:
+            data, stats = to_feed_format(gemini_create(p))
+
+        if attempt == tries - 1 or framing_ok(data):
+            break
+        log(f"   ↻ מסגור חתוך ({label or 'תמונה'}) — "
+            f"מייצרים שוב רחב יותר ({attempt + 2}/{tries})")
 
     mark = "✓"
     if stats["true_height"] < MIN_HEIGHT:
@@ -1029,8 +1077,15 @@ def build_contact_sheet(manifest: list, out: Path) -> None:
 # publish
 # ==========================================================================
 
+#  חותם ייחודי לכל הרצה. בלעדיו, אם קובץ בשם קיים נדרס בתוכן חדש,
+#  אינסטגרם עלולה למשוך מה-CDN את הגרסה הישנה ולפרסם תמונה שכבר נפסלה.
+RUN_STAMP = (os.getenv("GITHUB_RUN_ID", "") + os.getenv("GITHUB_RUN_ATTEMPT", "")
+             or str(int(time.time())))
+
+
 def raw_url(rel_path: str) -> str:
-    return RAW_BASE.format(repo=GH_REPO, branch=GH_BRANCH, path=rel_path)
+    url = RAW_BASE.format(repo=GH_REPO, branch=GH_BRANCH, path=rel_path)
+    return f"{url}?v={RUN_STAMP}"
 
 
 def cmd_publish() -> None:

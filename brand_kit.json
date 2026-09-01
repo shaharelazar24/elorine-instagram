@@ -24,12 +24,13 @@
   },
 
   "framing_rules": [
-    "full-length or three-quarter body, dress fully visible",
+    "FULL FIGURE IN FRAME — NOTHING IS CROPPED. The entire model fits inside the picture: the top of her head and all of her hair are fully visible, her face is fully visible, and her feet and the hem of the dress are fully visible. Never cut the head, the hair, the face, the shoulders, the arms or the feet at any edge of the frame.",
+    "Leave clear empty background ABOVE her head — roughly 10% of the frame height — and clear ground BELOW her feet — roughly 8% of the frame height. If you are unsure, step BACK and shoot wider. A tight crop is a mistake; a little extra room is not.",
     "THE MODEL FACES THE CAMERA. Her body is turned toward the lens and the FRONT of the dress is toward the viewer. Never place her back to the camera and never turn her away from the lens — keep exactly the orientation and pose of the source photograph.",
-    "her face may be lifted, tilted, softly out of focus or partly cropped by the frame — the dress is the subject — but her body still faces forward",
-    "dress occupies 72-85% of frame height — fill the frame, this is a scrolling feed",
-    "modest breathing room above the head and below the hem, not a wide empty wall",
-    "eye-level or very slightly low camera angle",
+    "her face is inside the frame and clearly visible; she may look at the lens or slightly away, but she is never headless and never cut at the top edge",
+    "she stands roughly centred and occupies about 70% of the frame height, measured from the top of her head to the soles of her feet",
+    "the whole dress reads in one unbroken run, from neckline to hem, with nothing hidden or cut",
+    "full-length portrait distance, eye-level or very slightly low camera angle",
     "shot as if on 85mm f/2.0 — shallow but not blurry background"
   ],
 
@@ -79,6 +80,8 @@
   ],
 
   "negative_rules": [
+    "NEVER crop the model's head, hair, face, shoulders or feet at the edge of the frame",
+    "no headless composition, no faceless composition, no close-up, no half-body or waist-up crop",
     "no visible logos, no text, no watermarks, no captions burned into the image",
     "no distorted hands, fingers, arms or facial features",
     "no extra limbs, no duplicated body parts",
