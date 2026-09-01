@@ -1,1 +1,203 @@
-[]
+[
+  {
+    "type": "carousel",
+    "handle": "ariel-maxi-high-neck-open-back-slit-dress",
+    "title": "שמלת ויטני | מקסי",
+    "dress_name": "ויטני",
+    "product_url": "https://elorine.co.il/products/ariel-maxi-high-neck-open-back-slit-dress",
+    "price_ils": "369.0",
+    "items": [
+      {
+        "colour": "שחור",
+        "path": "posts/2026-09-01/ariel-maxi-high-neck-open-back-slit-dress__1.jpg",
+        "background": "harbour_quay",
+        "background_he": "רציף נמל",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 822
+        }
+      },
+      {
+        "colour": "לבן",
+        "path": "posts/2026-09-01/ariel-maxi-high-neck-open-back-slit-dress__2.jpg",
+        "background": "harbour_quay",
+        "background_he": "רציף נמל",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1084
+        }
+      }
+    ],
+    "caption": "שמלת ויטני · ELORINE\nשילוב מדויק של כיסוי וחשיפה.\nבשני גוונים — שחור ולבן. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #גב_פתוח #שסע",
+    "generated_at": "2026-09-01T08:39:19.916451+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "nina-maxi-satin-deep-slit-asymmetric-dress",
+    "title": "שמלת קורטני | סאטן מקסי",
+    "dress_name": "קורטני",
+    "product_url": "https://elorine.co.il/products/nina-maxi-satin-deep-slit-asymmetric-dress",
+    "price_ils": "369.0",
+    "items": [
+      {
+        "colour": "יין",
+        "path": "posts/2026-09-01/nina-maxi-satin-deep-slit-asymmetric-dress__1.jpg",
+        "background": "olive_grove",
+        "background_he": "חורשת זיתים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1340
+        }
+      },
+      {
+        "colour": "כחול",
+        "path": "posts/2026-09-01/nina-maxi-satin-deep-slit-asymmetric-dress__2.jpg",
+        "background": "olive_grove",
+        "background_he": "חורשת זיתים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1254
+        }
+      },
+      {
+        "colour": "אדום",
+        "path": "posts/2026-09-01/nina-maxi-satin-deep-slit-asymmetric-dress__3.jpg",
+        "background": "olive_grove",
+        "background_he": "חורשת זיתים",
+        "quality": {
+          "source_px": "896x1152",
+          "output_px": "1600x2000",
+          "true_height": 1120,
+          "upscaled": true,
+          "kb": 1256
+        }
+      },
+      {
+        "colour": "ורוד",
+        "path": "posts/2026-09-01/nina-maxi-satin-deep-slit-asymmetric-dress__4.jpg",
+        "background": "olive_grove",
+        "background_he": "חורשת זיתים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1313
+        }
+      },
+      {
+        "colour": "ברונזה",
+        "path": "posts/2026-09-01/nina-maxi-satin-deep-slit-asymmetric-dress__5.jpg",
+        "background": "olive_grove",
+        "background_he": "חורשת זיתים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1359
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-09-01/nina-maxi-satin-deep-slit-asymmetric-dress__6.jpg",
+        "background": "olive_grove",
+        "background_he": "חורשת זיתים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1535
+        }
+      }
+    ],
+    "caption": "שמלת קורטני · ELORINE\nהברק הרך של הסאטן נופל יפה על הגוף ומאיר את הלוק.\nאותה שמלה ב-6 גוונים — יין, כחול, אדום, ורוד, ברונזה ושחור. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #סאטן #שסע",
+    "generated_at": "2026-09-01T09:07:24.054646+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 845
+    },
+    "type": "single",
+    "handle": "the-ashanti-mini-gold",
+    "title": "שמלת קלי | בנדאז' מיני זהב",
+    "dress_name": "קלי",
+    "product_url": "https://elorine.co.il/products/the-ashanti-mini-gold",
+    "price_ils": "449.0",
+    "background": "plaster_studio",
+    "background_he": "סטודיו טיח",
+    "image_path": "posts/2026-09-01/the-ashanti-mini-gold.jpg",
+    "caption": "שמלת קלי · ELORINE\nמיני בנדאז' מפוסלת בהשראת האייקונים, נועזת, בוטחת ובלתי נשכחת.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת קלי של ELORINE, gold, bandage knit, mini length, על רקע סטודיו טיח.",
+    "generated_at": "2026-09-01T09:12:39.426975+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 869
+    },
+    "type": "single",
+    "handle": "nefertiti-mini-yellow",
+    "title": "שמלת קתרין | מיני צהוב חמאה",
+    "dress_name": "קתרין",
+    "product_url": "https://elorine.co.il/products/nefertiti-mini-yellow",
+    "price_ils": "449.0",
+    "background": "marble_stair",
+    "background_he": "מדרגות שיש",
+    "image_path": "posts/2026-09-01/nefertiti-mini-yellow.jpg",
+    "caption": "שמלת קתרין · ELORINE\nמש נמתח רך בגוון חמאה, לקלילות נשית שמתאימה בדיוק לקיץ.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת קתרין של ELORINE, yellow, mesh, mini length, על רקע מדרגות שיש.",
+    "generated_at": "2026-09-01T09:26:23.581448+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 963
+    },
+    "type": "single",
+    "handle": "lane-maxi-dress-high-slit-bandage-turtleneck",
+    "title": "שמלת אריאנה | בנדאז' מקסי",
+    "dress_name": "אריאנה",
+    "product_url": "https://elorine.co.il/products/lane-maxi-dress-high-slit-bandage-turtleneck",
+    "price_ils": "299.0",
+    "background": "boutique_corner",
+    "background_he": "פינת בוטיק",
+    "image_path": "posts/2026-09-01/lane-maxi-dress-high-slit-bandage-turtleneck.jpg",
+    "caption": "שמלת אריאנה · ELORINE\nגזרה מחטבת שמחזיקה את הקו לאורך כל הערב.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שסע #שמלה_שחורה",
+    "alt_text": "שמלת אריאנה של ELORINE, black, burgundy, brown, bandage knit, floor-length maxi, high slit, על רקע פינת בוטיק.",
+    "generated_at": "2026-09-01T09:27:38.449615+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
