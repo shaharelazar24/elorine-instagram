@@ -233,6 +233,30 @@
       "type": "single",
       "media_id": "17918927733223379",
       "at": "2026-09-02T07:33:17.221826+00:00"
+    },
+    "gal-mini-corset-sequin-scarf-dress": {
+      "name": "פייג'",
+      "type": "carousel",
+      "media_id": "17989176933044250",
+      "at": "2026-09-03T07:28:25.502883+00:00"
+    },
+    "ofek-maxi-jersey-lace-waist-dress": {
+      "name": "שרלוט",
+      "type": "carousel",
+      "media_id": "18134394274631267",
+      "at": "2026-09-03T07:28:55.129832+00:00"
+    },
+    "shmlat-odel-mini-turtleneck-kaftorim": {
+      "name": "ריס",
+      "type": "single",
+      "media_id": "17923740225421348",
+      "at": "2026-09-03T07:30:46.869308+00:00"
+    },
+    "daria-mini-lace-halter-backless-dress": {
+      "name": "מקנזי",
+      "type": "single",
+      "media_id": "18144592810489606",
+      "at": "2026-09-03T07:31:06.527468+00:00"
     }
   },
   "seeded_names": [
@@ -318,7 +342,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-03T07:27:52.969620+00:00",
+  "updated_at": "2026-09-03T07:31:14.528414+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
