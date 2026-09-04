@@ -257,6 +257,30 @@
       "type": "single",
       "media_id": "18144592810489606",
       "at": "2026-09-03T07:31:06.527468+00:00"
+    },
+    "einbal-maxi-polka-dot-twist-knot-dress": {
+      "name": "איזבלה",
+      "type": "carousel",
+      "media_id": "18114954026073725",
+      "at": "2026-09-04T07:29:30.445875+00:00"
+    },
+    "angel-maxi-satin-halter-backless-ribbon-dress": {
+      "name": "סופיה",
+      "type": "carousel",
+      "media_id": "18092055248395927",
+      "at": "2026-09-04T07:30:20.394524+00:00"
+    },
+    "shiran-maxi-halter-backless-straight-dress": {
+      "name": "אמלי",
+      "type": "single",
+      "media_id": "18141428854589258",
+      "at": "2026-09-04T07:32:16.699419+00:00"
+    },
+    "shoval-halter-maxi-dress": {
+      "name": "אוליביה",
+      "type": "single",
+      "media_id": "18177621529430335",
+      "at": "2026-09-04T07:32:38.743639+00:00"
     }
   },
   "seeded_names": [
@@ -342,7 +366,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-04T07:28:48.019452+00:00",
+  "updated_at": "2026-09-04T07:32:46.744974+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
