@@ -281,6 +281,30 @@
       "type": "single",
       "media_id": "18177621529430335",
       "at": "2026-09-04T07:32:38.743639+00:00"
+    },
+    "eden-one-shoulder-mini-dress-black": {
+      "name": "אמה",
+      "type": "carousel",
+      "media_id": "17958529338213051",
+      "at": "2026-09-06T07:28:53.648259+00:00"
+    },
+    "ofir-strapless-corset-maxi-dress": {
+      "name": "אודרי",
+      "type": "carousel",
+      "media_id": "18091616069673708",
+      "at": "2026-09-06T07:29:41.831719+00:00"
+    },
+    "shaked-polka-dot-maxi-dress-brown": {
+      "name": "סקרלט",
+      "type": "single",
+      "media_id": "18116859542484799",
+      "at": "2026-09-06T07:31:34.552806+00:00"
+    },
+    "emma-halter-collar-maxi-dress": {
+      "name": "אריה",
+      "type": "single",
+      "media_id": "18127600945745840",
+      "at": "2026-09-06T07:31:57.405716+00:00"
     }
   },
   "seeded_names": [
@@ -366,7 +390,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-06T07:28:05.273160+00:00",
+  "updated_at": "2026-09-06T07:32:05.406952+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
