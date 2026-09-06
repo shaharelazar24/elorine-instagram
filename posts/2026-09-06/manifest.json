@@ -1,0 +1,190 @@
+[
+  {
+    "type": "carousel",
+    "handle": "eden-one-shoulder-mini-dress-black",
+    "title": "שמלת אמה | מיני",
+    "dress_name": "אמה",
+    "product_url": "https://elorine.co.il/products/eden-one-shoulder-mini-dress-black",
+    "price_ils": "289.0",
+    "items": [
+      {
+        "colour": "בורדו",
+        "path": "posts/2026-09-06/eden-one-shoulder-mini-dress-black__1.jpg",
+        "background": "sunset_terrace",
+        "background_he": "מרפסת שקיעה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 839
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-09-06/eden-one-shoulder-mini-dress-black__2.jpg",
+        "background": "sunset_terrace",
+        "background_he": "מרפסת שקיעה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 786
+        }
+      },
+      {
+        "colour": "לבן",
+        "path": "posts/2026-09-06/eden-one-shoulder-mini-dress-black__3.jpg",
+        "background": "sunset_terrace",
+        "background_he": "מרפסת שקיעה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 857
+        }
+      },
+      {
+        "colour": "ירוק",
+        "path": "posts/2026-09-06/eden-one-shoulder-mini-dress-black__4.jpg",
+        "background": "sunset_terrace",
+        "background_he": "מרפסת שקיעה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 786
+        }
+      }
+    ],
+    "caption": "שמלת אמה · ELORINE\nגזרה אסימטרית קצרה שעושה הרבה עם מעט.\nאותה שמלה ב-4 גוונים — בורדו, שחור, לבן וירוק. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני #כתף_אחת #שמלה_שחורה",
+    "generated_at": "2026-09-06T07:22:57.782164+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "ofir-strapless-corset-maxi-dress",
+    "title": "שמלת אודרי | מקסי",
+    "dress_name": "אודרי",
+    "product_url": "https://elorine.co.il/products/ofir-strapless-corset-maxi-dress",
+    "price_ils": "319.0",
+    "items": [
+      {
+        "colour": "שחור",
+        "path": "posts/2026-09-06/ofir-strapless-corset-maxi-dress__1.jpg",
+        "background": "boutique_corner",
+        "background_he": "פינת בוטיק",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 648
+        }
+      },
+      {
+        "colour": "חום",
+        "path": "posts/2026-09-06/ofir-strapless-corset-maxi-dress__2.jpg",
+        "background": "boutique_corner",
+        "background_he": "פינת בוטיק",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 748
+        }
+      },
+      {
+        "colour": "לבן",
+        "path": "posts/2026-09-06/ofir-strapless-corset-maxi-dress__3.jpg",
+        "background": "boutique_corner",
+        "background_he": "פינת בוטיק",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 647
+        }
+      }
+    ],
+    "caption": "שמלת אודרי · ELORINE\nגזרה שמחזיקה את הצללית ונשארת קלאסית.\nאותה שמלה ב-3 גוונים — שחור, חום ולבן. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #מחוך #סטרפלס",
+    "generated_at": "2026-09-06T07:25:16.059998+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1044
+    },
+    "type": "single",
+    "handle": "שמלת-מקסי-יוקרתית-מקטיפה-בצבע-יין-אדום-עם-כתפיות-רחבות-קפלים-מחטבים-ושסע-א-סימטרי-שמלת-ערב-דרמטית-לגאלות-מידות-xs-l-משלוח-מהיר-לכל-הארץ",
+    "title": "שמלת אדל | קטיפה מקסי",
+    "dress_name": "אדל",
+    "product_url": "https://elorine.co.il/products/%D7%A9%D7%9E%D7%9C%D7%AA-%D7%9E%D7%A7%D7%A1%D7%99-%D7%99%D7%95%D7%A7%D7%A8%D7%AA%D7%99%D7%AA-%D7%9E%D7%A7%D7%98%D7%99%D7%A4%D7%94-%D7%91%D7%A6%D7%91%D7%A2-%D7%99%D7%99%D7%9F-%D7%90%D7%93%D7%95%D7%9D-%D7%A2%D7%9D-%D7%9B%D7%AA%D7%A4%D7%99%D7%95%D7%AA-%D7%A8%D7%97%D7%91%D7%95%D7%AA-%D7%A7%D7%A4%D7%9C%D7%99%D7%9D-%D7%9E%D7%97%D7%98%D7%91%D7%99%D7%9D-%D7%95%D7%A9%D7%A1%D7%A2-%D7%90-%D7%A1%D7%99%D7%9E%D7%98%D7%A8%D7%99-%D7%A9%D7%9E%D7%9C%D7%AA-%D7%A2%D7%A8%D7%91-%D7%93%D7%A8%D7%9E%D7%98%D7%99%D7%AA-%D7%9C%D7%92%D7%90%D7%9C%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%95%D7%AA-xs-l-%D7%9E%D7%A9%D7%9C%D7%95%D7%97-%D7%9E%D7%94%D7%99%D7%A8-%D7%9C%D7%9B%D7%9C-%D7%94%D7%90%D7%A8%D7%A5",
+    "price_ils": "499.0",
+    "background": "villa_sea_terrace",
+    "background_he": "מרפסת וילה מול הים",
+    "image_path": "posts/2026-09-06/שמלת-מקסי-יוקרתית-מקטיפה-בצבע-יין-אדום-עם-כתפיות-רחבות-קפלים-מחטבים-ושסע-א-סימטרי-שמלת-ערב-דרמטית-לגאלות-מידות-xs-l-משלוח-מהיר-לכל-הארץ.jpg",
+    "caption": "שמלת אדל · ELORINE\nגזרה מחטבת עם כתפיות רחבות, קפלים מעצבים ושסע א-סימטרי דרמטי.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #קטיפה #שסע",
+    "alt_text": "שמלת אדל של ELORINE, burgundy, red, velvet, floor-length maxi, high slit, על רקע מרפסת וילה מול הים.",
+    "generated_at": "2026-09-06T07:26:11.051962+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 961
+    },
+    "type": "single",
+    "handle": "shaked-polka-dot-maxi-dress-brown",
+    "title": "שמלת סקרלט | מקסי חום",
+    "dress_name": "סקרלט",
+    "product_url": "https://elorine.co.il/products/shaked-polka-dot-maxi-dress-brown",
+    "price_ils": "319.0",
+    "background": "villa_pool",
+    "background_he": "בריכת וילה",
+    "image_path": "posts/2026-09-06/shaked-polka-dot-maxi-dress-brown.jpg",
+    "caption": "שמלת סקרלט · ELORINE\nגוון חמים והדפס קלאסי שעובדים יפה יחד.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
+    "alt_text": "שמלת סקרלט של ELORINE, brown, floor-length maxi, על רקע בריכת וילה.",
+    "generated_at": "2026-09-06T07:27:07.872658+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1170
+    },
+    "type": "single",
+    "handle": "emma-halter-collar-maxi-dress",
+    "title": "שמלת אריה | מקסי שחור",
+    "dress_name": "אריה",
+    "product_url": "https://elorine.co.il/products/emma-halter-collar-maxi-dress",
+    "price_ils": "369.0",
+    "background": "fig_courtyard",
+    "background_he": "חצר תאנה",
+    "image_path": "posts/2026-09-06/emma-halter-collar-maxi-dress.jpg",
+    "caption": "שמלת אריה · ELORINE\nקו גבוה בצוואר שנותן לגזרה מראה מחויט.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #קולר #גב_פתוח",
+    "alt_text": "שמלת אריה של ELORINE, black, white, floor-length maxi, halter neck, open back, על רקע חצר תאנה.",
+    "generated_at": "2026-09-06T07:28:05.272765+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
