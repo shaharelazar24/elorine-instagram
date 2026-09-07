@@ -305,6 +305,30 @@
       "type": "single",
       "media_id": "18127600945745840",
       "at": "2026-09-06T07:31:57.405716+00:00"
+    },
+    "kylie-ruffle-slit-maxi-dress": {
+      "name": "סיינה",
+      "type": "carousel",
+      "media_id": "18075240341412711",
+      "at": "2026-09-07T07:30:05.560821+00:00"
+    },
+    "lihi-halter-mesh-maxi-dress": {
+      "name": "מייגן",
+      "type": "carousel",
+      "media_id": "18351762709217731",
+      "at": "2026-09-07T07:30:49.763830+00:00"
+    },
+    "eve-halter-collar-mini-dress": {
+      "name": "בלה",
+      "type": "single",
+      "media_id": "18123534028853210",
+      "at": "2026-09-07T07:32:48.119250+00:00"
+    },
+    "mia-off-shoulder-ruched-mini-dress": {
+      "name": "סטלה",
+      "type": "single",
+      "media_id": "18375922195239495",
+      "at": "2026-09-07T07:33:08.191965+00:00"
     }
   },
   "seeded_names": [
@@ -390,7 +414,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-07T07:29:27.645892+00:00",
+  "updated_at": "2026-09-07T07:33:16.193119+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
