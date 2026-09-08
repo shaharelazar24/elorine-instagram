@@ -329,6 +329,24 @@
       "type": "single",
       "media_id": "18375922195239495",
       "at": "2026-09-07T07:33:08.191965+00:00"
+    },
+    "lola-strapless-maxi-dress": {
+      "name": "מיה",
+      "type": "carousel",
+      "media_id": "18145689250509161",
+      "at": "2026-09-08T07:30:21.877518+00:00"
+    },
+    "cristina-corset-maxi-dress": {
+      "name": "קיילי",
+      "type": "carousel",
+      "media_id": "18110566496585354",
+      "at": "2026-09-08T07:31:08.476802+00:00"
+    },
+    "taylor-halter-ruched-mini-dress": {
+      "name": "ונסה",
+      "type": "single",
+      "media_id": "18138867991719008",
+      "at": "2026-09-08T07:33:04.236635+00:00"
     }
   },
   "seeded_names": [
@@ -414,7 +432,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-08T07:29:44.560000+00:00",
+  "updated_at": "2026-09-08T07:33:12.237403+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
