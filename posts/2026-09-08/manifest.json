@@ -1,0 +1,167 @@
+[
+  {
+    "type": "carousel",
+    "handle": "lola-strapless-maxi-dress",
+    "title": "שמלת מיה | מקסי",
+    "dress_name": "מיה",
+    "product_url": "https://elorine.co.il/products/lola-strapless-maxi-dress",
+    "price_ils": "279.0",
+    "items": [
+      {
+        "colour": "בז'",
+        "path": "posts/2026-09-08/lola-strapless-maxi-dress__1.jpg",
+        "background": "sea_view_balcony",
+        "background_he": "מרפסת עם נוף לים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 827
+        }
+      },
+      {
+        "colour": "צהוב",
+        "path": "posts/2026-09-08/lola-strapless-maxi-dress__2.jpg",
+        "background": "sea_view_balcony",
+        "background_he": "מרפסת עם נוף לים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 902
+        }
+      },
+      {
+        "colour": "ירוק",
+        "path": "posts/2026-09-08/lola-strapless-maxi-dress__3.jpg",
+        "background": "sea_view_balcony",
+        "background_he": "מרפסת עם נוף לים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 832
+        }
+      }
+    ],
+    "caption": "שמלת מיה · ELORINE\nפשוטה במובן הכי טוב, ומשאירה מקום לאביזרים.\nאותה שמלה ב-3 גוונים — בז', צהוב וירוק. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #סטרפלס #שמלת_ערב",
+    "generated_at": "2026-09-08T07:25:29.970014+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "cristina-corset-maxi-dress",
+    "title": "שמלת קיילי | מקסי",
+    "dress_name": "קיילי",
+    "product_url": "https://elorine.co.il/products/cristina-corset-maxi-dress",
+    "price_ils": "299.0",
+    "items": [
+      {
+        "colour": "צהוב",
+        "path": "posts/2026-09-08/cristina-corset-maxi-dress__1.jpg",
+        "background": "sunset_terrace",
+        "background_he": "מרפסת שקיעה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 832
+        }
+      },
+      {
+        "colour": "תכלת",
+        "path": "posts/2026-09-08/cristina-corset-maxi-dress__2.jpg",
+        "background": "sunset_terrace",
+        "background_he": "מרפסת שקיעה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 887
+        }
+      },
+      {
+        "colour": "בורדו",
+        "path": "posts/2026-09-08/cristina-corset-maxi-dress__3.jpg",
+        "background": "sunset_terrace",
+        "background_he": "מרפסת שקיעה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 818
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-09-08/cristina-corset-maxi-dress__4.jpg",
+        "background": "sunset_terrace",
+        "background_he": "מרפסת שקיעה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 875
+        }
+      }
+    ],
+    "caption": "שמלת קיילי · ELORINE\nהגזרה מחזיקה את קו המותן והחצאית עושה את השאר.\nאותה שמלה ב-4 גוונים — צהוב, תכלת, בורדו ושחור. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #מחוך #סטרפלס",
+    "generated_at": "2026-09-08T07:27:55.128987+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1014
+    },
+    "type": "single",
+    "handle": "שמלת-מקסי-יוקרתית-מקטיפה-בצבע-יין-אדום-עם-כתפיות-רחבות-קפלים-מחטבים-ושסע-א-סימטרי-שמלת-ערב-דרמטית-לגאלות-מידות-xs-l-משלוח-מהיר-לכל-הארץ",
+    "title": "שמלת אדל | קטיפה מקסי",
+    "dress_name": "אדל",
+    "product_url": "https://elorine.co.il/products/%D7%A9%D7%9E%D7%9C%D7%AA-%D7%9E%D7%A7%D7%A1%D7%99-%D7%99%D7%95%D7%A7%D7%A8%D7%AA%D7%99%D7%AA-%D7%9E%D7%A7%D7%98%D7%99%D7%A4%D7%94-%D7%91%D7%A6%D7%91%D7%A2-%D7%99%D7%99%D7%9F-%D7%90%D7%93%D7%95%D7%9D-%D7%A2%D7%9D-%D7%9B%D7%AA%D7%A4%D7%99%D7%95%D7%AA-%D7%A8%D7%97%D7%91%D7%95%D7%AA-%D7%A7%D7%A4%D7%9C%D7%99%D7%9D-%D7%9E%D7%97%D7%98%D7%91%D7%99%D7%9D-%D7%95%D7%A9%D7%A1%D7%A2-%D7%90-%D7%A1%D7%99%D7%9E%D7%98%D7%A8%D7%99-%D7%A9%D7%9E%D7%9C%D7%AA-%D7%A2%D7%A8%D7%91-%D7%93%D7%A8%D7%9E%D7%98%D7%99%D7%AA-%D7%9C%D7%92%D7%90%D7%9C%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%95%D7%AA-xs-l-%D7%9E%D7%A9%D7%9C%D7%95%D7%97-%D7%9E%D7%94%D7%99%D7%A8-%D7%9C%D7%9B%D7%9C-%D7%94%D7%90%D7%A8%D7%A5",
+    "price_ils": "499.0",
+    "background": "villa_sea_terrace",
+    "background_he": "מרפסת וילה מול הים",
+    "image_path": "posts/2026-09-08/שמלת-מקסי-יוקרתית-מקטיפה-בצבע-יין-אדום-עם-כתפיות-רחבות-קפלים-מחטבים-ושסע-א-סימטרי-שמלת-ערב-דרמטית-לגאלות-מידות-xs-l-משלוח-מהיר-לכל-הארץ.jpg",
+    "caption": "שמלת אדל · ELORINE\nגזרה מחטבת עם כתפיות רחבות, קפלים מעצבים ושסע א-סימטרי דרמטי.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #קטיפה #שסע",
+    "alt_text": "שמלת אדל של ELORINE, burgundy, red, velvet, floor-length maxi, high slit, על רקע מרפסת וילה מול הים.",
+    "generated_at": "2026-09-08T07:28:48.698165+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 771
+    },
+    "type": "single",
+    "handle": "taylor-halter-ruched-mini-dress",
+    "title": "שמלת ונסה | מיני ורוד",
+    "dress_name": "ונסה",
+    "product_url": "https://elorine.co.il/products/taylor-halter-ruched-mini-dress",
+    "price_ils": "269.0",
+    "background": "villa_pool",
+    "background_he": "בריכת וילה",
+    "image_path": "posts/2026-09-08/taylor-halter-ruched-mini-dress.jpg",
+    "caption": "שמלת ונסה · ELORINE\nורוד רך בגזרה קצרה ונקייה.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת ונסה של ELORINE, pink, mini length, על רקע בריכת וילה.",
+    "generated_at": "2026-09-08T07:29:44.559622+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
