@@ -295,8 +295,31 @@ Rules, in order of importance:
 Answer with the image number ONLY — a single number, nothing else."""
 
 
+#  עקיפה ידנית: אם שמלה מסוימת ממשיכה לצאת מהגב, אפשר לקבע לה תמונת מקור
+#  ב-source_overrides.json (handle → URL) והיא תנוסה תמיד ראשונה.
+def _load_overrides() -> dict:
+    path = ROOT / "source_overrides.json"
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:                                      # noqa: BLE001
+        return {}
+    return {k: v for k, v in data.items()
+            if not k.startswith("_") and isinstance(v, str)}
+
+
+SOURCE_OVERRIDES = _load_overrides()
+
+
 def front_candidates(product: dict) -> list:
     """התמונה הכי חזיתית קודם, ואחריה השאר — גיבוי אם התוצאה יצאה מהגב."""
+    pinned = SOURCE_OVERRIDES.get(product["handle"])
+    if pinned:
+        log(f"   · תמונת מקור מקובעת ידנית ({product['handle']})")
+        rest = [im for im in product.get("images", [])[:8]
+                if im.get("url", "").split("?")[0] != pinned.split("?")[0]]
+        return [{"url": pinned}] + rest
     chosen = pick_front_image(product)
     rest = [im for im in product.get("images", [])[:8]
             if im.get("url") != chosen.get("url")]
