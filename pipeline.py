@@ -30,6 +30,7 @@ import sys
 import time
 from datetime import date, datetime, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 import requests
 from PIL import Image
@@ -114,6 +115,54 @@ def dress_name(title: str) -> str:
 def already_posted(product: dict, state: dict) -> bool:
     return (product["handle"] in state["posted"]
             or dress_name(product["title"]) in state.get("seeded_names", []))
+
+
+#  אחרי כמה ימים מותר להחזיר שמלה שכבר פורסמה. המלאי סופי — בלי מיחזור
+#  התור מתרוקן והמערכת מפסיקה לייצר.
+RECYCLE_AFTER_DAYS = int(os.getenv("RECYCLE_AFTER_DAYS", "30"))
+
+
+def posted_age_days(product: dict, state: dict):
+    """כמה ימים עברו מאז שהשמלה פורסמה. None = מעולם לא פורסמה."""
+    rec = state["posted"].get(product["handle"])
+    if rec:
+        try:
+            at = datetime.fromisoformat(rec["at"])
+            return (datetime.now(timezone.utc) - at).days
+        except Exception:                                  # noqa: BLE001
+            return 9999
+    if dress_name(product["title"]) in state.get("seeded_names", []):
+        return 9999          # פורסמו בפיד עוד לפני שהמערכת נכנסה לאוויר
+    return None
+
+
+def build_queue(products: list, state: dict) -> list:
+    """קודם שמלות שלא פורסמו מעולם, ואחריהן — הוותיקות ביותר למיחזור.
+    שמלה ממוחזרת מסומנת ב-_recycled כדי שתקבל רקע אחר מהפעם הקודמת."""
+    fresh, old = [], []
+    for p in products:
+        age = posted_age_days(p, state)
+        if age is None:
+            p["_recycled"] = False
+            fresh.append(p)
+        elif age >= RECYCLE_AFTER_DAYS:
+            p["_recycled"] = True
+            p["_age"] = age
+            old.append(p)
+    old.sort(key=lambda p: -p["_age"])                     # הוותיקה קודם
+    return fresh + old
+
+
+def file_slug(handle: str) -> str:
+    """שם קובץ בטוח ל-URL. ידית בעברית הופכת לשם ASCII קצר + חתימה.
+    בלי זה ה-URL של raw.githubusercontent מכיל תווים לא-ASCII,
+    ואינסטגרם לא מצליחה למשוך את התמונה — כל הפרסום נופל בשקט."""
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", handle).strip("-").lower()
+    slug = re.sub(r"-{2,}", "-", slug)[:60].strip("-")
+    if not handle.isascii() or len(slug) < 4:
+        digest = hashlib.sha1(handle.encode("utf-8")).hexdigest()[:10]
+        slug = f"{slug}-{digest}" if slug else f"dress-{digest}"
+    return slug
 
 
 # ==========================================================================
@@ -330,6 +379,12 @@ def describe_dress(product: dict, colour: str = "") -> str:
             if en not in found and _mentions(blob, he):
                 found.append(en)
     return ", ".join(found) if found else "elegant evening dress"
+
+
+def bg_key(product: dict, day: str) -> str:
+    """שמלה חדשה מקבלת רקע קבוע לפי הידית. שמלה ממוחזרת מקבלת רקע
+    אחר מזה שהיה לה בפעם הקודמת — אחרת הפיד נראה כמו חזרה."""
+    return product["handle"] + ("#" + day if product.get("_recycled") else "")
 
 
 def pick_background(key: str, taken: set | None = None) -> dict:
@@ -865,11 +920,15 @@ def pick_atmosphere(state: dict) -> dict:
 def cmd_generate() -> None:
     state = load_state()
     products = shopify_dresses()
-    queue = [p for p in products if not already_posted(p, state)]
+    queue = build_queue(products, state)
     multi = [p for p in queue if len(p["colours"]) >= 2]
+    new_count = sum(1 for p in queue if not p.get("_recycled"))
 
-    log(f"שמלות פעילות: {len(products)}  |  בתור: {len(queue)}  "
+    log(f"שמלות פעילות: {len(products)}  |  בתור: {len(queue)} "
+        f"({new_count} חדשות, {len(queue) - new_count} למיחזור)  "
         f"|  רב-צבעוניות: {len(multi)}")
+    if not queue:
+        log("⚠ אין אף שמלה זמינה — גם לא למיחזור.")
 
     out = today_dir()
     out.mkdir(parents=True, exist_ok=True)
@@ -909,9 +968,10 @@ def cmd_generate() -> None:
         name = dress_name(product["title"])
         colours = product["colours"][:MAX_CAROUSEL_ITEMS]
         # רקע אחיד לכל הקרוסלה — הצבע הוא ההשוואה, לא הסביבה
-        bg = pick_background(product["handle"], bg_taken)
+        bg = pick_background(bg_key(product, out.name), bg_taken)
         bg_taken.add(bg["id"])
-        log(f"\n▶ קרוסלה: {name} — {len(colours)} צבעים  רקע: {bg['he']}")
+        log(f"\n▶ קרוסלה: {name} — {len(colours)} צבעים  רקע: {bg['he']}"
+            + ("  [מיחזור]" if product.get("_recycled") else ""))
         paths = []
         for colour in colours:
             log(f"   · {colour['name']}")
@@ -922,7 +982,7 @@ def cmd_generate() -> None:
             except Exception as exc:                       # noqa: BLE001
                 log(f"   ✗ {colour['name']} נכשל, מדלג: {exc}")
                 continue
-            rel = f"posts/{out.name}/{product['handle']}__{len(paths) + 1}.jpg"
+            rel = f"posts/{out.name}/{file_slug(product['handle'])}__{len(paths) + 1}.jpg"
             (ROOT / rel).write_bytes(feed)
             paths.append({"colour": colour["name"], "path": rel,
                           "background": bg["id"], "background_he": bg["he"],
@@ -968,16 +1028,17 @@ def cmd_generate() -> None:
     singles = [p for p in queue if p["handle"] not in used]
     for product in singles[:need_sgl]:
         name = dress_name(product["title"])
-        bg = pick_background(product["handle"], bg_taken)
+        bg = pick_background(bg_key(product, out.name), bg_taken)
         bg_taken.add(bg["id"])
-        log(f"\n▶ {name}  ({product['handle']})  רקע: {bg['he']}")
+        log(f"\n▶ {name}  ({product['handle']})  רקע: {bg['he']}"
+            + ("  [מיחזור]" if product.get("_recycled") else ""))
         src = pick_front_image(product)
         try:
             feed, st = render(src["url"], build_prompt(product, bg), name)
         except Exception as exc:                           # noqa: BLE001
             log(f"   ✗ נכשל, מדלג: {exc}")
             continue
-        rel = f"posts/{out.name}/{product['handle']}.jpg"
+        rel = f"posts/{out.name}/{file_slug(product['handle'])}.jpg"
         (ROOT / rel).write_bytes(feed)
         manifest.append({
             "quality": st,
@@ -1084,7 +1145,9 @@ RUN_STAMP = (os.getenv("GITHUB_RUN_ID", "") + os.getenv("GITHUB_RUN_ATTEMPT", ""
 
 
 def raw_url(rel_path: str) -> str:
-    url = RAW_BASE.format(repo=GH_REPO, branch=GH_BRANCH, path=rel_path)
+    # quote: אינסטגרם דורשת URL תקין. נתיב עם תווים לא-ASCII נכשל אצלה.
+    path = quote(rel_path)
+    url = RAW_BASE.format(repo=GH_REPO, branch=GH_BRANCH, path=path)
     return f"{url}?v={RUN_STAMP}"
 
 
