@@ -295,10 +295,18 @@ Rules, in order of importance:
 Answer with the image number ONLY — a single number, nothing else."""
 
 
+def front_candidates(product: dict) -> list:
+    """התמונה הכי חזיתית קודם, ואחריה השאר — גיבוי אם התוצאה יצאה מהגב."""
+    chosen = pick_front_image(product)
+    rest = [im for im in product.get("images", [])[:8]
+            if im.get("url") != chosen.get("url")]
+    return [chosen] + rest
+
+
 def pick_front_image(product: dict) -> dict:
     """בוחר את תמונת המוצר שבה הדוגמנית פונה למצלמה והשמלה נראית במלואה.
     נופל בשקט לברירת המחדל הגיאומטרית אם משהו נכשל."""
-    imgs = product.get("images", [])[:6]
+    imgs = product.get("images", [])[:8]
     if not imgs:
         raise RuntimeError("למוצר אין תמונות")
     if len(imgs) == 1:
@@ -617,13 +625,23 @@ def to_feed_format(image_bytes: bytes) -> tuple:
 #  בדיקת קדרינג: הכי הרבה תלונות הגיעו מתמונות שבהן הראש נחתך.
 #  אחרי כל ייצור אנחנו שואלים את הדגם אם המסגור תקין, ואם לא — מייצרים שוב
 #  עם הוראה מחמירה. הבדיקה לעולם לא חוסמת: אם היא נכשלת, ממשיכים כרגיל.
-FRAMING_CHECK_PROMPT = """Look at this fashion photograph and judge ONLY the framing.
-Answer OK if ALL of the following are true:
+FRAMING_CHECK_PROMPT = """Look at this fashion photograph and judge ONLY the framing and the pose.
+
+First check the POSE:
+- Is the model FACING THE CAMERA, so that her face, her chest and the FRONT of the
+  dress are toward the viewer?
+- A photograph taken from behind her — showing her back, her shoulder blades or the
+  back of her head — is NOT acceptable.
+If she is turned away from the camera, answer BACK and stop.
+
+Then check the FRAMING. It is correct only if ALL of these are true:
 1. The top of the model's head and her hair are fully inside the frame, with visible empty space above them.
 2. Her face is fully visible and is not cut by the top edge of the frame.
 3. Her feet and the hem of the dress are fully inside the frame.
-If ANY of them is false — anything cut off at an edge — answer CROP.
-Answer with one word only: OK or CROP."""
+If any of them is false — anything cut off at an edge — answer CROP.
+
+Otherwise answer OK.
+Answer with one word only: OK, CROP or BACK."""
 
 FRAMING_ESCALATION = """
 FRAMING CORRECTION — THE PREVIOUS ATTEMPT WAS CROPPED AND WAS REJECTED.
@@ -633,9 +651,18 @@ clear empty background above them. Her feet and the hem must be well inside the
 frame with clear ground below them. Nothing may touch or cross any edge.
 She should occupy about 70% of the frame height, not more."""
 
+TURN_AROUND_ESCALATION = """
+POSE CORRECTION — THE PREVIOUS ATTEMPT SHOWED THE MODEL FROM BEHIND AND WAS REJECTED.
+This is the ONE case where you must depart from the pose in the source photograph:
+turn the model around so that she FACES THE CAMERA. Her face, her chest, the neckline
+and the FRONT of the dress must be toward the viewer.
+The garment itself does not change: same fabric, colour, print, lace, seams, length
+and silhouette as the source — you are only changing which side of her we see.
+Keep the whole figure in frame, head and feet included."""
 
-def framing_ok(image_bytes: bytes) -> bool:
-    """True אם הראש והשוליים בתוך הפריים. שגיאה בבדיקה = לא חוסמים."""
+
+def check_pose(image_bytes: bytes) -> str:
+    """מחזיר OK / CROP / BACK. שגיאה בבדיקה = OK, כדי לא לחסום פרסום."""
     try:
         answer = _gemini_text([
             {"inline_data": {"mime_type": "image/jpeg",
@@ -643,34 +670,65 @@ def framing_ok(image_bytes: bytes) -> bool:
             {"text": FRAMING_CHECK_PROMPT},
         ])
     except Exception:                                      # noqa: BLE001
-        return True
-    return "CROP" not in (answer or "").upper()
+        return "OK"
+    answer = (answer or "").upper()
+    if "BACK" in answer:
+        return "BACK"
+    if "CROP" in answer:
+        return "CROP"
+    return "OK"
 
 
 FRAMING_ATTEMPTS = int(os.getenv("FRAMING_ATTEMPTS", "3"))
 
 
-def render(source_url: str | None, prompt: str, label: str = "") -> tuple:
-    """מייצר תמונת פיד — עם מקור (עריכה) או בלי (יצירה). מחזיר (bytes, stats)."""
-    raw_src, mime = None, "image/jpeg"
+def render(source_url: str | None, prompt: str, label: str = "",
+           alt_sources: list | None = None) -> tuple:
+    """מייצר תמונת פיד — עם מקור (עריכה) או בלי (יצירה). מחזיר (bytes, stats).
+    alt_sources: תמונות מוצר חלופיות. אם התוצאה יצאה מהגב, מנסים קודם מקור אחר,
+    ורק אם נגמרו — מבקשים מהדגם להסובב את הדוגמנית קדימה."""
+    sources = []
     if source_url:
-        r = requests.get(source_url, timeout=60)
-        r.raise_for_status()
-        raw_src = r.content
-        mime = mimetypes.guess_type(source_url.split("?")[0])[0] or "image/jpeg"
+        sources = [source_url] + [im["url"] for im in (alt_sources or [])
+                                  if im.get("url") and im["url"] != source_url]
 
-    tries = FRAMING_ATTEMPTS if source_url else 1
+    def fetch(url):
+        r = requests.get(url, timeout=60)
+        r.raise_for_status()
+        return r.content, (mimetypes.guess_type(url.split("?")[0])[0]
+                           or "image/jpeg")
+
+    src_i = 0
+    raw_src, mime = (fetch(sources[0]) if sources else (None, "image/jpeg"))
+
+    tries = FRAMING_ATTEMPTS if sources else 1
+    extra = ""
     for attempt in range(tries):
-        p = prompt if attempt == 0 else prompt + "\n" + FRAMING_ESCALATION
+        p = prompt + extra
         if raw_src is not None:
             data, stats = to_feed_format(gemini_edit(raw_src, mime, p))
         else:
             data, stats = to_feed_format(gemini_create(p))
 
-        if attempt == tries - 1 or framing_ok(data):
+        if attempt == tries - 1:
             break
-        log(f"   ↻ מסגור חתוך ({label or 'תמונה'}) — "
-            f"מייצרים שוב רחב יותר ({attempt + 2}/{tries})")
+        verdict = check_pose(data)
+        if verdict == "OK":
+            break
+        if verdict == "BACK" and src_i + 1 < len(sources):
+            src_i += 1
+            log(f"   ↻ יצא מהגב ({label or 'תמונה'}) — "
+                f"מנסים תמונת מקור אחרת ({src_i + 1}/{len(sources)})")
+            try:
+                raw_src, mime = fetch(sources[src_i])
+                extra = ""
+                continue
+            except Exception:                              # noqa: BLE001
+                pass
+        extra = "\n" + (TURN_AROUND_ESCALATION if verdict == "BACK"
+                        else FRAMING_ESCALATION)
+        log(f"   ↻ {'יצא מהגב' if verdict == 'BACK' else 'מסגור חתוך'} "
+            f"({label or 'תמונה'}) — מייצרים שוב ({attempt + 2}/{tries})")
 
     mark = "✓"
     if stats["true_height"] < MIN_HEIGHT:
@@ -1032,9 +1090,11 @@ def cmd_generate() -> None:
         bg_taken.add(bg["id"])
         log(f"\n▶ {name}  ({product['handle']})  רקע: {bg['he']}"
             + ("  [מיחזור]" if product.get("_recycled") else ""))
-        src = pick_front_image(product)
+        cands = front_candidates(product)
+        src = cands[0]
         try:
-            feed, st = render(src["url"], build_prompt(product, bg), name)
+            feed, st = render(src["url"], build_prompt(product, bg), name,
+                              alt_sources=cands[1:])
         except Exception as exc:                           # noqa: BLE001
             log(f"   ✗ נכשל, מדלג: {exc}")
             continue
