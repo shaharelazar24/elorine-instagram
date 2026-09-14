@@ -371,6 +371,12 @@
       "type": "single",
       "media_id": "17991181779018930",
       "at": "2026-09-14T07:25:36.388710+00:00"
+    },
+    "romi": {
+      "name": "רומי",
+      "type": "single",
+      "media_id": "18167209489482032",
+      "at": "2026-09-14T14:01:00.638856+00:00"
     }
   },
   "seeded_names": [
@@ -456,7 +462,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-14T14:00:41.196022+00:00",
+  "updated_at": "2026-09-14T14:01:08.640175+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
