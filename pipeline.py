@@ -361,7 +361,9 @@ def pick_front_image(product: dict) -> dict:
                 log(f"   · תמונת מקור: #{idx + 1}/{len(loaded)} — חזיתית")
                 return loaded[idx]
         log(f"   ⚠ תשובה לא ברורה לבחירת תמונה ({answer!r}) — ברירת מחדל")
-    except Exception as exc:
+    except GeminiCreditsExhausted:
+        raise
+    except Exception as exc:                               # noqa: BLE001
         log(f"   ⚠ בחירת תמונה חזיתית נכשלה ({exc}) — ברירת מחדל")
     return best_source_image(product)
 
@@ -513,6 +515,29 @@ def _gemini_body(parts: list, with_image_config: bool) -> dict:
 #  כל היתר (400 / 403 וכו') הם שגיאה אמיתית — אין טעם לחזור עליהם.
 TRANSIENT_CODES = {429, 500, 502, 503, 504}
 
+#  429 יכול להיות שני דברים שונים לגמרי:
+#  עומס רגעי (שווה לחכות ולנסות שוב) — או שהקרדיטים בחשבון פשוט נגמרו.
+#  במקרה השני אין שום טעם לנסות שוב: כל ניסיון ייכשל, ההרצה תרוץ שעתיים
+#  ותיחתך בלי לייצר כלום, ובלי שאף אחד יבין למה. לכן עוצרים מיד וברעש.
+BILLING_MARKERS = (
+    "prepayment credits", "credits are depleted", "credits have been depleted",
+    "billing", "insufficient funds", "insufficient credit",
+    "exceeded your current quota", "quota exceeded",
+)
+
+
+class GeminiCreditsExhausted(RuntimeError):
+    """נגמרו הקרדיטים / המכסה ב-Gemini. לא חוזרים על הניסיון."""
+
+
+def _is_billing_failure(code: int, body: str) -> bool:
+    return code == 429 and any(m in body.lower() for m in BILLING_MARKERS)
+
+
+CREDITS_MSG = ("נגמרו הקרדיטים בחשבון ה-Gemini. צריך לטעון את החשבון "
+               "ב-Google AI Studio / Google Cloud Billing. "
+               "עד אז אי אפשר לייצר תמונות.")
+
 #  השהיות בין נסיונות, בשניות. סך הכל עד ~7 דקות לתמונה אחת —
 #  מספיק כדי לעבור גל עומס אצל Google במקום לוותר אחרי 24 שניות.
 RETRY_BACKOFF = [15, 30, 60, 90, 120, 150]
@@ -560,6 +585,9 @@ def _gemini_call(parts: list) -> bytes:
                 else:
                     err = f"Gemini {code}: {r.text[:200]}"
                     low = r.text.lower()
+                    if _is_billing_failure(code, r.text):
+                        log(f"   ✗ {CREDITS_MSG}")
+                        raise GeminiCreditsExhausted(CREDITS_MSG)
                     if (use_config and code == 400
                             and any(k in low for k in ("imageconfig", "image_config",
                                                        "aspectratio", "imagesize",
@@ -598,6 +626,8 @@ def _gemini_text(parts: list) -> str:
                     if part.get("text"):
                         return part["text"].strip()
             return ""
+        if _is_billing_failure(r.status_code, r.text):
+            raise GeminiCreditsExhausted(CREDITS_MSG)
         err = f"{r.status_code}: {r.text[:200]}"
         time.sleep(3 * (attempt + 1))
     raise RuntimeError(err)
@@ -692,6 +722,8 @@ def check_pose(image_bytes: bytes) -> str:
                              "data": base64.b64encode(image_bytes).decode()}},
             {"text": FRAMING_CHECK_PROMPT},
         ])
+    except GeminiCreditsExhausted:
+        raise
     except Exception:                                      # noqa: BLE001
         return "OK"
     answer = (answer or "").upper()
@@ -998,7 +1030,28 @@ def pick_atmosphere(state: dict) -> dict:
     return scene
 
 
+#  תקציב זמן לייצור. ל-GitHub Actions יש timeout קשיח, וכשחורגים ממנו
+#  ההרצה נחתכת *לפני* שלב ה-commit — כלומר כל מה שיוצר באותה הרצה הולך
+#  לאיבוד ולא עולה כלום. עדיף לעצור מוקדם עם 3 פוסטים מאשר להיחתך עם 0.
+GENERATE_BUDGET_MIN = int(os.getenv("GENERATE_BUDGET_MIN", "75"))
+_started_at = [0.0]
+
+
+def out_of_time(label: str = "") -> bool:
+    if not _started_at[0]:
+        return False
+    used = (time.time() - _started_at[0]) / 60
+    if used < GENERATE_BUDGET_MIN:
+        return False
+    log(f"\n⏱ נגמר תקציב הזמן ({used:.0f} דק') — עוצרים את הייצור"
+        f"{' לפני ' + label if label else ''} ושומרים את מה שכבר נוצר.")
+    QUALITY_WARNINGS.append(
+        f"תקציב הזמן נגמר אחרי {used:.0f} דק' — חלק מהפוסטים לא נוצרו.")
+    return True
+
+
 def cmd_generate() -> None:
+    _started_at[0] = time.time()
     state = load_state()
     products = shopify_dresses()
     queue = build_queue(products, state)
@@ -1046,6 +1099,8 @@ def cmd_generate() -> None:
 
     # ---------- קרוסלות ----------
     for product in multi[:need_car]:
+        if out_of_time("קרוסלה"):
+            break
         name = dress_name(product["title"])
         colours = product["colours"][:MAX_CAROUSEL_ITEMS]
         # רקע אחיד לכל הקרוסלה — הצבע הוא ההשוואה, לא הסביבה
@@ -1060,6 +1115,8 @@ def cmd_generate() -> None:
                 feed, st = render(colour["image"],
                                   build_prompt(product, bg, colour["name"]),
                                   f"{name}/{colour['name']}")
+            except GeminiCreditsExhausted:
+                raise
             except Exception as exc:                       # noqa: BLE001
                 log(f"   ✗ {colour['name']} נכשל, מדלג: {exc}")
                 continue
@@ -1086,11 +1143,15 @@ def cmd_generate() -> None:
 
     # ---------- אווירה ----------
     for _ in range(need_atm):
+        if out_of_time("אווירה"):
+            break
         scene = pick_atmosphere(state)
         log(f"\n▶ אווירה: {scene['he']}")
         try:
             feed, st = render(None, build_atmosphere_prompt(scene),
                               f"אווירה/{scene['he']}")
+        except GeminiCreditsExhausted:
+            raise
         except Exception as exc:                           # noqa: BLE001
             log(f"   ✗ נכשל, מדלג: {exc}")
             continue
@@ -1108,6 +1169,8 @@ def cmd_generate() -> None:
     # ---------- שמלות בודדות ----------
     singles = [p for p in queue if p["handle"] not in used]
     for product in singles[:need_sgl]:
+        if out_of_time("שמלה בודדת"):
+            break
         name = dress_name(product["title"])
         bg = pick_background(bg_key(product, out.name), bg_taken)
         bg_taken.add(bg["id"])
@@ -1118,6 +1181,8 @@ def cmd_generate() -> None:
         try:
             feed, st = render(src["url"], build_prompt(product, bg), name,
                               alt_sources=cands[1:])
+        except GeminiCreditsExhausted:
+            raise
         except Exception as exc:                           # noqa: BLE001
             log(f"   ✗ נכשל, מדלג: {exc}")
             continue
