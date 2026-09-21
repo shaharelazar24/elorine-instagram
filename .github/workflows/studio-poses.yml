@@ -1,0 +1,60 @@
+name: ELORINE — studio poses
+
+# הרצה ידנית בלבד: לוקחת תמונת מוצר אחת ומייצרת ממנה פוזות שונות
+# של אותה דוגמנית ואותה שמלה, על רקע סטודיו יוקרתי — לאתר.
+# התוצאות נשמרות ב-studio/out/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: "נתיב לתמונת המקור בריפו"
+        required: true
+        default: "studio/sparkle-halter-source.jpg"
+      count:
+        description: "כמה פוזות (1-8)"
+        required: false
+        default: "6"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: elorine-studio
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.1-flash-image' }}
+      GEMINI_IMAGE_SIZE: ${{ vars.GEMINI_IMAGE_SIZE || '2K' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Generate studio poses
+        run: python pipeline.py studio "${{ github.event.inputs.source }}" --count "${{ github.event.inputs.count }}"
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name  "elorine-bot"
+          git config user.email "actions@github.com"
+          git add studio/out/ || true
+          if git diff --staged --quiet; then echo "אין תוצאות לשמור."; exit 0; fi
+          git commit -m "studio: poses for ${{ github.event.inputs.source }}"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            git pull --rebase origin main || { git rebase --abort || true; }
+            sleep $((5 * i))
+          done
+          exit 1
