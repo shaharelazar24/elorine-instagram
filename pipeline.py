@@ -531,6 +531,8 @@ class GeminiCreditsExhausted(RuntimeError):
 
 
 def _is_billing_failure(code: int, body: str) -> bool:
+    if code == 402:                       # Payment Required — תמיד חיוב
+        return True
     return code == 429 and any(m in body.lower() for m in BILLING_MARKERS)
 
 
@@ -1389,13 +1391,130 @@ def cmd_list() -> None:
     log(f"\n— חד-צבעוניות — {len(queue) - len(multi)} שמלות")
 
 
+# ==========================================================================
+# studio — פוזות שונות לאותה דוגמנית ואותה שמלה, לאתר
+# ==========================================================================
+
+STUDIO_SCENE = (
+    "a luxury fashion-house photo studio: a seamless hand-troweled lime-plaster "
+    "backdrop in warm ivory and soft greige, a pale travertine floor, one large "
+    "soft key light from camera left with a gentle, clean shadow of the model on "
+    "the wall, subtle falloff to warmer tones at the edges. Minimal, expensive, "
+    "calm — like a campaign for a high-end evening-wear label")
+
+STUDIO_POSES = [
+    "standing, body turned three-quarters to the camera, weight on the back leg, "
+    "one hand resting lightly on her hip, chin slightly lowered, looking into the lens",
+    "mid-stride walking toward the camera, the hem of the dress moving with the step, "
+    "arms relaxed, a confident runway walk",
+    "seated on a low ivory travertine block, legs angled together to one side, "
+    "one hand on the block beside her, the full length of the dress falling to the floor",
+    "standing in profile turned 45 degrees, shoulders open toward the camera, face "
+    "turned to the lens, one hand lightly touching the halter strap at her neck",
+    "leaning her shoulder softly against the plaster wall, one knee bent, "
+    "hands relaxed at her sides, a calm editorial expression",
+    "standing straight and centred, both hands lightly on the fabric at her hips, "
+    "a subtle turn of the torso, direct gaze into the camera",
+    "standing with arms loosely raised to touch her hair, elbows out, "
+    "the halter neckline and the whole silhouette clearly visible",
+    "slow turn in motion, body facing the camera, the sparkling fabric catching "
+    "the light, a gentle smile",
+]
+
+STUDIO_PROMPT = """You are a luxury fashion photographer and retoucher for ELORINE.
+
+TASK
+Re-photograph the SAME woman wearing the SAME dress from the attached photograph,
+in a NEW POSE, in a luxury studio. This is a new frame from the same photo shoot.
+
+THE WOMAN — keep her identity exactly
+- Same face, same facial features and proportions, same skin tone, same eye colour,
+  same eyebrows, same lips, same hair colour, length and styling.
+- PHOTOREALISTIC FACE: real skin texture with natural pores and fine detail, natural
+  catchlights in the eyes, natural asymmetry. No plastic, waxy, airbrushed or
+  doll-like skin. No over-smoothing. It must look like a real photograph of a real
+  person, not a render.
+- Natural, anatomically correct hands and fingers — exactly five fingers per hand.
+
+THE DRESS — keep it exactly
+- Same garment: same colour, same fabric, same sparkle and mesh texture, same halter
+  neckline and its exact depth, same straps, same silhouette, same length to the floor.
+- Do not add or remove anything. No jewellery, belts or accessories that are not
+  in the source.
+
+NEW POSE
+{pose}.
+
+SCENE
+{scene}.
+
+FRAMING
+- Vertical 4:5. Full length: the top of her head and her feet are both fully inside
+  the frame, with clean space above the head and below the feet. Nothing cut off.
+- The model faces the camera; the front of the dress is toward the viewer.
+- Shot as if on an 85mm lens at f/2.8, eye level. Sharp focus on the face and dress.
+
+FINISH
+High-end editorial fashion photograph. Crisp, high resolution, true colours,
+medium-soft contrast. No text, no logos, no watermark."""
+
+
+def cmd_studio(source: str, count: int) -> None:
+    src = ROOT / source
+    if not src.exists():
+        sys.exit(f"✗ לא נמצאה תמונת מקור: {source}")
+    raw = src.read_bytes()
+    mime = mimetypes.guess_type(src.name)[0] or "image/jpeg"
+    out = ROOT / "studio" / "out"
+    out.mkdir(parents=True, exist_ok=True)
+    stem = src.stem.replace("-source", "")
+    count = max(1, min(count, len(STUDIO_POSES)))
+    log(f"סטודיו: {src.name} → {count} פוזות")
+
+    made = 0
+    for i, pose in enumerate(STUDIO_POSES[:count], start=1):
+        log(f"\n▶ פוזה {i}/{count}")
+        base = STUDIO_PROMPT.format(pose=pose, scene=STUDIO_SCENE)
+        extra, data = "", None
+        for attempt in range(FRAMING_ATTEMPTS):
+            try:
+                data, st = to_feed_format(gemini_edit(raw, mime, base + extra))
+            except GeminiCreditsExhausted:
+                raise
+            except Exception as exc:                       # noqa: BLE001
+                log(f"   ✗ נכשל: {exc}")
+                data = None
+                break
+            verdict = check_pose(data)
+            if verdict == "OK" or attempt == FRAMING_ATTEMPTS - 1:
+                break
+            extra = "\n" + (TURN_AROUND_ESCALATION if verdict == "BACK"
+                            else FRAMING_ESCALATION)
+            log(f"   ↻ {verdict} — מייצרים שוב ({attempt + 2}/{FRAMING_ATTEMPTS})")
+        if data:
+            path = out / f"{stem}__pose-{i}.jpg"
+            path.write_bytes(data)
+            made += 1
+            log(f"   ✓ {path.relative_to(ROOT)}  ({len(data)//1024} KB)")
+
+    log(f"\nנוצרו {made}/{count} תמונות ב-studio/out/")
+    if not made:
+        sys.exit(1)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="ELORINE social automation")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("generate", help="בניית פוסטי היום")
     sub.add_parser("publish", help="פרסום לאינסטגרם ולפייסבוק")
     sub.add_parser("list", help="הצגת התור")
+    st = sub.add_parser("studio", help="פוזות שונות לאותה דוגמנית ושמלה")
+    st.add_argument("source", help="נתיב לתמונת המקור בתוך הריפו")
+    st.add_argument("--count", type=int, default=6)
     args = ap.parse_args()
+    if args.cmd == "studio":
+        cmd_studio(args.source, args.count)
+        return
     {"generate": cmd_generate, "publish": cmd_publish, "list": cmd_list}[args.cmd]()
 
 
