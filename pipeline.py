@@ -1396,22 +1396,27 @@ def cmd_list() -> None:
 # ==========================================================================
 
 STUDIO_SCENE = (
-    "a professional fashion photography studio with a SEAMLESS paper backdrop "
-    "(an infinity cove) in warm ivory / soft greige. The floor curves smoothly up "
-    "into the background with NO visible corner, NO horizon line and NO wall "
-    "texture — it must read as a photo studio sweep, not as a room or a wall. "
-    "Lighting: large, very diffused softboxes from the front and both sides, "
-    "clean and even, like a high-end fashion e-commerce and campaign studio. "
-    "SHADOW: extremely soft and faint — only a gentle, diffused contact shadow "
-    "on the floor right under her feet. NO hard cast shadow and NO silhouette "
-    "shadow of her body on the backdrop. Subtle, smooth tonal falloff toward "
-    "the edges of the frame. Minimal, expensive, calm")
+    "a REAL professional fashion photography studio, photographed — not rendered. "
+    "A seamless paper backdrop (infinity cove) in one consistent warm light greige "
+    "(close to #E4DDD3). The floor curves smoothly up into the background with no "
+    "corner, no horizon line and no wall texture. It must look like real paper in a "
+    "real studio: a very faint paper texture, natural uneven light falloff that is "
+    "slightly brighter behind her and gently darker toward the edges and the "
+    "foreground floor — NOT a flat digital gradient and NOT a CGI void. "
+    "Lighting: one very large octabox key from the front-left plus a broad fill, "
+    "soft and even. SHADOW: extremely soft and faint — only a gentle diffused contact "
+    "shadow under her feet. No hard cast shadow and no silhouette shadow on the "
+    "backdrop")
 
 STUDIO_POSES = [
     "standing, body turned three-quarters to the camera, weight on the back leg, "
     "one hand resting lightly on her hip, chin slightly lowered, looking into the lens",
-    "mid-stride walking toward the camera, the hem of the dress moving with the step, "
-    "arms relaxed, a confident runway walk",
+    "a slow, elegant, controlled walk toward the camera — a SMALL step, not a wide "
+    "stride. The dress hangs cleanly and straight to the floor; the hem stays neat, "
+    "even and closed with only a gentle natural sway. No bunching, no twisted or "
+    "tangled fabric, no flared skirt. The dress has NO slit — her legs stay covered. "
+    "Only the toe of one simple nude heel peeks out under the hem. Arms relaxed and "
+    "natural, calm confident expression, looking into the lens",
     "seated on a simple low cream-coloured studio posing block that matches the "
     "backdrop, legs angled together to one side, one hand on the block beside her, "
     "the full length of the dress falling to the floor",
@@ -1432,6 +1437,19 @@ STUDIO_PROMPT = """You are a luxury fashion photographer and retoucher for ELORI
 TASK
 Re-photograph the SAME woman wearing the SAME dress from the attached photograph,
 in a NEW POSE, in a luxury studio. This is a new frame from the same photo shoot.
+
+REALISM — THIS IS THE MOST IMPORTANT PART
+This must be indistinguishable from a real photograph taken on a medium-format
+camera (80mm lens, f/5.6), with natural photographic tonality and very light
+film-like grain. It must NOT look AI-generated.
+- Keep her face as close as possible to the face in the source photograph. Do not
+  beautify, re-sculpt, slim, enlarge the eyes or smooth it.
+- Real skin: visible fine pores, subtle natural unevenness and texture, a few fine
+  flyaway hairs, natural under-eye detail, natural lip texture. Matte-to-dewy skin,
+  NOT glossy, NOT plastic, NOT a CGI sheen.
+- Eyes: natural, not over-sharpened, no glowing irises, realistic catchlights from
+  the octabox.
+- Natural imperfect symmetry. Real fabric physics and real gravity.
 
 THE WOMAN — keep her identity exactly
 - Same face, same facial features and proportions, same skin tone, same eye colour,
@@ -1465,7 +1483,7 @@ High-end editorial fashion photograph. Crisp, high resolution, true colours,
 medium-soft contrast. No text, no logos, no watermark."""
 
 
-def cmd_studio(source: str, count: int, tag: str = "") -> None:
+def cmd_studio(source: str, count: int, tag: str = "", pose: int = 0) -> None:
     src = ROOT / source
     if not src.exists():
         sys.exit(f"✗ לא נמצאה תמונת מקור: {source}")
@@ -1474,13 +1492,20 @@ def cmd_studio(source: str, count: int, tag: str = "") -> None:
     out = ROOT / "studio" / "out"
     out.mkdir(parents=True, exist_ok=True)
     stem = src.stem.replace("-source", "")
-    count = max(1, min(count, len(STUDIO_POSES)))
-    log(f"סטודיו: {src.name} → {count} פוזות")
+    if pose:
+        # כמה גרסאות של אותה פוזה — כדי לבחור את הכי מציאותית
+        count = max(1, min(count, 8))
+        poses = [STUDIO_POSES[pose - 1]] * count
+        log(f"סטודיו: {src.name} → {count} גרסאות של פוזה {pose}")
+    else:
+        count = max(1, min(count, len(STUDIO_POSES)))
+        poses = STUDIO_POSES[:count]
+        log(f"סטודיו: {src.name} → {count} פוזות")
 
     made = 0
-    for i, pose in enumerate(STUDIO_POSES[:count], start=1):
+    for i, pose_text in enumerate(poses, start=1):
         log(f"\n▶ פוזה {i}/{count}")
-        base = STUDIO_PROMPT.format(pose=pose, scene=STUDIO_SCENE)
+        base = STUDIO_PROMPT.format(pose=pose_text, scene=STUDIO_SCENE)
         extra, data = "", None
         for attempt in range(FRAMING_ATTEMPTS):
             try:
@@ -1519,9 +1544,11 @@ def main() -> None:
     st.add_argument("source", help="נתיב לתמונת המקור בתוך הריפו")
     st.add_argument("--count", type=int, default=6)
     st.add_argument("--tag", default="", help="תווית לגרסה, למשל v2")
+    st.add_argument("--pose", type=int, default=0,
+                    help="מספר פוזה אחת (1-8) לייצור כמה גרסאות שלה")
     args = ap.parse_args()
     if args.cmd == "studio":
-        cmd_studio(args.source, args.count, args.tag)
+        cmd_studio(args.source, args.count, args.tag, args.pose)
         return
     {"generate": cmd_generate, "publish": cmd_publish, "list": cmd_list}[args.cmd]()
 
