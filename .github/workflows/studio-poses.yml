@@ -15,6 +15,10 @@ on:
         description: "כמה פוזות (1-8)"
         required: false
         default: "6"
+      tag:
+        description: "תווית לגרסה (למשל v2) — כדי לא לדרוס תוצאות קודמות"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -42,7 +46,7 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Generate studio poses
-        run: python pipeline.py studio "${{ github.event.inputs.source }}" --count "${{ github.event.inputs.count }}"
+        run: python pipeline.py studio "${{ github.event.inputs.source }}" --count "${{ github.event.inputs.count }}" --tag "${{ github.event.inputs.tag }}"
 
       - name: Commit results
         if: always()
