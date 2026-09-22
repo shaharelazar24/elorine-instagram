@@ -1534,6 +1534,55 @@ def cmd_studio(source: str, count: int, tag: str = "", pose: int = 0) -> None:
         sys.exit(1)
 
 
+# ==========================================================================
+# studio edit — תיקון נקודתי בתמונה קיימת, בלי לגעת בשאר
+# ==========================================================================
+
+EDIT_PROMPT = """You are a high-end fashion retoucher. Edit the attached photograph.
+
+CHANGE ONLY THIS:
+{instruction}
+
+EVERYTHING ELSE MUST STAY EXACTLY AS IT IS: the same woman, the same face (do not
+re-render, beautify or smooth it), the same hair, the same pose, the same dress and
+its sparkle, the same studio background, the same lighting, the same framing and crop.
+The result must be photorealistic and seamless, with no visible sign of editing.
+Vertical 4:5."""
+
+
+def cmd_studio_edit(source: str, instructions: str, count: int, tag: str) -> None:
+    src = ROOT / source
+    if not src.exists():
+        sys.exit(f"✗ לא נמצאה תמונת מקור: {source}")
+    raw = src.read_bytes()
+    mime = mimetypes.guess_type(src.name)[0] or "image/jpeg"
+    out = ROOT / "studio" / "out"
+    out.mkdir(parents=True, exist_ok=True)
+    stem = src.stem
+    parts = [t.strip() for t in instructions.split("||") if t.strip()]
+    count = max(1, min(count, 4))
+    made = 0
+    for k, instruction in enumerate(parts, start=1):
+        for j in range(1, count + 1):
+            log(f"\n▶ עריכה {k}/{len(parts)} — גרסה {j}/{count}")
+            try:
+                data, _ = to_feed_format(gemini_edit(
+                    raw, mime, EDIT_PROMPT.format(instruction=instruction)))
+            except GeminiCreditsExhausted:
+                raise
+            except Exception as exc:                       # noqa: BLE001
+                log(f"   ✗ נכשל: {exc}")
+                continue
+            suffix = f"__{tag}" if tag else ""
+            path = out / f"{stem}{suffix}__edit-{k}-{j}.jpg"
+            path.write_bytes(data)
+            made += 1
+            log(f"   ✓ {path.relative_to(ROOT)}")
+    log(f"\nנוצרו {made} תמונות ערוכות")
+    if not made:
+        sys.exit(1)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="ELORINE social automation")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -1544,11 +1593,16 @@ def main() -> None:
     st.add_argument("source", help="נתיב לתמונת המקור בתוך הריפו")
     st.add_argument("--count", type=int, default=6)
     st.add_argument("--tag", default="", help="תווית לגרסה, למשל v2")
+    st.add_argument("--edit", default="",
+                    help="עריכה נקודתית במקום פוזות. כמה הוראות מופרדות ב-||")
     st.add_argument("--pose", type=int, default=0,
                     help="מספר פוזה אחת (1-8) לייצור כמה גרסאות שלה")
     args = ap.parse_args()
     if args.cmd == "studio":
-        cmd_studio(args.source, args.count, args.tag, args.pose)
+        if args.edit.strip():
+            cmd_studio_edit(args.source, args.edit, args.count, args.tag)
+        else:
+            cmd_studio(args.source, args.count, args.tag, args.pose)
         return
     {"generate": cmd_generate, "publish": cmd_publish, "list": cmd_list}[args.cmd]()
 
