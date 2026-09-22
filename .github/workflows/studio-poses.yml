@@ -19,6 +19,10 @@ on:
         description: "תווית לגרסה (למשל v2) — כדי לא לדרוס תוצאות קודמות"
         required: false
         default: ""
+      pose:
+        description: "מספר פוזה אחת (1-8) לכמה גרסאות שלה. 0 = כל הפוזות"
+        required: false
+        default: "0"
 
 permissions:
   contents: write
@@ -46,7 +50,7 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Generate studio poses
-        run: python pipeline.py studio "${{ github.event.inputs.source }}" --count "${{ github.event.inputs.count }}" --tag "${{ github.event.inputs.tag }}"
+        run: python pipeline.py studio "${{ github.event.inputs.source }}" --count "${{ github.event.inputs.count }}" --tag "${{ github.event.inputs.tag }}" --pose "${{ github.event.inputs.pose || '0' }}"
 
       - name: Commit results
         if: always()
