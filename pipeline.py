@@ -1396,23 +1396,29 @@ def cmd_list() -> None:
 # ==========================================================================
 
 STUDIO_SCENE = (
-    "a luxury fashion-house photo studio: a seamless hand-troweled lime-plaster "
-    "backdrop in warm ivory and soft greige, a pale travertine floor, one large "
-    "soft key light from camera left with a gentle, clean shadow of the model on "
-    "the wall, subtle falloff to warmer tones at the edges. Minimal, expensive, "
-    "calm — like a campaign for a high-end evening-wear label")
+    "a professional fashion photography studio with a SEAMLESS paper backdrop "
+    "(an infinity cove) in warm ivory / soft greige. The floor curves smoothly up "
+    "into the background with NO visible corner, NO horizon line and NO wall "
+    "texture — it must read as a photo studio sweep, not as a room or a wall. "
+    "Lighting: large, very diffused softboxes from the front and both sides, "
+    "clean and even, like a high-end fashion e-commerce and campaign studio. "
+    "SHADOW: extremely soft and faint — only a gentle, diffused contact shadow "
+    "on the floor right under her feet. NO hard cast shadow and NO silhouette "
+    "shadow of her body on the backdrop. Subtle, smooth tonal falloff toward "
+    "the edges of the frame. Minimal, expensive, calm")
 
 STUDIO_POSES = [
     "standing, body turned three-quarters to the camera, weight on the back leg, "
     "one hand resting lightly on her hip, chin slightly lowered, looking into the lens",
     "mid-stride walking toward the camera, the hem of the dress moving with the step, "
     "arms relaxed, a confident runway walk",
-    "seated on a low ivory travertine block, legs angled together to one side, "
-    "one hand on the block beside her, the full length of the dress falling to the floor",
+    "seated on a simple low cream-coloured studio posing block that matches the "
+    "backdrop, legs angled together to one side, one hand on the block beside her, "
+    "the full length of the dress falling to the floor",
     "standing in profile turned 45 degrees, shoulders open toward the camera, face "
     "turned to the lens, one hand lightly touching the halter strap at her neck",
-    "leaning her shoulder softly against the plaster wall, one knee bent, "
-    "hands relaxed at her sides, a calm editorial expression",
+    "standing with hips angled away and shoulders open to the camera, one hand "
+    "tucking her hair behind her ear, a soft half-smile, looking into the lens",
     "standing straight and centred, both hands lightly on the fabric at her hips, "
     "a subtle turn of the torso, direct gaze into the camera",
     "standing with arms loosely raised to touch her hair, elbows out, "
@@ -1459,7 +1465,7 @@ High-end editorial fashion photograph. Crisp, high resolution, true colours,
 medium-soft contrast. No text, no logos, no watermark."""
 
 
-def cmd_studio(source: str, count: int) -> None:
+def cmd_studio(source: str, count: int, tag: str = "") -> None:
     src = ROOT / source
     if not src.exists():
         sys.exit(f"✗ לא נמצאה תמונת מקור: {source}")
@@ -1492,7 +1498,8 @@ def cmd_studio(source: str, count: int) -> None:
                             else FRAMING_ESCALATION)
             log(f"   ↻ {verdict} — מייצרים שוב ({attempt + 2}/{FRAMING_ATTEMPTS})")
         if data:
-            path = out / f"{stem}__pose-{i}.jpg"
+            suffix = f"__{tag}" if tag else ""
+            path = out / f"{stem}{suffix}__pose-{i}.jpg"
             path.write_bytes(data)
             made += 1
             log(f"   ✓ {path.relative_to(ROOT)}  ({len(data)//1024} KB)")
@@ -1511,9 +1518,10 @@ def main() -> None:
     st = sub.add_parser("studio", help="פוזות שונות לאותה דוגמנית ושמלה")
     st.add_argument("source", help="נתיב לתמונת המקור בתוך הריפו")
     st.add_argument("--count", type=int, default=6)
+    st.add_argument("--tag", default="", help="תווית לגרסה, למשל v2")
     args = ap.parse_args()
     if args.cmd == "studio":
-        cmd_studio(args.source, args.count)
+        cmd_studio(args.source, args.count, args.tag)
         return
     {"generate": cmd_generate, "publish": cmd_publish, "list": cmd_list}[args.cmd]()
 
