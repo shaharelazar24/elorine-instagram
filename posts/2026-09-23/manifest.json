@@ -1,0 +1,164 @@
+[
+  {
+    "type": "carousel",
+    "handle": "beatrice-sequin-maxi-dress",
+    "title": "שמלת ביאטריס | נצנצים מקסי",
+    "dress_name": "ביאטריס",
+    "product_url": "https://elorine.co.il/products/beatrice-sequin-maxi-dress",
+    "price_ils": "449.0",
+    "items": [
+      {
+        "colour": "זהב",
+        "path": "posts/2026-09-23/beatrice-sequin-maxi-dress__1.jpg",
+        "background": "bougainvillea_alley",
+        "background_he": "סמטת בוגנוויליה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1336
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-09-23/beatrice-sequin-maxi-dress__2.jpg",
+        "background": "bougainvillea_alley",
+        "background_he": "סמטת בוגנוויליה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1413
+        }
+      },
+      {
+        "colour": "יין",
+        "path": "posts/2026-09-23/beatrice-sequin-maxi-dress__3.jpg",
+        "background": "bougainvillea_alley",
+        "background_he": "סמטת בוגנוויליה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1151
+        }
+      }
+    ],
+    "caption": "שמלת ביאטריס · ELORINE\nמקסי סוחפת מרשת נמתחת פרימיום עם עיטור נדיב של נצנוץ.\nאותה שמלה ב-3 גוונים — זהב, שחור ויין. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #נצנצים",
+    "generated_at": "2026-09-23T07:25:16.078524+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "lumina-sequin-maxi",
+    "title": "שמלת לוסיל | נצנצים מקסי",
+    "dress_name": "לוסיל",
+    "product_url": "https://elorine.co.il/products/lumina-sequin-maxi",
+    "price_ils": "539.0",
+    "items": [
+      {
+        "colour": "קרם",
+        "path": "posts/2026-09-23/lumina-sequin-maxi__1.jpg",
+        "background": "sea_view_balcony",
+        "background_he": "מרפסת עם נוף לים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1105
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-09-23/lumina-sequin-maxi__2.jpg",
+        "background": "sea_view_balcony",
+        "background_he": "מרפסת עם נוף לים",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1086
+        }
+      }
+    ],
+    "caption": "שמלת לוסיל · ELORINE\nמקסי מרשת נמתחת פרימיום שטובלת כולה בנצנוץ, ליום שבו את הכוכבת.\nבשני גוונים — קרם ושחור. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #נצנצים",
+    "generated_at": "2026-09-23T07:26:42.762114+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 931
+    },
+    "type": "single",
+    "handle": "nigella-maxi-dress-black",
+    "title": "שמלת ולריה | מקסי",
+    "dress_name": "ולריה",
+    "product_url": "https://elorine.co.il/products/nigella-maxi-dress-black",
+    "price_ils": "549.0",
+    "background": "villa_arch_pool",
+    "background_he": "קשת וילה אל הבריכה",
+    "image_path": "posts/2026-09-23/nigella-maxi-dress-black.jpg",
+    "caption": "שמלת ולריה · ELORINE\nשחור עמוק בגזרה זורמת, הפריט שפותר כל התלבטות ערב.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שמלה_שחורה",
+    "alt_text": "שמלת ולריה של ELORINE, black, floor-length maxi, על רקע קשת וילה אל הבריכה.",
+    "generated_at": "2026-09-23T07:27:49.146766+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 928
+    },
+    "type": "single",
+    "handle": "neeka-maxi-dress-beige",
+    "title": "שמלת דונטלה | מקסי",
+    "dress_name": "דונטלה",
+    "product_url": "https://elorine.co.il/products/neeka-maxi-dress-beige",
+    "price_ils": "529.0",
+    "background": "harbour_quay",
+    "background_he": "רציף נמל",
+    "image_path": "posts/2026-09-23/neeka-maxi-dress-beige.jpg",
+    "caption": "שמלת דונטלה · ELORINE\nמקסי בגוון חול חם שמתמזג עם העור, מינימליזם שנראה יקר.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שמלת_מיני",
+    "alt_text": "שמלת דונטלה של ELORINE, beige, floor-length maxi, על רקע רציף נמל.",
+    "generated_at": "2026-09-23T07:30:09.367720+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 817
+    },
+    "type": "single",
+    "handle": "kathleen-maxi-dress-burgundy",
+    "title": "שמלת ז'ולייט | מקסי",
+    "dress_name": "ז'ולייט",
+    "product_url": "https://elorine.co.il/products/kathleen-maxi-dress-burgundy",
+    "price_ils": "589.0",
+    "background": "boutique_corner",
+    "background_he": "פינת בוטיק",
+    "image_path": "posts/2026-09-23/kathleen-maxi-dress-burgundy.jpg",
+    "caption": "שמלת ז'ולייט · ELORINE\nמקסי בגוון יין עמוק עם נפילה דרמטית, רומנטיקה בגרסה בוגרת.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #בורדו",
+    "alt_text": "שמלת ז'ולייט של ELORINE, burgundy, floor-length maxi, על רקע פינת בוטיק.",
+    "generated_at": "2026-09-23T07:31:16.281582+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
