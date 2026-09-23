@@ -407,6 +407,36 @@
       "type": "single",
       "media_id": "18117730934286625",
       "at": "2026-09-22T07:38:56.260355+00:00"
+    },
+    "beatrice-sequin-maxi-dress": {
+      "name": "ביאטריס",
+      "type": "carousel",
+      "media_id": "18076323278413967",
+      "at": "2026-09-23T07:32:12.245744+00:00"
+    },
+    "lumina-sequin-maxi": {
+      "name": "לוסיל",
+      "type": "carousel",
+      "media_id": "18074327918552043",
+      "at": "2026-09-23T07:32:57.132429+00:00"
+    },
+    "nigella-maxi-dress-black": {
+      "name": "ולריה",
+      "type": "single",
+      "media_id": "18124177159923283",
+      "at": "2026-09-23T07:33:20.643538+00:00"
+    },
+    "neeka-maxi-dress-beige": {
+      "name": "דונטלה",
+      "type": "single",
+      "media_id": "17936365626371761",
+      "at": "2026-09-23T07:33:45.300510+00:00"
+    },
+    "kathleen-maxi-dress-burgundy": {
+      "name": "ז'ולייט",
+      "type": "single",
+      "media_id": "18003701732789538",
+      "at": "2026-09-23T07:34:05.679571+00:00"
     }
   },
   "seeded_names": [
@@ -492,7 +522,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-23T07:31:16.281969+00:00",
+  "updated_at": "2026-09-23T07:34:13.680451+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
