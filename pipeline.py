@@ -6,10 +6,10 @@ ELORINE — Instagram + Facebook content automation
 
 Shopify → Google Gemini (Nano Banana) → Instagram + Facebook
 
-תוכנית יומית (5 פוסטים):
+תוכנית לפעימה (4 פוסטים), ראשון/שלישי/חמישי:
     2 × קרוסלה   — שמלה רב-צבעונית, תמונה לכל צבע
     0 × אווירה    — כבוי (אפשר להחזיר עם ATMOSPHERE_PER_RUN)
-    3 × שמלה      — פוסט בודד לכל אחת
+    2 × שמלה      — פוסט בודד לכל אחת
 
 פקודות:
     python pipeline.py generate     בונה את פוסטי היום ושומר ל-posts/<תאריך>/
@@ -44,7 +44,7 @@ POSTS_DIR = ROOT / "posts"
 # --- הרכב ההרצה היומית ---
 CAROUSELS_PER_RUN = int(os.getenv("CAROUSELS_PER_RUN", "2"))
 ATMOSPHERE_PER_RUN = int(os.getenv("ATMOSPHERE_PER_RUN", "0"))
-SINGLES_PER_RUN = int(os.getenv("SINGLES_PER_RUN", "3"))
+SINGLES_PER_RUN = int(os.getenv("SINGLES_PER_RUN", "2"))
 MAX_CAROUSEL_ITEMS = 10          # מגבלת אינסטגרם
 
 # --- Shopify ---
