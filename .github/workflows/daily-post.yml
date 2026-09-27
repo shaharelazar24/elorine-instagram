@@ -6,16 +6,17 @@ on:
     # במפורש שהעומס הכי גדול הוא *בתחילת כל שעה*, ושכדאי לתזמן לדקה אחרת.
     # לכן אף ירייה כאן לא בדקה :00 — כולן בדקות "מוזרות" ומפוזרות.
     #
-    # שש יריות ביום, ראשון עד שישי (0-5). שבת לא נכללת.
+    # פעימה כל יומיים: ראשון, שלישי וחמישי בלבד (0,2,4). שבת לא נכללת,
+    # ולכן המחזור מתייצב על שלוש פעימות בשבוע במקום להיסחף.
     # בקיץ הראשונה היא 10:11 בישראל, בחורף 10:14. השאר רשת ביטחון.
     # השער למטה מוודא 10:00-15:59 בישראל, והבדיקה שאחריו מוודאת
     # שאם כבר פורסם היום — לא מפרסמים שוב.
-    - cron: "11 7 * * 0-5"
-    - cron: "14 8 * * 0-5"
-    - cron: "19 9 * * 0-5"
-    - cron: "26 10 * * 0-5"
-    - cron: "33 11 * * 0-5"
-    - cron: "41 12 * * 0-5"
+    - cron: "11 7 * * 0,2,4"
+    - cron: "14 8 * * 0,2,4"
+    - cron: "19 9 * * 0,2,4"
+    - cron: "26 10 * * 0,2,4"
+    - cron: "33 11 * * 0,2,4"
+    - cron: "41 12 * * 0,2,4"
   workflow_dispatch:
     inputs:
       carousels:
@@ -29,7 +30,7 @@ on:
       singles:
         description: "כמה שמלות בודדות"
         required: false
-        default: "3"
+        default: "2"
       generate:
         description: "לייצר תמונות חדשות? false = לפרסם רק מה שכבר קיים (true/false)"
         required: false
@@ -73,7 +74,7 @@ jobs:
 
       CAROUSELS_PER_RUN: ${{ github.event.inputs.carousels || vars.CAROUSELS_PER_RUN || '2' }}
       ATMOSPHERE_PER_RUN: ${{ github.event.inputs.atmosphere || vars.ATMOSPHERE_PER_RUN || '0' }}
-      SINGLES_PER_RUN: ${{ github.event.inputs.singles || vars.SINGLES_PER_RUN || '3' }}
+      SINGLES_PER_RUN: ${{ github.event.inputs.singles || vars.SINGLES_PER_RUN || '2' }}
       PUBLISH_TO_FACEBOOK: ${{ github.event.inputs.facebook || 'true' }}
 
     steps:
@@ -91,11 +92,12 @@ jobs:
           H=$((10#$(TZ=Asia/Jerusalem date +%H)))
           echo "cron: '${{ github.event.schedule }}' · עכשיו בישראל: ${NOW}"
 
-          if [ "$DOW" = "6" ]; then
-            echo "שבת בישראל — אין פרסום. מדלגים."
-            echo "SKIP=1" >> "$GITHUB_ENV"
-            exit 0
-          fi
+          # ימי פרסום: ראשון (7), שלישי (2), חמישי (4) בשעון ישראל.
+          case "$DOW" in
+            7|2|4) : ;;
+            *) echo "היום לא יום פרסום (dow=${DOW}) — מדלגים."
+               echo "SKIP=1" >> "$GITHUB_ENV"; exit 0 ;;
+          esac
 
           if [ "$H" -ge 10 ] && [ "$H" -le 15 ]; then
             echo "בתוך החלון (10:00-15:59) — ממשיכים."
@@ -116,7 +118,7 @@ jobs:
         run: |
           D=$(date -u +%F)
           M="posts/${D}/manifest.json"
-          WANT=$(( ${CAROUSELS_PER_RUN:-2} + ${ATMOSPHERE_PER_RUN:-0} + ${SINGLES_PER_RUN:-3} ))
+          WANT=$(( ${CAROUSELS_PER_RUN:-2} + ${ATMOSPHERE_PER_RUN:-0} + ${SINGLES_PER_RUN:-2} ))
 
           if [ ! -f "$M" ]; then
             echo "אין manifest להיום (${D}) — סבב מלא (${WANT} פוסטים)."
