@@ -437,6 +437,30 @@
       "type": "single",
       "media_id": "18003701732789538",
       "at": "2026-09-23T07:34:05.679571+00:00"
+    },
+    "alba-cutout-maxi-dress": {
+      "name": "אלבה",
+      "type": "carousel",
+      "media_id": "18095204993397366",
+      "at": "2026-09-27T05:25:10.746710+00:00"
+    },
+    "aurea-sequin-maxi": {
+      "name": "מארה",
+      "type": "carousel",
+      "media_id": "18116114908955695",
+      "at": "2026-09-27T05:26:02.299648+00:00"
+    },
+    "cova-maxi-dress-ivory": {
+      "name": "מרצ'לה",
+      "type": "single",
+      "media_id": "18116688149069490",
+      "at": "2026-09-27T05:26:26.383800+00:00"
+    },
+    "almira-maxi-dress-mulberry": {
+      "name": "מלינה",
+      "type": "single",
+      "media_id": "17990616348021372",
+      "at": "2026-09-27T05:26:52.362080+00:00"
     }
   },
   "seeded_names": [
@@ -522,7 +546,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-27T05:24:26.511883+00:00",
+  "updated_at": "2026-09-27T05:27:00.363473+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
