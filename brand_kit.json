@@ -57,7 +57,8 @@
     {"id": "sunset_terrace", "he": "מרפסת שקיעה", "prompt": "a simple stone terrace facing the sea at sunset, warm amber and rose light low across the frame, the water a soft band far behind, long gentle shadows"},
     {"id": "marble_stair", "he": "מדרגות שיש", "prompt": "a wide pale marble staircase with a slim brass handrail, cool diffused daylight from a tall window above"},
     {"id": "olive_grove", "he": "חורשת זיתים", "prompt": "an old olive grove on a dry hillside, silver-green leaves catching low sun, deep out-of-focus rows behind, dusty sage and warm sand"},
-    {"id": "plaster_studio", "he": "סטודיו טיח", "prompt": "a seamless hand-troweled lime plaster studio backdrop in warm bone white, subtle texture, single large soft key light from camera left"}
+    {"id": "plaster_studio", "he": "סטודיו טיח", "prompt": "a seamless hand-troweled lime plaster studio backdrop in warm bone white, subtle texture, single large soft key light from camera left"},
+    {"id": "villa_garden", "he": "חצר וילה עם עצים ודשא", "prompt": "the private garden courtyard of a Mediterranean villa: a neatly mown deep-green lawn underfoot, mature olive and cypress trees and clipped hedges standing behind her, a pale stone path and the low cream wall of the villa far back and heavily out of focus, warm late-afternoon sun raking through the leaves and laying soft dappled light across the grass"}
   ],
 
   "fidelity_rules": [

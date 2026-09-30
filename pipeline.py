@@ -58,6 +58,9 @@ def _handle_list(name: str) -> list:
 PIN_CAROUSELS = _handle_list("PIN_CAROUSELS")
 PIN_SINGLES = _handle_list("PIN_SINGLES")
 
+#  קיבוע רקע אחד לכל הפעימה (id מתוך brand_kit.json). ריק = בחירה אוטומטית.
+FORCE_BACKGROUND = os.getenv("FORCE_BACKGROUND", "").strip()
+
 # --- Shopify ---
 SHOPIFY_STORE = os.getenv("SHOPIFY_STORE", "")
 SHOPIFY_API_VERSION = os.getenv("SHOPIFY_API_VERSION", "2025-07")
@@ -454,8 +457,15 @@ def bg_key(product: dict, day: str) -> str:
 
 def pick_background(key: str, taken: set | None = None) -> dict:
     """רקע קבוע לכל מוצר (hash של ה-handle), אבל לא חוזר על רקע
-    שכבר בשימוש באותה הרצה — כדי שהפיד לא ייראה חוזר על עצמו."""
+    שכבר בשימוש באותה הרצה — כדי שהפיד לא ייראה חוזר על עצמו.
+    FORCE_BACKGROUND גובר: אותו רקע בדיוק לכל הפוסטים בפעימה."""
     bgs = BRAND_KIT["backgrounds"]
+    if FORCE_BACKGROUND:
+        for bg in bgs:
+            if bg["id"] == FORCE_BACKGROUND:
+                return bg
+        log(f"⚠ FORCE_BACKGROUND='{FORCE_BACKGROUND}' לא קיים ב-brand_kit "
+            "— חוזרים לבחירה האוטומטית.")
     start = int(hashlib.sha256(key.encode("utf-8")).hexdigest()[:8], 16) % len(bgs)
     taken = taken or set()
     for offset in range(len(bgs)):
