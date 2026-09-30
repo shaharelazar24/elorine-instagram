@@ -195,8 +195,8 @@
     "the-ashanti-mini-gold": {
       "name": "קלי",
       "type": "single",
-      "media_id": "18181725253419650",
-      "at": "2026-09-01T09:41:30.949247+00:00"
+      "media_id": "17909251248521739",
+      "at": "2026-09-30T07:02:14.660729+00:00"
     },
     "nefertiti-mini-yellow": {
       "name": "קתרין",
@@ -473,6 +473,12 @@
       "type": "single",
       "media_id": "18095842703651739",
       "at": "2026-09-30T06:41:36.086522+00:00"
+    },
+    "giulia": {
+      "name": "סוואנה",
+      "type": "single",
+      "media_id": "17927306781180758",
+      "at": "2026-09-30T07:02:37.358365+00:00"
     }
   },
   "seeded_names": [
@@ -558,7 +564,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-09-30T07:01:52.022681+00:00",
+  "updated_at": "2026-09-30T07:02:45.359691+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
