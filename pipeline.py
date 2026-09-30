@@ -47,6 +47,17 @@ ATMOSPHERE_PER_RUN = int(os.getenv("ATMOSPHERE_PER_RUN", "0"))
 SINGLES_PER_RUN = int(os.getenv("SINGLES_PER_RUN", "2"))
 MAX_CAROUSEL_ITEMS = 10          # מגבלת אינסטגרם
 
+
+def _handle_list(name: str) -> list:
+    """רשימת handles מופרדת בפסיקים ממשתנה סביבה. ריק = אין קיבוע."""
+    return [h.strip() for h in os.getenv(name, "").split(",") if h.strip()]
+
+
+#  קיבוע ידני לפעימה אחת: שמלות שחייבות להיכנס, לפי הסדר, גם אם כבר
+#  פורסמו לאחרונה. ריק = המערכת בוחרת לבד מהתור, כמו תמיד.
+PIN_CAROUSELS = _handle_list("PIN_CAROUSELS")
+PIN_SINGLES = _handle_list("PIN_SINGLES")
+
 # --- Shopify ---
 SHOPIFY_STORE = os.getenv("SHOPIFY_STORE", "")
 SHOPIFY_API_VERSION = os.getenv("SHOPIFY_API_VERSION", "2025-07")
@@ -151,6 +162,27 @@ def build_queue(products: list, state: dict) -> list:
             old.append(p)
     old.sort(key=lambda p: -p["_age"])                     # הוותיקה קודם
     return fresh + old
+
+
+def pin_products(handles: list, products: list, state: dict,
+                 min_colours: int = 1) -> list:
+    """השמלות המקובעות, לפי הסדר שנתבקש, גם אם פורסמו לאחרונה.
+    handle שלא קיים או בלי מספיק צבעים — מדווח ומדולג, לא מפיל את ההרצה."""
+    by_handle = {p["handle"]: p for p in products}
+    picked = []
+    for h in handles:
+        p = by_handle.get(h)
+        if p is None:
+            log(f"⚠ קיבוע: אין שמלה פעילה עם handle '{h}' — מדלגים.")
+            continue
+        if len(p["colours"]) < min_colours:
+            log(f"⚠ קיבוע: ל-'{h}' יש {len(p['colours'])} צבעים, "
+                f"צריך לפחות {min_colours} — מדלגים.")
+            continue
+        #  שמלה שכבר פורסמה מסומנת כמיחזור כדי שתקבל רקע אחר מהפעם הקודמת
+        p["_recycled"] = posted_age_days(p, state) is not None
+        picked.append(p)
+    return picked
 
 
 def file_slug(handle: str) -> str:
@@ -1063,6 +1095,16 @@ def cmd_generate() -> None:
     log(f"שמלות פעילות: {len(products)}  |  בתור: {len(queue)} "
         f"({new_count} חדשות, {len(queue) - new_count} למיחזור)  "
         f"|  רב-צבעוניות: {len(multi)}")
+
+    # קיבוע ידני — עוקף את התור ומכניס שמלות מסוימות לראש הרשימה.
+    pinned_car = pin_products(PIN_CAROUSELS, products, state, min_colours=2)
+    pinned_sgl = pin_products(PIN_SINGLES, products, state)
+    if pinned_car or pinned_sgl:
+        log("קיבוע ידני לפעימה הזו: "
+            f"קרוסלות={[dress_name(p['title']) for p in pinned_car]}  "
+            f"בודדות={[dress_name(p['title']) for p in pinned_sgl]}")
+    multi = pinned_car + [p for p in multi
+                          if p["handle"] not in PIN_CAROUSELS]
     if not queue:
         log("⚠ אין אף שמלה זמינה — גם לא למיחזור.")
 
@@ -1169,7 +1211,10 @@ def cmd_generate() -> None:
         })
 
     # ---------- שמלות בודדות ----------
-    singles = [p for p in queue if p["handle"] not in used]
+    singles = ([p for p in pinned_sgl if p["handle"] not in used]
+               + [p for p in queue
+                  if p["handle"] not in used
+                  and p["handle"] not in PIN_SINGLES])
     for product in singles[:need_sgl]:
         if out_of_time("שמלה בודדת"):
             break
@@ -1550,6 +1595,103 @@ The result must be photorealistic and seamless, with no visible sign of editing.
 Vertical 4:5."""
 
 
+# ==========================================================================
+# bgswap — החלפת רקע לסטודיו בלבד, אותו רקע בדיוק לכל התמונות
+# ==========================================================================
+
+#  תיאור אחד ויחיד, מילה במילה, לכל התמונות — זה מה שמייצר רקע זהה.
+BGSWAP_SCENE = (
+    "a REAL professional photography studio with a seamless paper backdrop "
+    "(infinity cove) in ONE flat warm light greige tone, RGB 228 221 211 "
+    "(#E4DDD3). The paper floor curves smoothly up into the background: there is "
+    "NO corner, NO horizon line, NO skirting board, NO wall texture and NO props "
+    "of any kind. Real studio paper, with a very faint paper grain and a soft, "
+    "natural light falloff that is slightly brighter directly behind her and "
+    "gently darker toward the four edges — never a flat digital gradient and "
+    "never a CGI void. "
+    "LIGHT: one very large octabox key high at the front-left, plus a broad soft "
+    "fill from the front-right. Soft, even, neutral white balance. "
+    "SHADOW: one single, very soft, very faint diffused contact shadow directly "
+    "under her feet, fading out within a short distance. NO hard cast shadow, NO "
+    "second shadow, NO silhouette on the backdrop.")
+
+BGSWAP_PROMPT = """You are a high-end fashion retoucher. You are given one
+photograph. Replace ONLY its background.
+
+THE ONE AND ONLY CHANGE
+Remove the entire existing environment behind and around her and put her in this
+studio instead:
+{scene}
+
+EVERYTHING ELSE MUST STAY PIXEL-FOR-PIXEL THE SAME
+- The same woman: the same face, the exact same facial features and expression,
+  the same skin tone, the same hair — same colour, same length, same strands and
+  the same way it falls. Do NOT re-render, beautify, slim, smooth or retouch her.
+- The same dress: the same colour and exact shade, the same fabric, the same lace
+  panel and its pattern, the same neckline, the same straps, the same seams, the
+  same length and the same folds of the fabric.
+- The same pose, the same body position, the same hands and arms, the same
+  jewellery — nothing added and nothing removed.
+- The same framing, the same crop, the same camera angle, the same size and the
+  same position of her inside the frame. She must not move, shrink or grow.
+- Her own shape and edges stay exact — a clean, natural cut-out with no halo, no
+  fringing and no blurred outline.
+
+LIGHTING ON HER
+Adjust the light ON HER ONLY as much as is strictly necessary so she sits
+believably in this studio: the key light comes from the front-left. Do not change
+the colour of the dress, do not change her skin tone, and do not re-light her
+face into a different look. If in doubt, change less.
+
+FINISH
+It must look like one real photograph taken in that studio — not a composite.
+Photorealistic, real skin texture with pores, light film-like grain, sharp on the
+face and the dress. No text, no logos, no watermark. Vertical 4:5."""
+
+
+def cmd_bgswap(sources: str, tag: str = "") -> None:
+    """מחליף רקע לסטודיו בכל התמונות ברשימה — עם אותו תיאור רקע בדיוק."""
+    paths = [ROOT / s.strip() for s in sources.split(",") if s.strip()]
+    missing = [str(p) for p in paths if not p.exists()]
+    if missing:
+        sys.exit(f"✗ לא נמצאו תמונות מקור: {missing}")
+
+    out = ROOT / "studio" / "out"
+    out.mkdir(parents=True, exist_ok=True)
+    prompt = BGSWAP_PROMPT.format(scene=BGSWAP_SCENE)
+    suffix = f"__{tag}" if tag else ""
+    log(f"החלפת רקע לסטודיו — {len(paths)} תמונות, אותו רקע בדיוק")
+
+    made = 0
+    for i, src in enumerate(paths, start=1):
+        log(f"\n▶ {i}/{len(paths)}  {src.name}")
+        raw = src.read_bytes()
+        mime = mimetypes.guess_type(src.name)[0] or "image/jpeg"
+        data = None
+        for attempt in range(FRAMING_ATTEMPTS):
+            try:
+                data, st = to_feed_format(gemini_edit(raw, mime, prompt))
+            except GeminiCreditsExhausted:
+                raise
+            except Exception as exc:                       # noqa: BLE001
+                log(f"   ✗ נכשל: {exc}")
+                data = None
+                break
+            verdict = check_pose(data)
+            if verdict == "OK" or attempt == FRAMING_ATTEMPTS - 1:
+                break
+            log(f"   ↻ {verdict} — מייצרים שוב ({attempt + 2}/{FRAMING_ATTEMPTS})")
+        if data:
+            path = out / f"{src.stem}{suffix}__studio.jpg"
+            path.write_bytes(data)
+            made += 1
+            log(f"   ✓ {path.relative_to(ROOT)}  ({len(data)//1024} KB)")
+
+    log(f"\nנוצרו {made}/{len(paths)} תמונות ב-studio/out/")
+    if not made:
+        sys.exit(1)
+
+
 def cmd_studio_edit(source: str, instructions: str, count: int, tag: str) -> None:
     src = ROOT / source
     if not src.exists():
@@ -1597,7 +1739,13 @@ def main() -> None:
                     help="עריכה נקודתית במקום פוזות. כמה הוראות מופרדות ב-||")
     st.add_argument("--pose", type=int, default=0,
                     help="מספר פוזה אחת (1-8) לייצור כמה גרסאות שלה")
+    bg = sub.add_parser("bgswap", help="החלפת רקע לסטודיו, אותו רקע לכל התמונות")
+    bg.add_argument("sources", help="נתיבים בתוך הריפו, מופרדים בפסיק")
+    bg.add_argument("--tag", default="", help="תווית לגרסה, למשל v2")
     args = ap.parse_args()
+    if args.cmd == "bgswap":
+        cmd_bgswap(args.sources, args.tag)
+        return
     if args.cmd == "studio":
         if args.edit.strip():
             cmd_studio_edit(args.source, args.edit, args.count, args.tag)
