@@ -1668,19 +1668,15 @@ def cmd_bgswap(sources: str, tag: str = "") -> None:
         raw = src.read_bytes()
         mime = mimetypes.guess_type(src.name)[0] or "image/jpeg"
         data = None
-        for attempt in range(FRAMING_ATTEMPTS):
-            try:
-                data, st = to_feed_format(gemini_edit(raw, mime, prompt))
-            except GeminiCreditsExhausted:
-                raise
-            except Exception as exc:                       # noqa: BLE001
-                log(f"   ✗ נכשל: {exc}")
-                data = None
-                break
-            verdict = check_pose(data)
-            if verdict == "OK" or attempt == FRAMING_ATTEMPTS - 1:
-                break
-            log(f"   ↻ {verdict} — מייצרים שוב ({attempt + 2}/{FRAMING_ATTEMPTS})")
+        #  בלי בדיקת מסגור: כאן המטרה היא לשמר את הקרופ המקורי בדיוק,
+        #  גם אם הוא חצי-גוף או חתוך ברגליים. "לתקן" אותו זו טעות.
+        try:
+            data, st = to_feed_format(gemini_edit(raw, mime, prompt))
+        except GeminiCreditsExhausted:
+            raise
+        except Exception as exc:                           # noqa: BLE001
+            log(f"   ✗ נכשל: {exc}")
+            data = None
         if data:
             path = out / f"{src.stem}{suffix}__studio.jpg"
             path.write_bytes(data)
