@@ -188,5 +188,51 @@
     "ig_media_id": "18095842703651739",
     "fb_post_id": "1246343165233097_122116140231444353",
     "published_at": "2026-09-30T06:41:36.086537+00:00"
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1323
+    },
+    "type": "single",
+    "handle": "the-ashanti-mini-gold",
+    "title": "שמלת קלי | בנדאז' מיני זהב",
+    "dress_name": "קלי",
+    "product_url": "https://elorine.co.il/products/the-ashanti-mini-gold",
+    "price_ils": "449.0",
+    "background": "villa_garden",
+    "background_he": "חצר וילה עם עצים ודשא",
+    "image_path": "posts/2026-09-30/the-ashanti-mini-gold.jpg",
+    "caption": "שמלת קלי · ELORINE\nמיני בנדאז' מפוסלת בהשראת האייקונים, נועזת, בוטחת ובלתי נשכחת.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת קלי של ELORINE, gold, bandage knit, mini length, על רקע חצר וילה עם עצים ודשא.",
+    "generated_at": "2026-09-30T07:00:40.412533+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1422
+    },
+    "type": "single",
+    "handle": "giulia",
+    "title": "שמלת סוואנה | מיני שחור-לבן",
+    "dress_name": "סוואנה",
+    "product_url": "https://elorine.co.il/products/giulia",
+    "price_ils": "299.0",
+    "background": "villa_garden",
+    "background_he": "חצר וילה עם עצים ודשא",
+    "image_path": "posts/2026-09-30/giulia.jpg",
+    "caption": "שמלת סוואנה · ELORINE\nמיני שובבה בהדפס נקודות שחור קלאסי, רטרו שפוגש נשיות מודרנית.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני #שמלה_שחורה",
+    "alt_text": "שמלת סוואנה של ELORINE, black, white, mini length, על רקע חצר וילה עם עצים ודשא.",
+    "generated_at": "2026-09-30T07:01:52.022093+00:00",
+    "published_ig": false,
+    "published_fb": false
   }
 ]
