@@ -168,9 +168,14 @@ def build_queue(products: list, state: dict) -> list:
 
 
 def pin_products(handles: list, products: list, state: dict,
-                 min_colours: int = 1) -> list:
+                 min_colours: int = 0) -> list:
     """השמלות המקובעות, לפי הסדר שנתבקש, גם אם פורסמו לאחרונה.
-    handle שלא קיים או בלי מספיק צבעים — מדווח ומדולג, לא מפיל את ההרצה."""
+    handle שלא קיים — מדווח ומדולג, לא מפיל את ההרצה.
+
+    min_colours=0 בכוונה: פוסט בודד לא צריך וריאנטים צבעוניים בכלל, הוא
+    משתמש בתמונות המוצר. בחנות יש שמלות שלכל הווריאנטים שלהן אין תמונה
+    ולכן colours ריק — הן עדיין לגמרי תקינות לפוסט בודד. רק לקרוסלה
+    צריך 2 צבעים, ושם הקריאה מעבירה min_colours=2 במפורש."""
     by_handle = {p["handle"]: p for p in products}
     picked = []
     for h in handles:
