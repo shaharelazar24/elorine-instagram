@@ -27,6 +27,10 @@ on:
         description: "עריכה נקודתית (במקום פוזות). כמה הוראות מופרדות ב-||"
         required: false
         default: ""
+      bgswap:
+        description: "החלפת רקע לסטודיו בלבד — נתיבים מופרדים בפסיק (גובר על השאר)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -56,7 +60,18 @@ jobs:
       - name: Generate studio poses
         env:
           EDIT_TEXT: ${{ github.event.inputs.edit }}
-        run: python pipeline.py studio "${{ github.event.inputs.source }}" --count "${{ github.event.inputs.count }}" --tag "${{ github.event.inputs.tag }}" --pose "${{ github.event.inputs.pose || '0' }}" --edit "$EDIT_TEXT"
+          BGSWAP: ${{ github.event.inputs.bgswap }}
+        run: |
+          # bgswap גובר: החלפת רקע בלבד, אותו רקע בדיוק לכל התמונות
+          if [ -n "$BGSWAP" ]; then
+            python pipeline.py bgswap "$BGSWAP" --tag "${{ github.event.inputs.tag }}"
+          else
+            python pipeline.py studio "${{ github.event.inputs.source }}" \
+              --count "${{ github.event.inputs.count }}" \
+              --tag "${{ github.event.inputs.tag }}" \
+              --pose "${{ github.event.inputs.pose || '0' }}" \
+              --edit "$EDIT_TEXT"
+          fi
 
       - name: Commit results
         if: always()
