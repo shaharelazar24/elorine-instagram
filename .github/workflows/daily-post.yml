@@ -31,6 +31,18 @@ on:
         description: "כמה שמלות בודדות"
         required: false
         default: "2"
+      pin_carousels:
+        description: "קיבוע קרוסלות — handles מופרדים בפסיק (ריק = בחירה אוטומטית)"
+        required: false
+        default: ""
+      pin_singles:
+        description: "קיבוע בודדות — handles מופרדים בפסיק (ריק = בחירה אוטומטית)"
+        required: false
+        default: ""
+      background:
+        description: "קיבוע רקע אחד לכל הפעימה — id מ-brand_kit (ריק = אוטומטי)"
+        required: false
+        default: ""
       generate:
         description: "לייצר תמונות חדשות? false = לפרסם רק מה שכבר קיים (true/false)"
         required: false
@@ -76,6 +88,12 @@ jobs:
       ATMOSPHERE_PER_RUN: ${{ github.event.inputs.atmosphere || vars.ATMOSPHERE_PER_RUN || '0' }}
       SINGLES_PER_RUN: ${{ github.event.inputs.singles || vars.SINGLES_PER_RUN || '2' }}
       PUBLISH_TO_FACEBOOK: ${{ github.event.inputs.facebook || 'true' }}
+
+      # קיבוע ידני — רק בהרצה ידנית. בהרצה מתוזמנת שלושת אלה ריקים
+      # והבחירה חוזרת להיות אוטומטית לפי התור ולפי ה-hash של הידית.
+      PIN_CAROUSELS: ${{ github.event.inputs.pin_carousels || '' }}
+      PIN_SINGLES: ${{ github.event.inputs.pin_singles || '' }}
+      FORCE_BACKGROUND: ${{ github.event.inputs.background || '' }}
 
     steps:
       # ---------- 0. שער שעון ישראל ----------
