@@ -1,0 +1,180 @@
+[
+  {
+    "type": "carousel",
+    "handle": "amalfi-midi",
+    "title": "שמלת קמיל | מידי",
+    "dress_name": "קמיל",
+    "product_url": "https://elorine.co.il/products/amalfi-midi",
+    "price_ils": "559.0",
+    "items": [
+      {
+        "colour": "אדום",
+        "path": "posts/2026-09-30/amalfi-midi__1.jpg",
+        "background": "villa_garden",
+        "background_he": "חצר וילה עם עצים ודשא",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1448
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-09-30/amalfi-midi__2.jpg",
+        "background": "villa_garden",
+        "background_he": "חצר וילה עם עצים ודשא",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1311
+        }
+      },
+      {
+        "colour": "צהוב בהיר",
+        "path": "posts/2026-09-30/amalfi-midi__3.jpg",
+        "background": "villa_garden",
+        "background_he": "חצר וילה עם עצים ודשא",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1308
+        }
+      },
+      {
+        "colour": "סגול",
+        "path": "posts/2026-09-30/amalfi-midi__4.jpg",
+        "background": "villa_garden",
+        "background_he": "חצר וילה עם עצים ודשא",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1069
+        }
+      },
+      {
+        "colour": "ורוד",
+        "path": "posts/2026-09-30/amalfi-midi__5.jpg",
+        "background": "villa_garden",
+        "background_he": "חצר וילה עם עצים ודשא",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1310
+        }
+      }
+    ],
+    "caption": "שמלת קמיל · ELORINE\nמחוך פיסולי מחטב מול חצאית מלאה שנעה בכל צעד.\nאותה שמלה ב-5 גוונים — אדום, שחור, צהוב בהיר, סגול וורוד. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי #מחוך #שמלה_שחורה",
+    "generated_at": "2026-09-30T06:34:29.674637+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "francesca-twill-midi",
+    "title": "שמלת נואל | טוויל מידי",
+    "dress_name": "נואל",
+    "product_url": "https://elorine.co.il/products/francesca-twill-midi",
+    "price_ils": "489.0",
+    "items": [
+      {
+        "colour": "לבן",
+        "path": "posts/2026-09-30/francesca-twill-midi__1.jpg",
+        "background": "villa_garden",
+        "background_he": "חצר וילה עם עצים ודשא",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1314
+        }
+      },
+      {
+        "colour": "אדום",
+        "path": "posts/2026-09-30/francesca-twill-midi__2.jpg",
+        "background": "villa_garden",
+        "background_he": "חצר וילה עם עצים ודשא",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1298
+        }
+      },
+      {
+        "colour": "ורוד",
+        "path": "posts/2026-09-30/francesca-twill-midi__3.jpg",
+        "background": "villa_garden",
+        "background_he": "חצר וילה עם עצים ודשא",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1326
+        }
+      }
+    ],
+    "caption": "שמלת נואל · ELORINE\nטוויל נושם עם מחוך עצמות שמחטב את המותן, קלאסיקה שתמיד נכונה.\nאותה שמלה ב-3 גוונים — לבן, אדום וורוד. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי #מחוך",
+    "generated_at": "2026-09-30T06:36:37.248789+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1339
+    },
+    "type": "single",
+    "handle": "matisse-maxi-dress-deep-red",
+    "title": "שמלת קסניה | מקסי",
+    "dress_name": "קסניה",
+    "product_url": "https://elorine.co.il/products/matisse-maxi-dress-deep-red",
+    "price_ils": "519.0",
+    "background": "villa_garden",
+    "background_he": "חצר וילה עם עצים ודשא",
+    "image_path": "posts/2026-09-30/matisse-maxi-dress-deep-red.jpg",
+    "caption": "שמלת קסניה · ELORINE\nמקסי באדום כהה ועשיר, לערבים שמתחילים חזק ונגמרים מאוחר.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי",
+    "alt_text": "שמלת קסניה של ELORINE, red, floor-length maxi, על רקע חצר וילה עם עצים ודשא.",
+    "generated_at": "2026-09-30T06:37:37.120082+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1319
+    },
+    "type": "single",
+    "handle": "gia-maxi-dress-ivory",
+    "title": "שמלת אוריאנה | מקסי",
+    "dress_name": "אוריאנה",
+    "product_url": "https://elorine.co.il/products/gia-maxi-dress-ivory",
+    "price_ils": "549.0",
+    "background": "villa_garden",
+    "background_he": "חצר וילה עם עצים ודשא",
+    "image_path": "posts/2026-09-30/gia-maxi-dress-ivory.jpg",
+    "caption": "שמלת אוריאנה · ELORINE\nמקסי רכה בשנהב חם, פשטות יוקרתית שמדברת בשקט.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שנהב",
+    "alt_text": "שמלת אוריאנה של ELORINE, ivory, floor-length maxi, על רקע חצר וילה עם עצים ודשא.",
+    "generated_at": "2026-09-30T06:38:37.198796+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
