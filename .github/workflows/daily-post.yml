@@ -43,6 +43,10 @@ on:
         description: "קיבוע רקע אחד לכל הפעימה — id מ-brand_kit (ריק = אוטומטי)"
         required: false
         default: ""
+      carousel_items:
+        description: "מקסימום תמונות בקרוסלה (2-10)"
+        required: false
+        default: "10"
       generate:
         description: "לייצר תמונות חדשות? false = לפרסם רק מה שכבר קיים (true/false)"
         required: false
@@ -94,6 +98,7 @@ jobs:
       PIN_CAROUSELS: ${{ github.event.inputs.pin_carousels || '' }}
       PIN_SINGLES: ${{ github.event.inputs.pin_singles || '' }}
       FORCE_BACKGROUND: ${{ github.event.inputs.background || '' }}
+      MAX_CAROUSEL_ITEMS: ${{ github.event.inputs.carousel_items || '10' }}
 
     steps:
       # ---------- 0. שער שעון ישראל ----------
