@@ -412,5 +412,131 @@
     "ig_media_id": "18094993772431702",
     "fb_post_id": "1246343165233097_122117274213444353",
     "published_at": "2026-10-05T06:30:05.006385+00:00"
+  },
+  {
+    "type": "carousel",
+    "handle": "tal-maxi-halter-deep-v-backless-dress",
+    "title": "שמלת מורגן | מקסי לבן",
+    "dress_name": "מורגן",
+    "product_url": "https://elorine.co.il/products/tal-maxi-halter-deep-v-backless-dress",
+    "price_ils": "279.0",
+    "items": [
+      {
+        "colour": "",
+        "path": "posts/2026-10-05/tal-maxi-halter-deep-v-backless-dress-r4__1.jpg",
+        "background": "villa_riviera",
+        "background_he": "וילה ים-תיכונית עם הצצה לבריכה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 841
+        }
+      },
+      {
+        "colour": "",
+        "path": "posts/2026-10-05/tal-maxi-halter-deep-v-backless-dress-r4__2.jpg",
+        "background": "villa_riviera",
+        "background_he": "וילה ים-תיכונית עם הצצה לבריכה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 720
+        }
+      }
+    ],
+    "caption": "שמלת מורגן · ELORINE\nלבן נקי שעושה רושם.\nמכמה זוויות. איזו זווית שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #קולר #גב_פתוח",
+    "generated_at": "2026-10-05T06:39:50.885684+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "ava-black-evening-maxi-dress",
+    "title": "שמלת אווה | מקסי",
+    "dress_name": "אווה",
+    "product_url": "https://elorine.co.il/products/ava-black-evening-maxi-dress",
+    "price_ils": "379.0",
+    "items": [
+      {
+        "colour": "שחור",
+        "path": "posts/2026-10-05/ava-black-evening-maxi-dress-r4__1.jpg",
+        "background": "villa_riviera",
+        "background_he": "וילה ים-תיכונית עם הצצה לבריכה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 907
+        }
+      },
+      {
+        "colour": "בורדו",
+        "path": "posts/2026-10-05/ava-black-evening-maxi-dress-r4__2.jpg",
+        "background": "villa_riviera",
+        "background_he": "וילה ים-תיכונית עם הצצה לבריכה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 955
+        }
+      }
+    ],
+    "caption": "שמלת אווה · ELORINE\nבשחור קלאסי או בורדו עשיר - שניהם נראים יקר בכל תאורה ומתאימים כמעט לכל אירוע.\nבשני גוונים — שחור ובורדו. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שמלת_ערב #שמלה_שחורה",
+    "generated_at": "2026-10-05T06:41:03.115772+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 841
+    },
+    "type": "single",
+    "handle": "briar-lace-long-sleeve-high-split-backless-maxi-dress",
+    "title": "שמלת אשלי | תחרה מקסי",
+    "dress_name": "אשלי",
+    "product_url": "https://elorine.co.il/products/briar-lace-long-sleeve-high-split-backless-maxi-dress",
+    "price_ils": "279.0",
+    "background": "villa_riviera",
+    "background_he": "וילה ים-תיכונית עם הצצה לבריכה",
+    "image_path": "posts/2026-10-05/briar-lace-long-sleeve-high-split-backless-maxi-dress-r4.jpg",
+    "caption": "שמלת אשלי · ELORINE\nתחרה שקופה בעדינות שעושה את כל העבודה.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #תחרה #שסע",
+    "alt_text": "שמלת אשלי של ELORINE, lace, floor-length maxi, high slit, על רקע וילה ים-תיכונית עם הצצה לבריכה.",
+    "generated_at": "2026-10-05T06:41:35.971909+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 965
+    },
+    "type": "single",
+    "handle": "giovanna-cream",
+    "title": "שמלת סבנה | שיפון מיני קרם",
+    "dress_name": "סבנה",
+    "product_url": "https://elorine.co.il/products/giovanna-cream",
+    "price_ils": "329.0",
+    "background": "villa_riviera",
+    "background_he": "וילה ים-תיכונית עם הצצה לבריכה",
+    "image_path": "posts/2026-10-05/giovanna-cream-r4.jpg",
+    "caption": "שמלת סבנה · ELORINE\nגזרה מחויטת ומדויקת בגוון פנינה מעודן, לאלגנטיות שלא צריכה אורך.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת סבנה של ELORINE, cream, chiffon, mini length, על רקע וילה ים-תיכונית עם הצצה לבריכה.",
+    "generated_at": "2026-10-05T06:42:39.131613+00:00",
+    "published_ig": false,
+    "published_fb": false
   }
 ]
