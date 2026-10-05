@@ -136,5 +136,131 @@
     "ig_media_id": "18594108028066609",
     "fb_post_id": "1246343165233097_122117268225444353",
     "published_at": "2026-10-05T05:50:40.082552+00:00"
+  },
+  {
+    "type": "carousel",
+    "handle": "tal-maxi-halter-deep-v-backless-dress",
+    "title": "שמלת מורגן | מקסי לבן",
+    "dress_name": "מורגן",
+    "product_url": "https://elorine.co.il/products/tal-maxi-halter-deep-v-backless-dress",
+    "price_ils": "279.0",
+    "items": [
+      {
+        "colour": "",
+        "path": "posts/2026-10-05/tal-maxi-halter-deep-v-backless-dress-r2__1.jpg",
+        "background": "palace_hall",
+        "background_he": "ארמון / מלון אירופאי קלאסי",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 989
+        }
+      },
+      {
+        "colour": "",
+        "path": "posts/2026-10-05/tal-maxi-halter-deep-v-backless-dress-r2__2.jpg",
+        "background": "palace_hall",
+        "background_he": "ארמון / מלון אירופאי קלאסי",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 847
+        }
+      }
+    ],
+    "caption": "שמלת מורגן · ELORINE\nלבן נקי שעושה רושם.\nמכמה זוויות. איזו זווית שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #קולר #גב_פתוח",
+    "generated_at": "2026-10-05T06:04:46.040492+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "ava-black-evening-maxi-dress",
+    "title": "שמלת אווה | מקסי",
+    "dress_name": "אווה",
+    "product_url": "https://elorine.co.il/products/ava-black-evening-maxi-dress",
+    "price_ils": "379.0",
+    "items": [
+      {
+        "colour": "שחור",
+        "path": "posts/2026-10-05/ava-black-evening-maxi-dress-r2__1.jpg",
+        "background": "palace_hall",
+        "background_he": "ארמון / מלון אירופאי קלאסי",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1033
+        }
+      },
+      {
+        "colour": "בורדו",
+        "path": "posts/2026-10-05/ava-black-evening-maxi-dress-r2__2.jpg",
+        "background": "palace_hall",
+        "background_he": "ארמון / מלון אירופאי קלאסי",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 880
+        }
+      }
+    ],
+    "caption": "שמלת אווה · ELORINE\nבשחור קלאסי או בורדו עשיר - שניהם נראים יקר בכל תאורה ומתאימים כמעט לכל אירוע.\nבשני גוונים — שחור ובורדו. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שמלת_ערב #שמלה_שחורה",
+    "generated_at": "2026-10-05T06:05:51.381348+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1098
+    },
+    "type": "single",
+    "handle": "briar-lace-long-sleeve-high-split-backless-maxi-dress",
+    "title": "שמלת אשלי | תחרה מקסי",
+    "dress_name": "אשלי",
+    "product_url": "https://elorine.co.il/products/briar-lace-long-sleeve-high-split-backless-maxi-dress",
+    "price_ils": "279.0",
+    "background": "palace_hall",
+    "background_he": "ארמון / מלון אירופאי קלאסי",
+    "image_path": "posts/2026-10-05/briar-lace-long-sleeve-high-split-backless-maxi-dress-r2.jpg",
+    "caption": "שמלת אשלי · ELORINE\nתחרה שקופה בעדינות שעושה את כל העבודה.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #תחרה #שסע",
+    "alt_text": "שמלת אשלי של ELORINE, lace, floor-length maxi, high slit, על רקע ארמון / מלון אירופאי קלאסי.",
+    "generated_at": "2026-10-05T06:06:23.776632+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 982
+    },
+    "type": "single",
+    "handle": "giovanna-cream",
+    "title": "שמלת סבנה | שיפון מיני קרם",
+    "dress_name": "סבנה",
+    "product_url": "https://elorine.co.il/products/giovanna-cream",
+    "price_ils": "329.0",
+    "background": "palace_hall",
+    "background_he": "ארמון / מלון אירופאי קלאסי",
+    "image_path": "posts/2026-10-05/giovanna-cream-r2.jpg",
+    "caption": "שמלת סבנה · ELORINE\nגזרה מחויטת ומדויקת בגוון פנינה מעודן, לאלגנטיות שלא צריכה אורך.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני",
+    "alt_text": "שמלת סבנה של ELORINE, cream, chiffon, mini length, על רקע ארמון / מלון אירופאי קלאסי.",
+    "generated_at": "2026-10-05T06:07:27.458458+00:00",
+    "published_ig": false,
+    "published_fb": false
   }
 ]
