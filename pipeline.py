@@ -368,6 +368,13 @@ def front_candidates(product: dict) -> list:
     return [chosen] + rest
 
 
+def repeat_tag(product: dict, manifest: list) -> str:
+    """סיומת לשם הקובץ כששמלה נוצרת שוב באותו יום. בלי זה ההרצה השנייה
+    דורסת את התמונות של הפוסט הראשון באותו שם בדיוק."""
+    seen = sum(1 for e in manifest if e.get("handle") == product["handle"])
+    return f"-r{seen + 1}" if seen else ""
+
+
 def carousel_items(product: dict) -> list:
     """מה ייכנס לקרוסלה — פריט אחד לכל תמונה.
 
@@ -1179,6 +1186,16 @@ def cmd_generate() -> None:
         if e.get("handle"):
             used.add(e["handle"])
 
+    #  שמלה שכבר בפעימה של היום בדרך כלל נחסמת, כדי לא לפרסם אותה פעמיים.
+    #  אבל קיבוע ידני הוא בקשה מפורשת — בדרך כלל "אותן שמלות, רקע אחר".
+    #  לכן שמלה מקובעת מותר להחזיר, והקבצים החדשים מקבלים שם נפרד כדי
+    #  לא לדרוס את התמונות של הפוסט הקודם.
+    repinned = {h for h in PIN_CAROUSELS + PIN_SINGLES if h in used}
+    if repinned:
+        log(f"קיבוע חוזר ({len(repinned)}) — שמלות שכבר בפעימה של היום "
+            f"נוצרות שוב: {', '.join(sorted(repinned))}")
+        used -= repinned
+
     need_car = max(0, CAROUSELS_PER_RUN - have["carousel"])
     need_atm = max(0, ATMOSPHERE_PER_RUN - have["atmosphere"])
     need_sgl = max(0, SINGLES_PER_RUN - have["single"])
@@ -1215,7 +1232,8 @@ def cmd_generate() -> None:
             except Exception as exc:                       # noqa: BLE001
                 log(f"   ✗ {colour['name']} נכשל, מדלג: {exc}")
                 continue
-            rel = f"posts/{out.name}/{file_slug(product['handle'])}__{len(paths) + 1}.jpg"
+            rel = (f"posts/{out.name}/{file_slug(product['handle'])}"
+                   f"{repeat_tag(product, manifest)}__{len(paths) + 1}.jpg")
             (ROOT / rel).write_bytes(feed)
             paths.append({"colour": colour["name"], "path": rel,
                           "background": bg["id"], "background_he": bg["he"],
@@ -1284,7 +1302,8 @@ def cmd_generate() -> None:
         except Exception as exc:                           # noqa: BLE001
             log(f"   ✗ נכשל, מדלג: {exc}")
             continue
-        rel = f"posts/{out.name}/{file_slug(product['handle'])}.jpg"
+        rel = (f"posts/{out.name}/{file_slug(product['handle'])}"
+               f"{repeat_tag(product, manifest)}.jpg")
         (ROOT / rel).write_bytes(feed)
         manifest.append({
             "quality": st,
