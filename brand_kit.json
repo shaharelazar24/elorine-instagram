@@ -3,26 +3,50 @@
   "handle": "@elorine.il",
   "site": "elorine.co.il",
   "positioning": "Quiet Luxury — אופנת נשים יוקרתית, אלגנטית, על-זמנית",
-
   "visual_dna": {
-    "mood": ["quiet luxury", "editorial", "understated", "mediterranean", "timeless"],
-    "avoid_mood": ["fast fashion", "neon", "busy", "cluttered", "over-retouched", "obvious AI"],
-    "palette_neutrals": ["#F4F0EA warm ivory", "#E8E2D9 bone", "#D9CFC2 sand", "#BFB3A4 taupe", "#8C8378 stone grey", "#2E2B28 soft charcoal"],
-    "palette_accents": ["#C9A46B muted brass", "#8E9E8B sage", "#7C6A5A walnut"],
+    "mood": [
+      "quiet luxury",
+      "editorial",
+      "understated",
+      "mediterranean",
+      "timeless"
+    ],
+    "avoid_mood": [
+      "fast fashion",
+      "neon",
+      "busy",
+      "cluttered",
+      "over-retouched",
+      "obvious AI"
+    ],
+    "palette_neutrals": [
+      "#F4F0EA warm ivory",
+      "#E8E2D9 bone",
+      "#D9CFC2 sand",
+      "#BFB3A4 taupe",
+      "#8C8378 stone grey",
+      "#2E2B28 soft charcoal"
+    ],
+    "palette_accents": [
+      "#C9A46B muted brass",
+      "#8E9E8B sage",
+      "#7C6A5A walnut"
+    ],
     "grain": "very light film grain, 35mm feel",
     "contrast": "medium-low, lifted blacks, no crushed shadows",
     "saturation": "slightly desaturated except the dress itself"
   },
-
   "output_spec": {
     "aspect_ratio": "4:5",
-    "pixels": [1600, 2000],
+    "pixels": [
+      1600,
+      2000
+    ],
     "format": "JPEG",
     "quality": 95,
     "min_height": 1400,
     "color_space": "sRGB"
   },
-
   "framing_rules": [
     "FULL FIGURE IN FRAME — NOTHING IS CROPPED. The entire model fits inside the picture: the top of her head and all of her hair are fully visible, her face is fully visible, and her feet and the hem of the dress are fully visible. Never cut the head, the hair, the face, the shoulders, the arms or the feet at any edge of the frame.",
     "Leave clear empty background ABOVE her head — roughly 10% of the frame height — and clear ground BELOW her feet — roughly 8% of the frame height. If you are unsure, step BACK and shoot wider. A tight crop is a mistake; a little extra room is not.",
@@ -33,34 +57,124 @@
     "full-length portrait distance, eye-level or very slightly low camera angle",
     "shot as if on 85mm f/2.0 — shallow but not blurry background"
   ],
-
   "_backgrounds_note": "בהשראת הפיד של @elorine.il — ים תיכוני, וילות עם בריכה, מרפסות עם נוף לים, רחובות אירופאיים, חוף, אבן חמה ואור אחר צהריים. הרקע תמיד מטושטש מספיק כדי שהשמלה תישאר הנושא, ולא חוזר על עצמו באותה הרצה.",
-
   "backgrounds": [
-    {"id": "sea_view_balcony", "he": "מרפסת עם נוף לים", "prompt": "a stone balcony with a wrought-iron railing overlooking the Mediterranean sea, the water and horizon far below and softly out of focus, late golden-hour sun, warm sand and pale blue"},
-    {"id": "villa_pool", "he": "בריכת וילה", "prompt": "the pale stone deck of a private Mediterranean villa pool, still turquoise water rippling gently behind, low white villa walls and cypress trees far back and heavily out of focus, bright late-morning sun and clean shadow"},
-    {"id": "infinity_pool_sea", "he": "בריכת אינפיניטי מול הים", "prompt": "an infinity pool on a cliffside villa terrace where the water edge meets the sea horizon far behind, pale travertine deck underfoot, turquoise and warm ivory, low golden sun"},
-    {"id": "poolside_loungers", "he": "מרפסת בריכה ומיטות שיזוף", "prompt": "a quiet villa poolside with cream canvas loungers and a folded linen towel, turquoise pool water rippling out of focus behind, warm pale stone underfoot, soft late-afternoon light"},
-    {"id": "villa_arch_pool", "he": "קשת וילה אל הבריכה", "prompt": "a whitewashed villa archway opening onto a pool courtyard, reflected water light dancing softly on the plaster, bougainvillea at the edge of frame, bright Mediterranean midday"},
-    {"id": "villa_sea_terrace", "he": "מרפסת וילה מול הים", "prompt": "the wide stone terrace of a white Mediterranean villa, potted olive trees and a low balustrade, the open sea filling the background far behind and out of focus, warm afternoon light"},
-    {"id": "european_street", "he": "רחוב אירופאי קלאסי", "prompt": "a quiet classic European street of old stone buildings with shuttered windows and worn cobblestones, the far end of the street heavily out of focus, warm late-afternoon light raking down one side"},
-    {"id": "mediterranean_beach", "he": "חוף ים תיכוני", "prompt": "a wide calm Mediterranean beach at golden hour, pale sand, gentle shallow water and a low horizon far behind and heavily out of focus, soft warm rim light from a low sun"},
-    {"id": "old_town_steps", "he": "מדרגות עיירה עתיקה", "prompt": "worn pale stone steps climbing between whitewashed old-town walls, a sliver of sea visible far at the top, strong Mediterranean sun and deep clean shadow"},
-    {"id": "bougainvillea_alley", "he": "סמטת בוגנוויליה", "prompt": "a narrow sunlit alley of warm ochre plaster walls with bougainvillea spilling overhead, dappled light on the ground, deep out-of-focus depth down the lane"},
-    {"id": "harbour_quay", "he": "רציף נמל", "prompt": "an old Mediterranean harbour quay of pale worn stone, moored boats and calm water far in the background and heavily out of focus, clear late-day light"},
-    {"id": "fig_courtyard", "he": "חצר תאנה", "prompt": "a quiet walled courtyard with an old fig tree and warm hot stone underfoot, dappled leaf shadow, the sea implied far below, dusty green and warm sand tones"},
-    {"id": "travertine_wall", "he": "קיר טרוורטין", "prompt": "a sunlit travertine stone wall in a quiet Mediterranean courtyard, warm ivory tones, soft diagonal afternoon shadow falling across the stone"},
-    {"id": "arched_corridor", "he": "מסדרון קשתות", "prompt": "a whitewashed arched corridor in a Mediterranean villa, deep shadow on one side, bright bounced daylight on the other, an opening to bright sky at the far end"},
-    {"id": "resort_terrace", "he": "מרפסת ריזורט", "prompt": "the stone terrace of a quiet coastal resort, pale linen shade sail overhead, a slice of turquoise water far behind and out of focus, bright warm midday light softened"},
-    {"id": "linen_drape", "he": "וילון פשתן", "prompt": "sheer white linen curtains lifting in the breeze at an open sea-facing doorway, warm window light, gentle backlight, bone-white and pale blue"},
-    {"id": "boutique_corner", "he": "פינת בוטיק", "prompt": "the quiet corner of a boutique interior, pale stone floor, warm plaster wall, slim brass details deep out of focus, soft directional afternoon daylight"},
-    {"id": "sunset_terrace", "he": "מרפסת שקיעה", "prompt": "a simple stone terrace facing the sea at sunset, warm amber and rose light low across the frame, the water a soft band far behind, long gentle shadows"},
-    {"id": "marble_stair", "he": "מדרגות שיש", "prompt": "a wide pale marble staircase with a slim brass handrail, cool diffused daylight from a tall window above"},
-    {"id": "olive_grove", "he": "חורשת זיתים", "prompt": "an old olive grove on a dry hillside, silver-green leaves catching low sun, deep out-of-focus rows behind, dusty sage and warm sand"},
-    {"id": "plaster_studio", "he": "סטודיו טיח", "prompt": "a seamless hand-troweled lime plaster studio backdrop in warm bone white, subtle texture, single large soft key light from camera left"},
-    {"id": "villa_garden", "he": "חצר וילה עם עצים ודשא", "prompt": "the private garden courtyard of a Mediterranean villa: a neatly mown deep-green lawn underfoot, mature olive and cypress trees and clipped hedges standing behind her, a pale stone path and the low cream wall of the villa far back and heavily out of focus, warm late-afternoon sun raking through the leaves and laying soft dappled light across the grass"}
+    {
+      "id": "sea_view_balcony",
+      "he": "מרפסת עם נוף לים",
+      "prompt": "a stone balcony with a wrought-iron railing overlooking the Mediterranean sea, the water and horizon far below and softly out of focus, late golden-hour sun, warm sand and pale blue"
+    },
+    {
+      "id": "villa_pool",
+      "he": "בריכת וילה",
+      "prompt": "the pale stone deck of a private Mediterranean villa pool, still turquoise water rippling gently behind, low white villa walls and cypress trees far back and heavily out of focus, bright late-morning sun and clean shadow"
+    },
+    {
+      "id": "infinity_pool_sea",
+      "he": "בריכת אינפיניטי מול הים",
+      "prompt": "an infinity pool on a cliffside villa terrace where the water edge meets the sea horizon far behind, pale travertine deck underfoot, turquoise and warm ivory, low golden sun"
+    },
+    {
+      "id": "poolside_loungers",
+      "he": "מרפסת בריכה ומיטות שיזוף",
+      "prompt": "a quiet villa poolside with cream canvas loungers and a folded linen towel, turquoise pool water rippling out of focus behind, warm pale stone underfoot, soft late-afternoon light"
+    },
+    {
+      "id": "villa_arch_pool",
+      "he": "קשת וילה אל הבריכה",
+      "prompt": "a whitewashed villa archway opening onto a pool courtyard, reflected water light dancing softly on the plaster, bougainvillea at the edge of frame, bright Mediterranean midday"
+    },
+    {
+      "id": "villa_sea_terrace",
+      "he": "מרפסת וילה מול הים",
+      "prompt": "the wide stone terrace of a white Mediterranean villa, potted olive trees and a low balustrade, the open sea filling the background far behind and out of focus, warm afternoon light"
+    },
+    {
+      "id": "european_street",
+      "he": "רחוב אירופאי קלאסי",
+      "prompt": "a quiet classic European street of old stone buildings with shuttered windows and worn cobblestones, the far end of the street heavily out of focus, warm late-afternoon light raking down one side"
+    },
+    {
+      "id": "mediterranean_beach",
+      "he": "חוף ים תיכוני",
+      "prompt": "a wide calm Mediterranean beach at golden hour, pale sand, gentle shallow water and a low horizon far behind and heavily out of focus, soft warm rim light from a low sun"
+    },
+    {
+      "id": "old_town_steps",
+      "he": "מדרגות עיירה עתיקה",
+      "prompt": "worn pale stone steps climbing between whitewashed old-town walls, a sliver of sea visible far at the top, strong Mediterranean sun and deep clean shadow"
+    },
+    {
+      "id": "bougainvillea_alley",
+      "he": "סמטת בוגנוויליה",
+      "prompt": "a narrow sunlit alley of warm ochre plaster walls with bougainvillea spilling overhead, dappled light on the ground, deep out-of-focus depth down the lane"
+    },
+    {
+      "id": "harbour_quay",
+      "he": "רציף נמל",
+      "prompt": "an old Mediterranean harbour quay of pale worn stone, moored boats and calm water far in the background and heavily out of focus, clear late-day light"
+    },
+    {
+      "id": "fig_courtyard",
+      "he": "חצר תאנה",
+      "prompt": "a quiet walled courtyard with an old fig tree and warm hot stone underfoot, dappled leaf shadow, the sea implied far below, dusty green and warm sand tones"
+    },
+    {
+      "id": "travertine_wall",
+      "he": "קיר טרוורטין",
+      "prompt": "a sunlit travertine stone wall in a quiet Mediterranean courtyard, warm ivory tones, soft diagonal afternoon shadow falling across the stone"
+    },
+    {
+      "id": "arched_corridor",
+      "he": "מסדרון קשתות",
+      "prompt": "a whitewashed arched corridor in a Mediterranean villa, deep shadow on one side, bright bounced daylight on the other, an opening to bright sky at the far end"
+    },
+    {
+      "id": "resort_terrace",
+      "he": "מרפסת ריזורט",
+      "prompt": "the stone terrace of a quiet coastal resort, pale linen shade sail overhead, a slice of turquoise water far behind and out of focus, bright warm midday light softened"
+    },
+    {
+      "id": "linen_drape",
+      "he": "וילון פשתן",
+      "prompt": "sheer white linen curtains lifting in the breeze at an open sea-facing doorway, warm window light, gentle backlight, bone-white and pale blue"
+    },
+    {
+      "id": "boutique_corner",
+      "he": "פינת בוטיק",
+      "prompt": "the quiet corner of a boutique interior, pale stone floor, warm plaster wall, slim brass details deep out of focus, soft directional afternoon daylight"
+    },
+    {
+      "id": "sunset_terrace",
+      "he": "מרפסת שקיעה",
+      "prompt": "a simple stone terrace facing the sea at sunset, warm amber and rose light low across the frame, the water a soft band far behind, long gentle shadows"
+    },
+    {
+      "id": "marble_stair",
+      "he": "מדרגות שיש",
+      "prompt": "a wide pale marble staircase with a slim brass handrail, cool diffused daylight from a tall window above"
+    },
+    {
+      "id": "olive_grove",
+      "he": "חורשת זיתים",
+      "prompt": "an old olive grove on a dry hillside, silver-green leaves catching low sun, deep out-of-focus rows behind, dusty sage and warm sand"
+    },
+    {
+      "id": "plaster_studio",
+      "he": "סטודיו טיח",
+      "prompt": "a seamless hand-troweled lime plaster studio backdrop in warm bone white, subtle texture, single large soft key light from camera left"
+    },
+    {
+      "id": "villa_garden",
+      "he": "חצר וילה עם עצים ודשא",
+      "prompt": "the private garden courtyard of a Mediterranean villa: a neatly mown deep-green lawn underfoot, mature olive and cypress trees and clipped hedges standing behind her, a pale stone path and the low cream wall of the villa far back and heavily out of focus, warm late-afternoon sun raking through the leaves and laying soft dappled light across the grass"
+    },
+    {
+      "id": "villa_hall",
+      "he": "מסדרון וילה עם נוף לבריכה",
+      "prompt": "the entrance hall of a luxury Mediterranean villa, shot indoors: a very high ceiling, tall plastered walls in warm bone white, a pale travertine floor, and a large floor-to-ceiling opening along one side of the frame through which a slice of the garden and the turquoise swimming pool is visible, far away and heavily out of focus. Soft daylight pours in from that opening and falls across the floor; the far end of the hall stays calm and shadowed. Architectural, quiet and expensive — no furniture clutter, no people"
+    }
   ],
-
   "fidelity_rules": [
     "The dress must remain EXACTLY as in the source photograph. Treat the garment as a fixed, uneditable object that you are relighting, not redrawing.",
     "Do not change: colour, hue, saturation, fabric, texture, sheen, print, pattern, sequins, lace, embroidery.",
@@ -72,14 +186,12 @@
     "Do not restyle, do not add jewellery, belts, bags or outerwear that were not in the source.",
     "Only the background, the environment, the lighting on the scene and the overall colour grade may change."
   ],
-
   "colour_isolation": [
     "The colour grade applies to the ENVIRONMENT and the LIGHT ONLY — never to the garment itself.",
     "The garment's hue and saturation must read identical to the source. Do not warm it, cool it, tint it, mute it, or pull it toward the scene palette.",
     "If the scene is warm and the garment is cool — or the reverse — let them stay different. That contrast is correct and intended.",
     "Light may fall across the fabric and create highlight and shadow, but the fabric's own colour underneath must not shift."
   ],
-
   "negative_rules": [
     "NEVER crop the model's head, hair, face, shoulders or feet at the edge of the frame",
     "no headless composition, no faceless composition, no close-up, no half-body or waist-up crop",

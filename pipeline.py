@@ -45,7 +45,9 @@ POSTS_DIR = ROOT / "posts"
 CAROUSELS_PER_RUN = int(os.getenv("CAROUSELS_PER_RUN", "2"))
 ATMOSPHERE_PER_RUN = int(os.getenv("ATMOSPHERE_PER_RUN", "0"))
 SINGLES_PER_RUN = int(os.getenv("SINGLES_PER_RUN", "2"))
-MAX_CAROUSEL_ITEMS = 10          # מגבלת אינסטגרם
+#  מגבלת אינסטגרם היא 10. אפשר להקטין כדי לשלוט בכמה תמונות יש בקרוסלה
+#  ובכמה קרדיטים הפעימה שורפת.
+MAX_CAROUSEL_ITEMS = max(2, min(10, int(os.getenv("MAX_CAROUSEL_ITEMS", "10"))))
 
 
 def _handle_list(name: str) -> list:
@@ -168,14 +170,13 @@ def build_queue(products: list, state: dict) -> list:
 
 
 def pin_products(handles: list, products: list, state: dict,
-                 min_colours: int = 0) -> list:
+                 for_carousel: bool = False) -> list:
     """השמלות המקובעות, לפי הסדר שנתבקש, גם אם פורסמו לאחרונה.
     handle שלא קיים — מדווח ומדולג, לא מפיל את ההרצה.
 
-    min_colours=0 בכוונה: פוסט בודד לא צריך וריאנטים צבעוניים בכלל, הוא
-    משתמש בתמונות המוצר. בחנות יש שמלות שלכל הווריאנטים שלהן אין תמונה
-    ולכן colours ריק — הן עדיין לגמרי תקינות לפוסט בודד. רק לקרוסלה
-    צריך 2 צבעים, ושם הקריאה מעבירה min_colours=2 במפורש."""
+    לפוסט בודד אין שום דרישה: הוא עובד מתמונות המוצר, ובחנות יש שמלות
+    שלכל הווריאנטים שלהן אין תמונה ולכן colours ריק. לקרוסלה צריך שני
+    פריטים — או שני צבעים, או שתי תמונות מוצר של אותו גוון."""
     by_handle = {p["handle"]: p for p in products}
     picked = []
     for h in handles:
@@ -183,9 +184,10 @@ def pin_products(handles: list, products: list, state: dict,
         if p is None:
             log(f"⚠ קיבוע: אין שמלה פעילה עם handle '{h}' — מדלגים.")
             continue
-        if len(p["colours"]) < min_colours:
-            log(f"⚠ קיבוע: ל-'{h}' יש {len(p['colours'])} צבעים, "
-                f"צריך לפחות {min_colours} — מדלגים.")
+        if for_carousel and (len(p.get("colours") or []) < 2
+                             and len(p.get("images") or []) < 2):
+            log(f"⚠ קיבוע: ל-'{h}' יש צבע אחד ותמונת מוצר אחת — "
+                "אי אפשר לבנות קרוסלה, מדלגים.")
             continue
         #  שמלה שכבר פורסמה מסומנת כמיחזור כדי שתקבל רקע אחר מהפעם הקודמת
         p["_recycled"] = posted_age_days(p, state) is not None
@@ -364,6 +366,30 @@ def front_candidates(product: dict) -> list:
     rest = [im for im in product.get("images", [])[:8]
             if im.get("url") != chosen.get("url")]
     return [chosen] + rest
+
+
+def carousel_items(product: dict) -> list:
+    """מה ייכנס לקרוסלה — פריט אחד לכל תמונה.
+
+    שמלה רב-צבעונית: צבע לכל פריט, וזו ההשוואה שהקרוסלה מציגה.
+    שמלה שקיימת בצבע אחד בלבד: כמה תמונות מוצר שונות של אותה שמלה —
+    זוויות ופוזות שונות של אותו גוון. בלי זה אי אפשר לעשות קרוסלה
+    לשמלה חד-גונית בכלל."""
+    cols = product.get("colours") or []
+    if len(cols) >= 2:
+        return cols[:MAX_CAROUSEL_ITEMS]
+
+    colour_name = cols[0]["name"] if cols else ""
+    seen, items = set(), []
+    for img in front_candidates(product):
+        url = img.get("url")
+        if not url or url.split("?")[0] in seen:
+            continue
+        seen.add(url.split("?")[0])
+        items.append({"name": colour_name, "image": url})
+        if len(items) >= MAX_CAROUSEL_ITEMS:
+            break
+    return items
 
 
 def pick_front_image(product: dict) -> dict:
@@ -897,13 +923,23 @@ def build_caption(product: dict) -> str:
 
 
 def build_carousel_caption(product: dict, colours: list) -> str:
-    names = [c["name"] for c in colours]
+    #  dict.fromkeys שומר על הסדר ומוריד כפילויות. בקרוסלה של שמלה
+    #  חד-גונית כל הפריטים הם אותו גוון, ואז אין על מה להשוות.
+    names = list(dict.fromkeys(c["name"] for c in colours if c.get("name")))
+    tail = "איזו זווית שלך? גללי ▶️"
     if len(names) > 2:
-        colour_line = f"אותה שמלה ב-{len(names)} גוונים — {', '.join(names[:-1])} ו{names[-1]}."
-    else:
+        colour_line = (f"אותה שמלה ב-{len(names)} גוונים — "
+                       f"{', '.join(names[:-1])} ו{names[-1]}.")
+        tail = "איזה שלך? גללי ▶️"
+    elif len(names) == 2:
         colour_line = f"בשני גוונים — {names[0]} ו{names[1]}."
+        tail = "איזה שלך? גללי ▶️"
+    elif names:
+        colour_line = f"בגוון {names[0]}, מכמה זוויות."
+    else:
+        colour_line = "מכמה זוויות."
     return (f"שמלת {dress_name(product['title'])} · ELORINE\n"
-            f"{hook_line(product)}\n{colour_line} איזה שלך? גללי ▶️\n"
+            f"{hook_line(product)}\n{colour_line} {tail}\n"
             f"{CTA}\n{' '.join(build_hashtags(product))}")
 
 
@@ -1112,7 +1148,7 @@ def cmd_generate() -> None:
         f"|  רב-צבעוניות: {len(multi)}")
 
     # קיבוע ידני — עוקף את התור ומכניס שמלות מסוימות לראש הרשימה.
-    pinned_car = pin_products(PIN_CAROUSELS, products, state, min_colours=2)
+    pinned_car = pin_products(PIN_CAROUSELS, products, state, for_carousel=True)
     pinned_sgl = pin_products(PIN_SINGLES, products, state)
     if pinned_car or pinned_sgl:
         log("קיבוע ידני לפעימה הזו: "
@@ -1161,19 +1197,19 @@ def cmd_generate() -> None:
         if out_of_time("קרוסלה"):
             break
         name = dress_name(product["title"])
-        colours = product["colours"][:MAX_CAROUSEL_ITEMS]
+        colours = carousel_items(product)
         # רקע אחיד לכל הקרוסלה — הצבע הוא ההשוואה, לא הסביבה
         bg = pick_background(bg_key(product, out.name), bg_taken)
         bg_taken.add(bg["id"])
-        log(f"\n▶ קרוסלה: {name} — {len(colours)} צבעים  רקע: {bg['he']}"
+        log(f"\n▶ קרוסלה: {name} — {len(colours)} תמונות  רקע: {bg['he']}"
             + ("  [מיחזור]" if product.get("_recycled") else ""))
         paths = []
-        for colour in colours:
-            log(f"   · {colour['name']}")
+        for idx, colour in enumerate(colours, start=1):
+            log(f"   · {colour['name']} ({idx}/{len(colours)})")
             try:
                 feed, st = render(colour["image"],
                                   build_prompt(product, bg, colour["name"]),
-                                  f"{name}/{colour['name']}")
+                                  f"{name}/{colour['name']}-{idx}")
             except GeminiCreditsExhausted:
                 raise
             except Exception as exc:                       # noqa: BLE001
