@@ -1719,8 +1719,12 @@ Photorealistic, real skin texture with pores, light film-like grain, sharp on th
 face and the dress. No text, no logos, no watermark. Vertical 4:5."""
 
 
-def cmd_bgswap(sources: str, tag: str = "") -> None:
-    """מחליף רקע לסטודיו בכל התמונות ברשימה — עם אותו תיאור רקע בדיוק."""
+def cmd_bgswap(sources: str, tag: str = "", scenes: str = "") -> None:
+    """מחליף את הרקע בכל התמונות ברשימה.
+
+    בלי scenes — אותו רקע סטודיו בדיוק לכולן.
+    עם scenes (תיאורים מופרדים ב-||) — רקע משלו לכל תמונה, לפי הסדר.
+    פחות תיאורים מתמונות: האחרון חוזר על עצמו."""
     paths = [ROOT / s.strip() for s in sources.split(",") if s.strip()]
     missing = [str(p) for p in paths if not p.exists()]
     if missing:
@@ -1728,13 +1732,21 @@ def cmd_bgswap(sources: str, tag: str = "") -> None:
 
     out = ROOT / "studio" / "out"
     out.mkdir(parents=True, exist_ok=True)
-    prompt = BGSWAP_PROMPT.format(scene=BGSWAP_SCENE)
+    scene_list = [s.strip() for s in scenes.split("||") if s.strip()]
     suffix = f"__{tag}" if tag else ""
-    log(f"החלפת רקע לסטודיו — {len(paths)} תמונות, אותו רקע בדיוק")
+    if scene_list:
+        log(f"החלפת רקע — {len(paths)} תמונות, "
+            f"{len(scene_list)} תיאורי רקע שונים")
+    else:
+        log(f"החלפת רקע לסטודיו — {len(paths)} תמונות, אותו רקע בדיוק")
 
     made = 0
     for i, src in enumerate(paths, start=1):
+        scene = (scene_list[min(i - 1, len(scene_list) - 1)]
+                 if scene_list else BGSWAP_SCENE)
         log(f"\n▶ {i}/{len(paths)}  {src.name}")
+        log(f"   רקע: {scene[:90]}…")
+        prompt = BGSWAP_PROMPT.format(scene=scene)
         raw = src.read_bytes()
         mime = mimetypes.guess_type(src.name)[0] or "image/jpeg"
         data = None
@@ -1808,9 +1820,11 @@ def main() -> None:
     bg = sub.add_parser("bgswap", help="החלפת רקע לסטודיו, אותו רקע לכל התמונות")
     bg.add_argument("sources", help="נתיבים בתוך הריפו, מופרדים בפסיק")
     bg.add_argument("--tag", default="", help="תווית לגרסה, למשל v2")
+    bg.add_argument("--scenes", default="",
+                    help="רקע משלו לכל תמונה, מופרדים ב-|| (ריק = רקע סטודיו)")
     args = ap.parse_args()
     if args.cmd == "bgswap":
-        cmd_bgswap(args.sources, args.tag)
+        cmd_bgswap(args.sources, args.tag, args.scenes)
         return
     if args.cmd == "studio":
         if args.edit.strip():
