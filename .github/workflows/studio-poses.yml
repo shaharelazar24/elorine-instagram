@@ -31,6 +31,10 @@ on:
         description: "החלפת רקע לסטודיו בלבד — נתיבים מופרדים בפסיק (גובר על השאר)"
         required: false
         default: ""
+      scenes:
+        description: "רקע משלו לכל תמונה ב-bgswap, מופרדים ב-|| (ריק = סטודיו)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -61,10 +65,13 @@ jobs:
         env:
           EDIT_TEXT: ${{ github.event.inputs.edit }}
           BGSWAP: ${{ github.event.inputs.bgswap }}
+          SCENES: ${{ github.event.inputs.scenes }}
         run: |
-          # bgswap גובר: החלפת רקע בלבד, אותו רקע בדיוק לכל התמונות
+          # bgswap גובר: החלפת רקע בלבד. בלי scenes — רקע סטודיו אחיד;
+          # עם scenes — רקע משלו לכל תמונה, לפי הסדר.
           if [ -n "$BGSWAP" ]; then
-            python pipeline.py bgswap "$BGSWAP" --tag "${{ github.event.inputs.tag }}"
+            python pipeline.py bgswap "$BGSWAP" \
+              --tag "${{ github.event.inputs.tag }}" --scenes "$SCENES"
           else
             python pipeline.py studio "${{ github.event.inputs.source }}" \
               --count "${{ github.event.inputs.count }}" \
