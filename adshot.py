@@ -6,9 +6,10 @@
 הכיתוב בעברית לא נוצר כאן — הוא מולבש על התמונה אחר כך, כדי שהאותיות
 יהיו נכונות ולא "כמעט עברית" של מודל תמונה.
 
-    python adshot.py "<handles>" "<poses>" "<scenes>" "<brands>" [tag] [ratio]
+    python adshot.py "<sources>" "<poses>" "<scenes>" "<brands>" [tag] [ratio]
 
-handles מופרדים בפסיק; השאר מופרדים ב-||, לפי אותו סדר.
+sources מופרדים בפסיק — או handle של שמלה מהחנות, או נתיב לתמונה
+בריפו (למשל studio/navy.png). השאר מופרדים ב-||, לפי אותו סדר.
 פחות תיאורים משמלות — האחרון חוזר על עצמו.
 ratio: 4:5 (פיד, ברירת מחדל), 9:16 (סטורי מסך מלא), 3:4, 1:1.
 """
@@ -78,13 +79,40 @@ def pick(items: list, i: int) -> str:
     return items[min(i, len(items) - 1)] if items else ""
 
 
+IMAGE_EXT = (".jpg", ".jpeg", ".png", ".webp")
+
+
+def is_path(src: str) -> bool:
+    """נתיב לתמונה בריפו, להבדיל מ-handle של שמלה בחנות."""
+    return "/" in src or src.lower().endswith(IMAGE_EXT)
+
+
+def load_source(src: str, products: dict):
+    """מחזיר (bytes, mime, slug) — מקובץ בריפו או מתמונת מוצר בשופיפיי."""
+    if is_path(src):
+        path = P.ROOT / src
+        if not path.exists():
+            raise FileNotFoundError(f"אין קובץ כזה בריפו: {src}")
+        mime = mimetypes.guess_type(path.name)[0] or "image/jpeg"
+        return path.read_bytes(), mime, path.stem
+    product = products.get(src)
+    if product is None:
+        raise KeyError(f"אין שמלה פעילה עם handle '{src}'")
+    P.log(f"   · {product['title']}")
+    url = P.front_candidates(product)[0]["url"]
+    resp = requests.get(url, timeout=60)
+    resp.raise_for_status()
+    mime = mimetypes.guess_type(url.split("?")[0])[0] or "image/jpeg"
+    return resp.content, mime, P.file_slug(src)
+
+
 def main() -> None:
-    handles = [h.strip() for h in arg(1).split(",") if h.strip()]
+    sources = [h.strip() for h in arg(1).split(",") if h.strip()]
     poses, scenes, brands = split(arg(2)), split(arg(3)), split(arg(4))
     tag = arg(5) or "ad"
     ratio = arg(6).strip() or "4:5"
-    if not handles:
-        sys.exit("✗ לא נמסרו handles")
+    if not sources:
+        sys.exit("✗ לא נמסרו מקורות")
     if ratio not in RATIOS:
         sys.exit(f"✗ יחס מסך לא נתמך: {ratio} (אפשרי: {', '.join(RATIOS)})")
 
@@ -95,36 +123,32 @@ def main() -> None:
 
     out = P.ROOT / "studio" / "out"
     out.mkdir(parents=True, exist_ok=True)
-    P.log(f"פוסטרי קמפיין — {len(handles)} שמלות, יחס {ratio} "
+    P.log(f"פוסטרי קמפיין — {len(sources)} תמונות, יחס {ratio} "
           f"({P.FEED_W}x{P.FEED_H})")
-    products = {p["handle"]: p for p in P.shopify_dresses()}
+
+    #  פונים לשופיפיי רק אם באמת יש handle ברשימה.
+    products = ({} if all(is_path(s) for s in sources)
+                else {p["handle"]: p for p in P.shopify_dresses()})
 
     made = 0
-    for i, handle in enumerate(handles):
-        product = products.get(handle)
-        if product is None:
-            P.log(f"⚠ אין שמלה פעילה עם handle '{handle}' — מדלגים.")
-            continue
-        P.log(f"\n▶ {i + 1}/{len(handles)}  {product['title']}")
+    for i, src in enumerate(sources):
+        P.log(f"\n▶ {i + 1}/{len(sources)}  {src}")
         try:
-            url = P.front_candidates(product)[0]["url"]
-            resp = requests.get(url, timeout=60)
-            resp.raise_for_status()
-            mime = mimetypes.guess_type(url.split("?")[0])[0] or "image/jpeg"
+            raw, mime, slug = load_source(src, products)
             prompt = PROMPT.format(pose=pick(poses, i), scene=pick(scenes, i),
                                    brand=pick(brands, i), ratio=ratio)
-            data, _ = P.to_feed_format(P.gemini_edit(resp.content, mime, prompt))
+            data, _ = P.to_feed_format(P.gemini_edit(raw, mime, prompt))
         except P.GeminiCreditsExhausted:
             raise
         except Exception as exc:                           # noqa: BLE001
             P.log(f"   ✗ נכשל: {exc}")
             continue
-        path = out / f"ad-{P.file_slug(handle)}__{tag}.jpg"
+        path = out / f"ad-{slug}__{tag}.jpg"
         path.write_bytes(data)
         made += 1
         P.log(f"   ✓ {path.relative_to(P.ROOT)}  ({len(data) // 1024} KB)")
 
-    P.log(f"\nנוצרו {made}/{len(handles)} פוסטרים ב-studio/out/")
+    P.log(f"\nנוצרו {made}/{len(sources)} פוסטרים ב-studio/out/")
     if not made:
         sys.exit(1)
 
