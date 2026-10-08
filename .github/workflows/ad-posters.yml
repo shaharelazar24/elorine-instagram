@@ -1,0 +1,78 @@
+name: ELORINE — ad posters
+
+# הרצה ידנית: פוסטר קמפיין לכל שמלה — פוזה חדשה, רקע ייחודי ומיתוג
+# ELORINE בתוך הסצנה. בלי כיתוב בעברית; הוא מולבש אחר כך.
+# התוצאות נשמרות ב-studio/out/ בשם ad-<handle>__<tag>.jpg
+
+on:
+  workflow_dispatch:
+    inputs:
+      handles:
+        description: "handles של השמלות, מופרדים בפסיק"
+        required: true
+      poses:
+        description: "פוזה לכל שמלה, מופרדות ב-||"
+        required: true
+      scenes:
+        description: "רקע לכל שמלה, מופרדים ב-||"
+        required: true
+      brands:
+        description: "איך ELORINE מופיע בתוך הסצנה, מופרד ב-||"
+        required: true
+      tag:
+        description: "תווית לגרסה — כדי לא לדרוס תוצאות קודמות"
+        required: false
+        default: "ad"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: elorine-studio
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.1-flash-image' }}
+      GEMINI_IMAGE_SIZE: ${{ vars.GEMINI_IMAGE_SIZE || '2K' }}
+      SHOPIFY_STORE: ${{ vars.SHOPIFY_STORE }}
+      SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+      SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build posters
+        env:
+          HANDLES: ${{ github.event.inputs.handles }}
+          POSES: ${{ github.event.inputs.poses }}
+          SCENES: ${{ github.event.inputs.scenes }}
+          BRANDS: ${{ github.event.inputs.brands }}
+          TAG: ${{ github.event.inputs.tag }}
+        run: python adshot.py "$HANDLES" "$POSES" "$SCENES" "$BRANDS" "$TAG"
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name  "elorine-bot"
+          git config user.email "actions@github.com"
+          git add studio/out/ || true
+          if git diff --staged --quiet; then echo "אין תוצאות לשמור."; exit 0; fi
+          git commit -m "studio: ad posters"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            git pull --rebase origin main || { git rebase --abort || true; }
+            sleep $((5 * i))
+          done
+          exit 1
