@@ -6,10 +6,11 @@
 הכיתוב בעברית לא נוצר כאן — הוא מולבש על התמונה אחר כך, כדי שהאותיות
 יהיו נכונות ולא "כמעט עברית" של מודל תמונה.
 
-    python adshot.py "<handles>" "<poses>" "<scenes>" "<brands>" [tag]
+    python adshot.py "<handles>" "<poses>" "<scenes>" "<brands>" [tag] [ratio]
 
 handles מופרדים בפסיק; השאר מופרדים ב-||, לפי אותו סדר.
 פחות תיאורים משמלות — האחרון חוזר על עצמו.
+ratio: 4:5 (פיד, ברירת מחדל), 9:16 (סטורי מסך מלא), 3:4, 1:1.
 """
 
 import mimetypes
@@ -18,6 +19,14 @@ import sys
 import requests
 
 import pipeline as P
+
+#  יחסי מסך נתמכים → גודל הפלט בפיקסלים.
+RATIOS = {
+    "4:5": (1600, 2000),
+    "9:16": (1440, 2560),     # סטורי / רילס — תופס את כל מסך הטלפון
+    "3:4": (1536, 2048),
+    "1:1": (1600, 1600),
+}
 
 PROMPT = """You are a fashion photographer shooting a paid advertising campaign
 for ELORINE, an Israeli quiet-luxury dress label.
@@ -43,15 +52,18 @@ correctly, sharp and legible, in a clean elegant serif. It belongs to the place,
 lit by the same light as everything else. No other words anywhere in the picture,
 no other brand, no watermark, no caption, no price, no logo but that one.
 
-FRAMING
-Vertical 4:5, head to hem, nothing cut off. Place her a little off-centre and keep
-the top third of the frame calm and uncluttered — that area is reserved for text
-that will be added later.
+FRAMING — {ratio} VERTICAL, FULL BLEED
+The photograph fills the ENTIRE frame, edge to edge, corner to corner. There must
+be NO border, NO frame, NO letterbox, NO black or grey band across the top or the
+bottom, and no strip where the picture changes into a flat empty surface. The real
+scene continues all the way to all four edges.
+She is head to hem inside the frame with nothing cut off, placed a little
+off-centre, and the area named in the SCENE is kept clear for text.
 
 QUALITY
 It must look like one real photograph taken on a professional camera: real depth
 of field, real light, real shadows, real skin and fabric texture. Not CGI, not a
-3D render, nothing that reads as AI-generated. No other people in the frame."""
+3D render, nothing that reads as AI-generated."""
 
 
 def arg(i: int, default: str = "") -> str:
@@ -70,12 +82,21 @@ def main() -> None:
     handles = [h.strip() for h in arg(1).split(",") if h.strip()]
     poses, scenes, brands = split(arg(2)), split(arg(3)), split(arg(4))
     tag = arg(5) or "ad"
+    ratio = arg(6).strip() or "4:5"
     if not handles:
         sys.exit("✗ לא נמסרו handles")
+    if ratio not in RATIOS:
+        sys.exit(f"✗ יחס מסך לא נתמך: {ratio} (אפשרי: {', '.join(RATIOS)})")
+
+    #  משנים את יחס המסך לכל ההרצה: גם מה שמבקשים מ-Gemini וגם החיתוך
+    #  הסופי. pipeline קורא את שניהם מהמשתנים האלה.
+    P.BRAND_KIT["output_spec"]["aspect_ratio"] = ratio
+    P.FEED_W, P.FEED_H = RATIOS[ratio]
 
     out = P.ROOT / "studio" / "out"
     out.mkdir(parents=True, exist_ok=True)
-    P.log(f"פוסטרי קמפיין — {len(handles)} שמלות, רקע ופוזה לכל אחת")
+    P.log(f"פוסטרי קמפיין — {len(handles)} שמלות, יחס {ratio} "
+          f"({P.FEED_W}x{P.FEED_H})")
     products = {p["handle"]: p for p in P.shopify_dresses()}
 
     made = 0
@@ -91,7 +112,7 @@ def main() -> None:
             resp.raise_for_status()
             mime = mimetypes.guess_type(url.split("?")[0])[0] or "image/jpeg"
             prompt = PROMPT.format(pose=pick(poses, i), scene=pick(scenes, i),
-                                   brand=pick(brands, i))
+                                   brand=pick(brands, i), ratio=ratio)
             data, _ = P.to_feed_format(P.gemini_edit(resp.content, mime, prompt))
         except P.GeminiCreditsExhausted:
             raise
