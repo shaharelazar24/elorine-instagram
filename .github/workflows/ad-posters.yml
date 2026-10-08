@@ -23,6 +23,10 @@ on:
         description: "תווית לגרסה — כדי לא לדרוס תוצאות קודמות"
         required: false
         default: "ad"
+      ratio:
+        description: "יחס מסך: 4:5 פיד, 9:16 סטורי מסך מלא, 3:4, 1:1"
+        required: false
+        default: "4:5"
 
 permissions:
   contents: write
@@ -60,7 +64,10 @@ jobs:
           SCENES: ${{ github.event.inputs.scenes }}
           BRANDS: ${{ github.event.inputs.brands }}
           TAG: ${{ github.event.inputs.tag }}
-        run: python adshot.py "$HANDLES" "$POSES" "$SCENES" "$BRANDS" "$TAG"
+          RATIO: ${{ github.event.inputs.ratio }}
+        run: |
+          python adshot.py "$HANDLES" "$POSES" "$SCENES" "$BRANDS" \
+            "$TAG" "$RATIO"
 
       - name: Commit results
         if: always()
