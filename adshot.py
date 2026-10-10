@@ -135,8 +135,14 @@ def main() -> None:
         P.log(f"\n▶ {i + 1}/{len(sources)}  {src}")
         try:
             raw, mime, slug = load_source(src, products)
-            prompt = PROMPT.format(pose=pick(poses, i), scene=pick(scenes, i),
-                                   brand=pick(brands, i), ratio=ratio)
+            #  pose == RAW: הסצנה היא הפרומפט המלא, בלי התבנית של קמפיין
+            #  שמלה. מתאים לפריימים שאינם צילום אופנה כלל.
+            if pick(poses, i).strip().upper() == "RAW":
+                prompt = pick(scenes, i)
+            else:
+                prompt = PROMPT.format(pose=pick(poses, i),
+                                       scene=pick(scenes, i),
+                                       brand=pick(brands, i), ratio=ratio)
             data, _ = P.to_feed_format(P.gemini_edit(raw, mime, prompt))
         except P.GeminiCreditsExhausted:
             raise
