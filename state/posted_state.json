@@ -217,10 +217,10 @@
       "at": "2026-09-02T07:29:50.052137+00:00"
     },
     "shira-mini-strapless-satin-dress": {
-      "name": "קמרון",
-      "type": "carousel",
-      "media_id": "18111401864039701",
-      "at": "2026-09-02T07:30:52.664108+00:00"
+      "name": "שמלת קמרון | סאטן מיני",
+      "type": "single",
+      "media_id": "18008232089989009",
+      "at": "2026-10-13T03:03:29.267648+00:00"
     },
     "spirit-mini-dress-one-shoulder-ruched-twist-knot": {
       "name": "אלייזה",
@@ -349,10 +349,10 @@
       "at": "2026-09-08T07:33:04.236635+00:00"
     },
     "marilyn-halter-maxi-dress": {
-      "name": "מרילין",
-      "type": "carousel",
-      "media_id": "18389871622200490",
-      "at": "2026-09-14T07:24:28.281494+00:00"
+      "name": "שמלת מרילין | מקסי קולר",
+      "type": "single",
+      "media_id": "18032038850855022",
+      "at": "2026-10-13T03:02:56.168485+00:00"
     },
     "ava-black-evening-maxi-dress": {
       "name": "אווה",
@@ -509,6 +509,12 @@
       "type": "single",
       "media_id": "18196596034388399",
       "at": "2026-10-09T05:32:43.165792+00:00"
+    },
+    "bonita-maxi-dress-black": {
+      "name": "שמלת סלין | תחרה מקסי",
+      "type": "single",
+      "media_id": "18026591513701166",
+      "at": "2026-10-13T03:02:23.645814+00:00"
     }
   },
   "seeded_names": [
@@ -594,7 +600,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-10-09T05:33:21.495541+00:00",
+  "updated_at": "2026-10-13T03:03:29.267739+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
