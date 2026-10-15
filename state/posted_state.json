@@ -515,6 +515,30 @@
       "type": "single",
       "media_id": "18026591513701166",
       "at": "2026-10-13T03:02:23.645814+00:00"
+    },
+    "madeleine-collar-midi-dress": {
+      "name": "מדלן",
+      "type": "carousel",
+      "media_id": "17998965633001735",
+      "at": "2026-10-15T12:44:32.471562+00:00"
+    },
+    "anastasia-velvet-satin-maxi-dress": {
+      "name": "אנסטסיה",
+      "type": "carousel",
+      "media_id": "17978748435133111",
+      "at": "2026-10-15T12:45:14.305227+00:00"
+    },
+    "odette-cape-midi-dress": {
+      "name": "אודט",
+      "type": "single",
+      "media_id": "17985326550096174",
+      "at": "2026-10-15T12:45:36.477142+00:00"
+    },
+    "aurora-ruched-maxi-dress": {
+      "name": "אורורה",
+      "type": "single",
+      "media_id": "17890096611618392",
+      "at": "2026-10-15T12:46:06.329768+00:00"
     }
   },
   "seeded_names": [
@@ -600,7 +624,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-10-15T12:43:56.990285+00:00",
+  "updated_at": "2026-10-15T12:46:14.330469+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
