@@ -1,0 +1,154 @@
+[
+  {
+    "type": "carousel",
+    "handle": "luna-ruched-mini-dress",
+    "title": "שמלת לונה | מיני מקומטת",
+    "dress_name": "לונה",
+    "product_url": "https://elorine.co.il/products/luna-ruched-mini-dress",
+    "price_ils": "299.0",
+    "items": [
+      {
+        "colour": "שחור",
+        "path": "posts/2026-10-18/luna-ruched-mini-dress__1.jpg",
+        "background": "villa_quiet",
+        "background_he": "וילה אירופאית מינימליסטית עם הצצה לבריכה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 798
+        }
+      },
+      {
+        "colour": "לבן",
+        "path": "posts/2026-10-18/luna-ruched-mini-dress__2.jpg",
+        "background": "villa_quiet",
+        "background_he": "וילה אירופאית מינימליסטית עם הצצה לבריכה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 830
+        }
+      },
+      {
+        "colour": "תכלת",
+        "path": "posts/2026-10-18/luna-ruched-mini-dress__3.jpg",
+        "background": "villa_quiet",
+        "background_he": "וילה אירופאית מינימליסטית עם הצצה לבריכה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 805
+        }
+      },
+      {
+        "colour": "שמנת",
+        "path": "posts/2026-10-18/luna-ruched-mini-dress__4.jpg",
+        "background": "villa_quiet",
+        "background_he": "וילה אירופאית מינימליסטית עם הצצה לבריכה",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 787
+        }
+      }
+    ],
+    "caption": "שמלת לונה · ELORINE\nמחשוף V עמוק, כיווצים לאורך כל הגזרה, חיתוכים עדינים בצדי המותן וגב פתוח, בבד נמתח במיוחד שנצמד לגוף ומחטב אותו.\nאותה שמלה ב-4 גוונים — שחור, לבן, תכלת ושמנת. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מיני #גב_פתוח #שמלה_שחורה",
+    "generated_at": "2026-10-18T12:05:37.105716+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "dominique-halter-maxi-dress",
+    "title": "שמלת דומיניק | מקסי הולטר",
+    "dress_name": "דומיניק",
+    "product_url": "https://elorine.co.il/products/dominique-halter-maxi-dress",
+    "price_ils": "329.0",
+    "items": [
+      {
+        "colour": "שחור",
+        "path": "posts/2026-10-18/dominique-halter-maxi-dress__1.jpg",
+        "background": "linen_drape",
+        "background_he": "וילון פשתן",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 724
+        }
+      },
+      {
+        "colour": "ורוד",
+        "path": "posts/2026-10-18/dominique-halter-maxi-dress__2.jpg",
+        "background": "linen_drape",
+        "background_he": "וילון פשתן",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 879
+        }
+      }
+    ],
+    "caption": "שמלת דומיניק · ELORINE\nצווארון הולטר עם מחשוף V עמוק, גב פתוח לגמרי ושסע ירך גבוה, בגזרה מחטבת שנופלת עד הרצפה.\nבשני גוונים — שחור וורוד. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שמלת_מיני #גב_פתוח",
+    "generated_at": "2026-10-18T12:06:44.948911+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 939
+    },
+    "type": "single",
+    "handle": "clementine-embroidered-maxi-dress",
+    "title": "שמלת קלמנטין | מקסי רקומה",
+    "dress_name": "קלמנטין",
+    "product_url": "https://elorine.co.il/products/clementine-embroidered-maxi-dress",
+    "price_ils": "389.0",
+    "background": "sea_view_balcony",
+    "background_he": "מרפסת עם נוף לים",
+    "image_path": "posts/2026-10-18/clementine-embroidered-maxi-dress.jpg",
+    "caption": "שמלת קלמנטין · ELORINE\nמחוך מובנה בחלק העליון, רצועות כתף דקות ורקמה פרחונית בגוון פוקסיה על בסיס ורוד, שמלווה את הגזרה הצמודה עד הרצפה.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #תחרה #מחוך",
+    "alt_text": "שמלת קלמנטין של ELORINE, pink, lace, floor-length maxi, corset bodice, על רקע מרפסת עם נוף לים.",
+    "generated_at": "2026-10-18T12:07:38.359625+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 721
+    },
+    "type": "single",
+    "handle": "raffaella-chiffon-maxi-dress",
+    "title": "שמלת רפאלה | שיפון מקסי",
+    "dress_name": "רפאלה",
+    "product_url": "https://elorine.co.il/products/raffaella-chiffon-maxi-dress",
+    "price_ils": "359.0",
+    "background": "marble_stair",
+    "background_he": "מדרגות שיש",
+    "image_path": "posts/2026-10-18/raffaella-chiffon-maxi-dress.jpg",
+    "caption": "שמלת רפאלה · ELORINE\nמחשוף מרובע, כתפיות שמצטלבות בגב, כיווצים אסימטריים על האגן וגב מחוך עם שרוכים שמתאים את הגזרה בדיוק אלייך.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #מחוך #שמלת_ערב",
+    "alt_text": "שמלת רפאלה של ELORINE, black, white, burgundy, pink, powder blue, blue, yellow, beige, chiffon, floor-length maxi, corset bodice, על רקע מדרגות שיש.",
+    "generated_at": "2026-10-18T12:08:33.826444+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
