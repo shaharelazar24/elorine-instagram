@@ -1,0 +1,74 @@
+name: ELORINE — publish carousel
+
+# הרצה ידנית: מפרסם קרוסלה אחת מתמונות מוכנות בריפו לאינסטגרם ולפייסבוק.
+
+on:
+  workflow_dispatch:
+    inputs:
+      paths:
+        description: "נתיבי התמונות בריפו, מופרדים בפסיק, לפי סדר הקרוסלה"
+        required: true
+      handle:
+        description: "handle של השמלה (לכיתוב אוטומטי)"
+        required: false
+        default: ""
+      caption:
+        description: "כיתוב ידני (ריק = אוטומטי)"
+        required: false
+        default: ""
+      facebook:
+        description: "לפרסם גם לפייסבוק"
+        required: false
+        default: "true"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: elorine-publish
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SHOPIFY_STORE: ${{ vars.SHOPIFY_STORE }}
+      SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+      SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+      META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+      IG_USER_ID: ${{ vars.IG_USER_ID }}
+      FB_PAGE_ID: ${{ vars.FB_PAGE_ID }}
+      PUBLISH_TO_FACEBOOK: ${{ github.event.inputs.facebook }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Publish carousel
+        env:
+          PATHS: ${{ github.event.inputs.paths }}
+          HANDLE: ${{ github.event.inputs.handle }}
+          CAPTION: ${{ github.event.inputs.caption }}
+        run: python publish_carousel.py "$PATHS" "$HANDLE" "$CAPTION"
+
+      - name: Save state
+        if: always()
+        run: |
+          git config user.name  "elorine-bot"
+          git config user.email "actions@github.com"
+          git add state/ || true
+          if git diff --staged --quiet; then echo "אין שינוי בסטייט."; exit 0; fi
+          git commit -m "state: published carousel"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            git pull --rebase origin main || { git rebase --abort || true; }
+            sleep $((5 * i))
+          done
+          exit 1
