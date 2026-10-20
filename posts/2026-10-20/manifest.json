@@ -1,0 +1,154 @@
+[
+  {
+    "type": "carousel",
+    "handle": "penelope-knit-midi-dress",
+    "title": "שמלת פנלופה | סריג מידי",
+    "dress_name": "פנלופה",
+    "product_url": "https://elorine.co.il/products/penelope-knit-midi-dress",
+    "price_ils": "269.0",
+    "items": [
+      {
+        "colour": "בורדו",
+        "path": "posts/2026-10-20/penelope-knit-midi-dress__1.jpg",
+        "background": "poolside_loungers",
+        "background_he": "מרפסת בריכה ומיטות שיזוף",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1082
+        }
+      },
+      {
+        "colour": "בז'",
+        "path": "posts/2026-10-20/penelope-knit-midi-dress__2.jpg",
+        "background": "poolside_loungers",
+        "background_he": "מרפסת בריכה ומיטות שיזוף",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1067
+        }
+      },
+      {
+        "colour": "שחור",
+        "path": "posts/2026-10-20/penelope-knit-midi-dress__3.jpg",
+        "background": "poolside_loungers",
+        "background_he": "מרפסת בריכה ומיטות שיזוף",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1042
+        }
+      },
+      {
+        "colour": "שנהב",
+        "path": "posts/2026-10-20/penelope-knit-midi-dress__4.jpg",
+        "background": "poolside_loungers",
+        "background_he": "מרפסת בריכה ומיטות שיזוף",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 990
+        }
+      }
+    ],
+    "caption": "שמלת פנלופה · ELORINE\nצווארון עגול, שרוולים ארוכים, גוף עליון מחמיא וחצאית פליסה מידי שנפתחת ברכות עם כל צעד.\nאותה שמלה ב-4 גוונים — בורדו, בז', שחור ושנהב. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מידי #שמלה_שחורה #בורדו",
+    "generated_at": "2026-10-20T12:45:38.879574+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "type": "carousel",
+    "handle": "estelle-cape-maxi-dress",
+    "title": "שמלת אסטל | מקסי שכמייה",
+    "dress_name": "אסטל",
+    "product_url": "https://elorine.co.il/products/estelle-cape-maxi-dress",
+    "price_ils": "269.0",
+    "items": [
+      {
+        "colour": "כחול אבקה",
+        "path": "posts/2026-10-20/estelle-cape-maxi-dress__1.jpg",
+        "background": "resort_terrace",
+        "background_he": "מרפסת ריזורט",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 1031
+        }
+      },
+      {
+        "colour": "שנהב",
+        "path": "posts/2026-10-20/estelle-cape-maxi-dress__2.jpg",
+        "background": "resort_terrace",
+        "background_he": "מרפסת ריזורט",
+        "quality": {
+          "source_px": "1856x2304",
+          "output_px": "1600x2000",
+          "true_height": 2304,
+          "upscaled": false,
+          "kb": 952
+        }
+      }
+    ],
+    "caption": "שמלת אסטל · ELORINE\nמחשוף אלכסוני עם קפלים עדינים, שרוולי שכמייה ארוכים ושקופים למחצה שנפתחים בתנועה, וחצאית מקסי רחבה בבד בעל ברק עדין.\nבשני גוונים — כחול אבקה ושנהב. איזה שלך? גללי ▶️\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #שנהב",
+    "generated_at": "2026-10-20T12:46:50.874752+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 926
+    },
+    "type": "single",
+    "handle": "octavia-velvet-maxi-dress",
+    "title": "שמלת אוקטביה | קטיפה מקסי",
+    "dress_name": "אוקטביה",
+    "product_url": "https://elorine.co.il/products/octavia-velvet-maxi-dress",
+    "price_ils": "319.0",
+    "background": "villa_pool",
+    "background_he": "בריכת וילה",
+    "image_path": "posts/2026-10-20/octavia-velvet-maxi-dress.jpg",
+    "caption": "שמלת אוקטביה · ELORINE\nמחשוף מרובע, כתפי פנס עדינות ושרוולים ארוכים שמסתיימים בתחרה, גזרה צמודה שנפתחת בתחתית וקשירת סרט בגב שמהדקת את המותן.\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #תחרה #קטיפה",
+    "alt_text": "שמלת אוקטביה של ELORINE, lace, velvet, floor-length maxi, על רקע בריכת וילה.",
+    "generated_at": "2026-10-20T12:47:48.405033+00:00",
+    "published_ig": false,
+    "published_fb": false
+  },
+  {
+    "quality": {
+      "source_px": "1856x2304",
+      "output_px": "1600x2000",
+      "true_height": 2304,
+      "upscaled": false,
+      "kb": 1008
+    },
+    "type": "single",
+    "handle": "elise-lace-maxi-dress",
+    "title": "שמלת אליז | תחרה מקסי",
+    "dress_name": "אליז",
+    "product_url": "https://elorine.co.il/products/elise-lace-maxi-dress",
+    "price_ils": "419.0",
+    "background": "marble_stair",
+    "background_he": "מדרגות שיש",
+    "image_path": "posts/2026-10-20/elise-lace-maxi-dress.jpg",
+    "caption": "שמלת אליז · ELORINE\nתחרה פרחונית בגוון שנהב עם צווארון גבוה מסולסל, שרוולים ארוכים עם סיומת פעמון, תפרים מחמיאים שמעצבים את הגוף וחצאית מקסי….\n🤍 לצפייה באתר – הקישור בביו.\n#ELORINE #אופנה_ישראלית #אלגנטיות #שמלת_מקסי #תחרה #שנהב",
+    "alt_text": "שמלת אליז של ELORINE, ivory, lace, floor-length maxi, על רקע מדרגות שיש.",
+    "generated_at": "2026-10-20T12:48:44.631933+00:00",
+    "published_ig": false,
+    "published_fb": false
+  }
+]
