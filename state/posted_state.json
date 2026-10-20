@@ -569,6 +569,30 @@
       "type": "single",
       "media_id": "17872039956648329",
       "at": "2026-10-18T22:31:09.365208+00:00"
+    },
+    "penelope-knit-midi-dress": {
+      "name": "פנלופה",
+      "type": "carousel",
+      "media_id": "17998697588822657",
+      "at": "2026-10-20T12:49:36.780097+00:00"
+    },
+    "estelle-cape-maxi-dress": {
+      "name": "אסטל",
+      "type": "carousel",
+      "media_id": "17913252042514888",
+      "at": "2026-10-20T12:50:09.434351+00:00"
+    },
+    "octavia-velvet-maxi-dress": {
+      "name": "אוקטביה",
+      "type": "single",
+      "media_id": "18219078007347239",
+      "at": "2026-10-20T12:50:30.072907+00:00"
+    },
+    "elise-lace-maxi-dress": {
+      "name": "אליז",
+      "type": "single",
+      "media_id": "18114721385024925",
+      "at": "2026-10-20T12:50:50.326001+00:00"
     }
   },
   "seeded_names": [
@@ -654,7 +678,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-10-20T12:48:44.632309+00:00",
+  "updated_at": "2026-10-20T12:50:58.327336+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
