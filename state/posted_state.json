@@ -599,6 +599,30 @@
       "type": "carousel",
       "media_id": "18443572492131597",
       "at": "2026-10-22T00:44:52.451859+00:00"
+    },
+    "lillian-chiffon-maxi-dress": {
+      "name": "ליליאן",
+      "type": "carousel",
+      "media_id": "18102306923536356",
+      "at": "2026-10-22T13:05:39.627765+00:00"
+    },
+    "helena-pleated-maxi-dress": {
+      "name": "הלנה",
+      "type": "carousel",
+      "media_id": "18042394709829693",
+      "at": "2026-10-22T13:06:30.281819+00:00"
+    },
+    "josephine-chiffon-maxi-dress": {
+      "name": "ג'וזפין",
+      "type": "single",
+      "media_id": "18091962704696949",
+      "at": "2026-10-22T13:06:48.656210+00:00"
+    },
+    "agnetha-maxi-dress-leopard-print": {
+      "name": "מירבל",
+      "type": "single",
+      "media_id": "18424768441156815",
+      "at": "2026-10-22T13:07:11.663018+00:00"
     }
   },
   "seeded_names": [
@@ -684,7 +708,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-10-22T13:04:37.739329+00:00",
+  "updated_at": "2026-10-22T13:07:19.664676+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
