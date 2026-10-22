@@ -593,6 +593,12 @@
       "type": "single",
       "media_id": "18114721385024925",
       "at": "2026-10-20T12:50:50.326001+00:00"
+    },
+    "annabelle-pleated-chiffon-maxi-dress": {
+      "name": "שמלת אנאבל | שיפון פליסה",
+      "type": "carousel",
+      "media_id": "18443572492131597",
+      "at": "2026-10-22T00:44:52.451859+00:00"
     }
   },
   "seeded_names": [
@@ -678,7 +684,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-10-20T12:50:58.327336+00:00",
+  "updated_at": "2026-10-22T00:44:52.451916+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
