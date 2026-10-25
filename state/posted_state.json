@@ -623,6 +623,30 @@
       "type": "single",
       "media_id": "18424768441156815",
       "at": "2026-10-22T13:07:11.663018+00:00"
+    },
+    "anna-maxi-elegant-open-back-dress": {
+      "name": "הנרייטה",
+      "type": "carousel",
+      "media_id": "18127523035883473",
+      "at": "2026-10-25T12:43:01.643715+00:00"
+    },
+    "elara-maxi-dress-ivory": {
+      "name": "רוזמונד",
+      "type": "carousel",
+      "media_id": "18200352298385295",
+      "at": "2026-10-25T12:43:41.902403+00:00"
+    },
+    "sorelle-maxi-dress-glacier-blue": {
+      "name": "נאדין",
+      "type": "single",
+      "media_id": "18081618593711186",
+      "at": "2026-10-25T12:44:03.932932+00:00"
+    },
+    "porto-fino-dress": {
+      "name": "בריאל",
+      "type": "single",
+      "media_id": "18103754267148332",
+      "at": "2026-10-25T12:44:25.519669+00:00"
     }
   },
   "seeded_names": [
@@ -708,7 +732,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-10-25T12:41:50.136498+00:00",
+  "updated_at": "2026-10-25T12:44:33.520933+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
