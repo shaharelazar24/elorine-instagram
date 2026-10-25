@@ -529,10 +529,10 @@
       "at": "2026-10-25T15:03:16.910001+00:00"
     },
     "odette-cape-midi-dress": {
-      "name": "אודט",
-      "type": "single",
-      "media_id": "17985326550096174",
-      "at": "2026-10-15T12:45:36.477142+00:00"
+      "name": "שמלת אודט | מידי שכמייה",
+      "type": "carousel",
+      "media_id": "18095555267161812",
+      "at": "2026-10-25T15:36:32.763235+00:00"
     },
     "aurora-ruched-maxi-dress": {
       "name": "שמלת אורורה | מקסי מקומט",
@@ -732,7 +732,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-10-25T15:03:16.910057+00:00",
+  "updated_at": "2026-10-25T15:36:32.763291+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
