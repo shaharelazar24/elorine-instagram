@@ -647,6 +647,30 @@
       "type": "single",
       "media_id": "18103754267148332",
       "at": "2026-10-25T12:44:25.519669+00:00"
+    },
+    "eleonora-mini": {
+      "name": "גיגי",
+      "type": "carousel",
+      "media_id": "18425327737152429",
+      "at": "2026-10-27T13:22:24.129933+00:00"
+    },
+    "pearl-sequin-mini-dress": {
+      "name": "פרל",
+      "type": "carousel",
+      "media_id": "18099736343093407",
+      "at": "2026-10-27T13:23:11.260188+00:00"
+    },
+    "vittoria-brown": {
+      "name": "ז'קלין",
+      "type": "single",
+      "media_id": "18146712652596121",
+      "at": "2026-10-27T13:23:32.511435+00:00"
+    },
+    "jasmine": {
+      "name": "לולה",
+      "type": "single",
+      "media_id": "18101718956434305",
+      "at": "2026-10-27T13:23:52.993431+00:00"
     }
   },
   "seeded_names": [
@@ -732,7 +756,7 @@
     "שרון"
   ],
   "seed_source": "Instagram @elorine.il caption scan, 124 posts, 2026-08-24",
-  "updated_at": "2026-10-27T13:21:21.105206+00:00",
+  "updated_at": "2026-10-27T13:24:00.995125+00:00",
   "atmosphere_used": [
     "linen_sea_breeze",
     "boutique_rail",
